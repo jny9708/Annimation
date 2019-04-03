@@ -1,0 +1,45 @@
+
+textarea:focus, select:focus, select[type]:focus, .uneditable-select:focus,input:focus, input[type]:focus, .uneditable-input:focus { /*부트스트랩 input 색상*/
+  border-color: #157ba1;
+  box-shadow: 0 0px 0px rgba(229, 103, 23, 0.075) inset, 0 0 0px rgba(229, 103, 23, 0.6);
+  outline: 0 none;
+}
+.form-control:focus {
+  border-color:#157ba1!important;
+  outline: 0;
+  -webkit-box-shadow: inset 0 0px 0px rgba(0,0,0,.075),0 0 0px rgba(102,175,233,.6)!important;
+  box-shadow: inset 0 0px 0px rgba(0,0,0,.075),0 0 0px rgba(102,175,233,.6)!important;
+}
+.bootstrap-select .btn:focus {
+  outline: none !important;
+}
+
+.btn:focus,.btn:active {
+  outline: none !important;
+  box-shadow: none;
+}
+/*회원가입*/
+#Select{
+  height: 45px;
+}
+label{
+  font-size: 15px;
+}
+
+.signup-block{
+  display: table;
+  margin: 30px 0px 30px 0px;
+}
+form{
+  width: 500px;
+  display: table-cell;
+  vertical-align: middle;
+
+}
+
+div>a>img{
+  margin: 10px 0px 0px 0px;
+  width: 300px;
+  height: 150px;
+}
+

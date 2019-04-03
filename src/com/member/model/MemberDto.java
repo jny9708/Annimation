@@ -18,7 +18,23 @@ public class MemberDto {
 	int mem_is_admin;
 	String mem_profile_content;
 	String mem_icon;
+	String mem_birthday;
+	String salt;
 	
+	public String getSalt() {
+		return salt;
+	}
+	public MemberDto setSalt(String salt) {
+		this.salt = salt;
+		return this;
+	}
+	public String getMem_birthday() {
+		return mem_birthday;
+	}
+	public MemberDto setMem_birthday(String birthday) {
+		this.mem_birthday = birthday;
+		return this;
+	}
 	public int getMem_no() {
 		return mem_no;
 	}

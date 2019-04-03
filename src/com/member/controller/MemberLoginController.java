@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 
 import com.member.model.*;
 
+import Util.SecurityUtil;
+
 public class MemberLoginController implements Controller {
 
 	/**MemberDao MemberDao;
@@ -30,37 +32,42 @@ public class MemberLoginController implements Controller {
 		int result=-1;
 		
 		MemberDto.setMem_id(request.getParameter("mem_id"));
-		MemberDto.setMem_password(request.getParameter("mem_password"));
-		System.out.println("221");
+		String salt = MemberDao.getSaltById(MemberDto);
+		String mem_password =request.getParameter("mem_password");
+		mem_password=SecurityUtil.getEncrypt(mem_password, salt);
+		MemberDto.setMem_password(mem_password);
 		System.out.println(request.getParameter("mem_id"));
 		System.out.println(request.getParameter("mem_password"));
+		System.out.println(session.getAttribute("id")+"?!");
 		result = MemberDao.isMember(MemberDto);
 		
 		if(result==0) {
 			//response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out=response.getWriter();
-	   		out.println("<script>");
-	   		out.println("alert('알수없는 오휴');");
-	   		out.println("location.href='./MemberLogin.do';");
+			out.println("<script>");
+	   		out.println("alert('비밀번호 혹은 아이디가 틀렸습니다.');");
+	   		out.println("history.back();");
 	   		out.println("</script>");
-	   		out.close();
-	   		return forward;
+	   		return null; 
 		}
 		else if(result==-1) {
-			response.setContentType("text/html;charset=euc-kr");
-	   		PrintWriter out=response.getWriter();
-	   		out.println("<script>");
-	   		out.println("alert('비밀번호 틀림');");
-	   		out.println("location.href='./MemberLogin.do';");
+			//response.setContentType("text/html;charset=euc-kr");
+			PrintWriter out=response.getWriter();
+			out.println("<script>");
+	   		out.println("alert('비밀번호 혹은 아이디가 틀렸습니다.');");
+	   		out.println("history.back();");
 	   		out.println("</script>");
-	   		out.close();
-	   		return forward;
+	   		return null;
+	   		
 		}
-		int no = MemberDao.getMemberNo(MemberDto);
-		session.setAttribute("id", MemberDto.getMem_id());
-		session.setAttribute("MemberNo",no);
+		MemberDto=MemberDao.getMember(request.getParameter("mem_id"));
+		
+		
+		session.setAttribute("Member", MemberDto);
+		
+		
 		forward.setRedirect(true);
-   		forward.setPath("./member/main.jsp");
+   		forward.setPath("./Main.do");
 		return forward;
 	}
 

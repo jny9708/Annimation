@@ -1,0 +1,36 @@
+
+textarea:focus, select:focus, select[type]:focus, .uneditable-select:focus,input:focus, input[type]:focus, .uneditable-input:focus { /*부트스트랩 input 색상*/
+        border-color: #157ba1;
+        box-shadow: 0 0px 0px rgba(229, 103, 23, 0.075) inset, 0 0 0px rgba(229, 103, 23, 0.6);
+        outline: 0 none;
+    }
+.btn:focus,.btn:active {
+     outline: none !important;
+     box-shadow: none;
+}
+.signup-block{
+        margin: 30px 0px 30px 0px;
+        padding: 50px 0px 50px 0px;
+        display: table;
+}
+.row{
+    display: table-cell;
+    vertical-align: middle;
+    width: 450px;
+    text-align: center;
+}
+
+.form-group>a:focus,
+.form-group>a:hover,
+.form-group>a{
+color:#082e3c;
+font-weight: bold;
+}
+.logo-{
+    width: 300px;
+    height: 150px;
+    margin-bottom: 20px;
+}
+button{
+    background-color: #fbd14b;
+}

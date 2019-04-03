@@ -1,0 +1,224 @@
+header{
+  height: 70px;
+  position: static;
+  
+}
+.bs-white.navbar-default {
+    background-color: white;
+    border: 0px;
+    border-bottom: 1px solid #dedcee;
+  }
+
+  .bs-white .navbar-img {padding:5px 6px !important;}
+  .bs-white .navbar-img img {width:45px;}
+  .bs-white .dropdown-menu { /*사용자 메뉴 박스*/
+    min-width: 200px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    background-color: white;
+    border: 1px solid whitesmoke;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+  }
+  
+  .bs-white .dropdown-menu .divider {
+    border: 1px solid #082e3c; /*사용자 메뉴 박스 선*/
+  }
+  .bs-white .dropdown-menu > li > a { /*프로필 글자*/
+    display: inline-block;
+    padding: 6px 20px;
+    color: black;
+    font-weight: bolder;
+  }
+  .bs-white .dropdown-menu > li > a:hover,
+  .bs-white .dropdown-menu > li > a:focus {
+    color: #082e3c;
+    text-decoration: none;
+    background-color: transparent;
+  }
+  .bs-white .dropdown>a>h5{ /*닉네임*/
+    color:  black;
+    font-weight: bolder;
+  }
+  .bs-white .dropdown>a {
+    background-color: white !important;
+  }
+  
+  @media (min-width: 768px) { /*드롭다운 제한*/
+      .bs-white .dropdown:hover {background-color: white;}
+      .bs-white .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+      .bs-white .navbar-form {
+        padding:0px;
+      }	
+      .bs-white.navbar-form .search-box {
+        width:500px;
+        height:32px;
+      }
+  
+  }
+
+  .login-btn{
+    border:1px;
+    border-style: solid;
+    border-color: #082e3c;
+    -webkit-border-radius: 22px;
+    -moz-border-radius: 22px;
+    border-radius: 22px;
+  }
+  input::placeholder{
+    color:black;
+  }
+
+/*검색*/
+.bs-white .navbar-form .search-box {
+    border:1px;
+    border-style: solid;
+    border-color: white;
+    background-color: #d0e7f0;
+    height:35px;
+    outline: none;
+    padding-right: 3px;
+    padding-left: 15px;
+    margin:10px 0px 0px 0px;
+    -webkit-border-radius: 22px;
+    -moz-border-radius: 22px;
+    border-radius: 22px;
+    color: black;
+}
+.bs-white .navbar-form button{
+  border: 0;
+    background: none;
+    padding: 2px 0px;
+    margin-top: 3px;
+    position: relative;
+    left: -34px;
+    margin-bottom: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.navbar-form div.input-group > a{
+  border: black solid 1px;
+  font-size: 17px;
+  padding: 8px 15px 7px 15px;
+  color: black;
+  margin:9px 0px 0px 0px;
+  -webkit-border-radius: 22px;
+  -moz-border-radius: 22px;
+  border-radius: 22px;
+  font-weight: bolder;
+  text-decoration: none;
+  
+}
+.navbar-form div.input-group > a:hover{
+  background: #fbd14b;
+  color: #fff;
+  border:1px solid white;
+  font-weight: bolder;
+}
+
+ /*헤더 컨트롤 메뉴*/ 
+.navbar-collapse .navbar-nav > li.active>a,
+.navbar-collapse .navbar-nav > li.active>a:hover,
+.navbar-collapse .navbar-nav > li.active>a:focus{
+    background-color: white;
+    font-size: 20px;
+    color: #188ab5;
+    font-weight: 550;
+
+  }
+  .navbar-collapse> ul.navbar-nav > li > a:focus,
+  .navbar-collapse> ul.navbar-nav > li > a { /*연결상태 확인하시오!!*/ 
+   color: #082e3c;
+   font-size: 20px;
+   background-color: white;
+   font-weight: 550;
+ }
+
+ .navbar-collapse > ul.navbar-nav > li > a:hover { /*연결상태 확인하시오!!*/
+  color:#188ab5;
+  font-size: 20px;
+  background-color: white;
+  font-weight: 550;
+  
+}
+
+.navbar-header{
+  height: 70px;
+  
+}
+.logo{
+  margin-top: 9px;
+  width: 170px;
+  height: 50px;
+  padding-left: 50px;
+}
+
+
+/*반응형*/
+.collapsed > span.icon-bar{
+  text-align: center
+}
+
+footer>div.container{
+  line-height: 100px;
+
+
+}
+.foot{
+    width: 100%;
+    height: 100px;
+    background-color: white;
+  
+
+}
+.foot-font{
+    display: table-cell;
+    font-size: 12px;
+    vertical-align: middle;
+    text-align: center; /*글자 가운데정렬*/
+    margin: 0px 30px 0px 0px;
+    
+}
+
+.container >a{
+  color: #082e3c;
+  font-weight: bolder
+}
+
+.card{
+    border-style: solid;
+    border-width: 1px;
+    border-color: #F2F2F2;
+    box-shadow: 1px 1px 20px #dedcee;
+    display: inline-block;
+    margin: 5px;
+    margin-bottom: 40px;
+  
+}
+
+
+
+
+
+  #copyright
+	{ margin-top: 3em;
+		padding:3em 0em;
+		border-top: 1px solid #dedcee;
+		text-align: center;
+	}
+	
+	#copyright p
+	{
+		letter-spacing: 1px;
+		font-size: 0.90em;
+		color: #082e3c;
+	}
+  
+  
+  #manu{
+    align-content: center;
+  }

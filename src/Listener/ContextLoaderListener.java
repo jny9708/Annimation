@@ -1,13 +1,13 @@
 package Listener;
 
-import com.member.model.MemberDao;
-import javax.naming.InitialContext;
-import javax.servlet.ServletContext;
+//import com.member.model.MemberDao;
+//import javax.naming.InitialContext;
+//import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
-import javax.sql.DataSource;
-import com.member.controller.*;
+//import javax.sql.DataSource;
+//import com.member.controller.*;
 
 @WebListener
 public class ContextLoaderListener implements ServletContextListener {

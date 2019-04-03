@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class MemberFrontController
  */
 //@SuppressWarnings("serial")
-@WebServlet("*.do")
+@WebServlet("*.do") 
 public class MemberFrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -26,13 +26,12 @@ public class MemberFrontController extends HttpServlet {
 	  protected void service(
 	      HttpServletRequest request, HttpServletResponse response)
 	      throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
 	    response.setContentType("text/html; charset=UTF-8");
 	    
 	    String requestURI = request.getRequestURI();
 		int cmdIdx = requestURI.lastIndexOf("/");
 		String command = requestURI.substring(cmdIdx);
-		
-		System.out.println("11111");
 		System.out.println(requestURI);
 		System.out.println(command);
 		
@@ -43,17 +42,36 @@ public class MemberFrontController extends HttpServlet {
 	    	//ServletContext sc = this.getServletContext();
 	    	//Controller pageController = (Controller) sc.getAttribute(command);
 	    	
-	    	if(command.equals("/LoginForm.do")) {
+	    	if(command.equals("/Main.do")) {
+	    		controller = new MainPageController();
+	    		forward=controller.execute(request, response);		
+	    	}
+	    	else if (command.equals("/MemberLogin.do")) {
+	    		controller = new MemberLoginController();
+	    		forward=controller.execute(request, response);			
+	    	}
+	    	else if(command.equals("/MemberJoin.do")) {
+	    		controller = new MemberJoinController();
+	    		forward=controller.execute(request, response);
+	    	}
+	    	else if(command.equals("/MemberLogout.do")) {
+	    		controller = new MemberLogoutController();
+	    		forward=controller.execute(request, response);
+	    	}
+	    	else if(command.equals("/SignUpForm.do")) {
+	    		forward=new ControllerForward();
+				 forward.setRedirect(false);
+				 forward.setPath("./member/SignUpForm.jsp");
+	    	}
+	    	else if(command.equals("/LoginForm.do")) {
 	    		 forward=new ControllerForward();
 				 forward.setRedirect(false);
 				 forward.setPath("./member/LoginForm.jsp");
 	    	}
 	    	
-	    	else if (command.equals("/MemberLogin.do")) {
-	    		controller = new MemberLoginController();
-	    		forward=controller.execute(request, response);			
-	    	}
 	    	
+	    	
+	    	if(forward != null){
 	    	 if(forward.isRedirect()){
 				   response.sendRedirect(forward.getPath());
 			   }else{
@@ -61,6 +79,7 @@ public class MemberFrontController extends HttpServlet {
 					   request.getRequestDispatcher(forward.getPath());
 				   dispatcher.forward(request, response);
 			   }
+	    	}
 	    	
 	    	
 		} catch (Exception e) {
