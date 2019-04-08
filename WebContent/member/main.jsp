@@ -13,6 +13,7 @@
 	ArrayList<AniBoardDto> list = (ArrayList<AniBoardDto>)request.getAttribute("anis");
 %>
 
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -38,7 +39,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav" style="margin:10px;">
             <li ><a href="#">홈 <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">프로젝트 </a></li>
+            <li><a href="./Project.bo">프로젝트 </a></li>
             <li><a href="#">공모전</a></li>
           </ul>
 

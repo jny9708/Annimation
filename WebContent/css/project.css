@@ -173,10 +173,18 @@ section .col-sm-12{ /*카드 마진*/
 }
 #card_hash{
     margin: 0px 0px 10px 0px;
+    height: 20px;
+    overflow: hidden; 
+  	text-overflow: ellipsis;
+  	white-space: nowrap; 
 }
 /****************************************/
 #card_title{
     color: #2E2E2E;
+    width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
 }
 .table{
     background-color: #e2f5fd;
