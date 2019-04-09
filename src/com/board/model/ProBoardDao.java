@@ -51,12 +51,6 @@ public class ProBoardDao {
 		ResultSet rs = null;
 		String sql="select *,TO_DAYS(boa_rec_deadline)-TO_DAYS(now())as d_day from pro_board ";
 		
-	/*	if(SearchMap.get("Project_Search")!=null||SearchMap.get("Occupation")!=null
-				||SearchMap.get("Category")!=null||SearchMap.get("Period")!=null
-				||SearchMap.get("Size")!=null||SearchMap.get("Experience")!=null) {
-			sql=sql+"where";
-			}
-		*/
 		if(SearchMap.get("Project_Search")!=null) {
 			if(SearchMap.get("Occupation")==null&&SearchMap.get("Category")==null
 					&&SearchMap.get("Period")==null&&SearchMap.get("Size")==null
@@ -318,16 +312,141 @@ public class ProBoardDao {
 					if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
 					if(connection!=null) try {connection.close();} catch(Exception ex) {}
 				}
-		
-				
-				
-					
 			}
-			
-	
-		
 		return list;
 	}
 	
-	
+	public ArrayList<String> getTagList(int state,ArrayList<ProBoardDto> list){
+		ArrayList<String> TagList = new ArrayList<String>(); 
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="";
+		if(state==0) {
+			// limit 5 해서 많이 쓰인 태그 5개만 리스트에 담으려고 함
+			sql+="select tag_contents from hashtag group by tag_contents order by count(*) desc,tag_contents asc limit 5";
+		}else if(state==1) {
+			sql+="select tag_contents from hashtag where (boa_no="+list.get(0).getBoa_no();
+			for(int i=1; i<list.size();i++) {
+				sql+=" or boa_no="+list.get(i).getBoa_no();
+			}
+			
+			sql+=") group by tag_contents order by count(*) desc,tag_contents asc limit 5";
+		}
+		System.out.println("tag sql은 "+sql);
+		try {
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				TagList.add(rs.getString("tag_contents"));
+			}
+			
+		} catch (Exception e) {
+			System.out.println("getTagList 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		} 
+		return TagList;
+	}
+	public ArrayList<ProBoardDto> getTagSearchList(int sort,String TagSearch){
+		ArrayList<ProBoardDto> list = new ArrayList<ProBoardDto>();
+		ArrayList<String> boa_no = new ArrayList<String>(); 
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="select boa_no from hashtag where tag_contents='"+TagSearch+"'";
+		try {
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				boa_no.add(rs.getString("boa_no"));
+			}
+		} catch (Exception e) {
+			System.out.println("getTagSearchList 오류1: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		}
+		
+		
+		try {
+			connection = ds.getConnection();
+			if(boa_no.size()!=0) {
+				sql="select *,TO_DAYS(boa_rec_deadline)-TO_DAYS(now())as d_day from pro_board ";
+				sql=sql+"where (boa_no="+boa_no.get(0);
+				for(int i=1;i<boa_no.size();i++) {
+					sql=sql+" or boa_no="+boa_no.get(i);
+				}
+				sql=sql+")";
+				if(sort==0) {
+					sql=sql+" order by boa_no desc";
+				}else if(sort==1) {
+					sql=sql+" order by boa_hit desc,boa_no desc";
+				}else if(sort==2) {
+					sql=sql+" having d_day>0 or d_day=0 order by d_day asc";
+				} 
+				pstmt = connection.prepareStatement(sql);
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					ProBoardDto ProBoardDto = new ProBoardDto();
+					ProBoardDto.setMem_no(rs.getInt("mem_no"));
+					ProBoardDto.setBoa_no(rs.getInt("boa_no"));
+					ProBoardDto.setBoa_title(rs.getString("boa_title"));
+					ProBoardDto.setBoa_category(rs.getString("boa_category"));
+					ProBoardDto.setBoa_job(rs.getString("boa_job"));
+					ProBoardDto.setBoa_rec_deadline(rs.getDate("boa_rec_deadline"));
+					ProBoardDto.setBoa_reg_date(rs.getDate("boa_reg_date"));
+					ProBoardDto.setBoa_d_day(rs.getInt("d_day"));
+					list.add(ProBoardDto);
+				}
+				if(list.size()!=0) {
+					sql="select mem_nickname,mem_icon from member where mem_no=?";
+					for(int i=0; i<list.size(); i++) {
+						pstmt = connection.prepareStatement(sql);
+						pstmt.setInt(1,list.get(i).getMem_no());
+						rs=pstmt.executeQuery();
+				
+						if(rs.next()) {
+							list.get(i).setMem_nickname(rs.getString("mem_nickname"));
+							list.get(i).setMem_icon(rs.getString("mem_icon"));
+						}
+					}
+				
+					sql="select count(*) from application where boa_no=?";
+					for(int i=0; i<list.size(); i++) {
+						pstmt = connection.prepareStatement(sql);
+						pstmt.setInt(1,list.get(i).getBoa_no());
+						rs=pstmt.executeQuery();
+					
+						if(rs.next()) {
+							list.get(i).setApp_number(rs.getInt(1));
+						}
+					}
+					sql="select tag_contents from hashtag where boa_no=? limit 4";
+					for(int i=0; i<list.size(); i++) {
+						pstmt = connection.prepareStatement(sql);
+						pstmt.setInt(1,list.get(i).getBoa_no());
+						rs=pstmt.executeQuery();
+						while(rs.next()) {
+							list.get(i).boa_hashtag.add(rs.getString("tag_contents"));
+						}
+					} 
+				}
+			}
+			
+		} catch (Exception e) {
+			System.out.println("getTagSearchList 오류2: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		}
+		return list;
+	}
+
 }

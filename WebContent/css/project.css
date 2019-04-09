@@ -10,8 +10,17 @@ textarea:focus, select:focus, select[type]:focus, .uneditable-select:focus,input
     -webkit-box-shadow: inset 0 0px 0px rgba(0,0,0,.075),0 0 0px rgba(102,175,233,.6)!important;
     box-shadow: inset 0 0px 0px rgba(0,0,0,.075),0 0 0px rgba(102,175,233,.6)!important;
   }
+  .td_block{
+    width: 80px;
+    height: 30px;
+}
 #project-name{
     float: left;
+}
+.D-Day-block{
+    display: inline-block;
+    width: 80px;
+    text-align: center;
 }
 
 .btn-warning:hover,
@@ -171,8 +180,9 @@ section .col-sm-12{ /*카드 마진*/
 #hash_font>a{
     margin: 0px 5px 0px 5px;
 }
+
 #card_hash{
-    margin: 0px 0px 10px 0px;
+    margin: 0px 0px 5px 0px !important;
     height: 20px;
     overflow: hidden; 
   	text-overflow: ellipsis;

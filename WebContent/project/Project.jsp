@@ -15,9 +15,7 @@
 		MemberDto=(MemberDto)session.getAttribute("Member");
 	}	
 	ArrayList<ProBoardDto> list = (ArrayList<ProBoardDto>)request.getAttribute("projectlist");
-	//System.out.println(request.getParameter("sort")); 
     int sort = 0;
-    System.out.println("sort :"+request.getParameter("sort"));
     if(request.getParameter("sort")!=null) {
     	sort =  Integer.parseInt(request.getParameter("sort"));
     }
@@ -27,6 +25,12 @@
     	SearchMap = (Map<String,Object>)request.getAttribute("SearchMap");
     	Genre = (String[])SearchMap.get("Genre");
     }
+    ArrayList<String> TagList=(ArrayList<String>)request.getAttribute("TagList");
+    String TagSearch = "";
+    if(request.getParameter("TagSearch")!=null){
+    	TagSearch = request.getParameter("TagSearch");
+    }
+    System.out.println("태그검색어는 "+TagSearch);
 %>
 <html>
 <head>
@@ -91,22 +95,47 @@
 	 if(SearchMap.get("Project_Search")!=null){%>
 	 $('#Project_Search').val('<%=SearchMap.get("Project_Search")%>');
 	 <%}%>
+	 <%if(TagSearch.equals("")==false){%>
+	 $('#TagSearch').val('<%=TagSearch%>');
+	 <%
+	 }
+	 %>
+	 //var TagSearch="";
+	 //document.searchform.TagSearch.value=TagSearch;
+	 
 	 var sort="0";
 	 document.searchform.sort.value = sort;
+	 document.tag_search.sort.value = sort;
 	 $("#Atag0_click").click(function(){
 		  	var sort="0";
+		  	<%if(TagSearch.equals("")==false){%>
+		  	document.tag_search.sort.value = sort;
+		  	document.getElementById('tag_search').submit();
+		  	<%}else{%>
 		  	document.searchform.sort.value = sort;
-		  	document.getElementById('searchform').submit();
+		  	document.getElementById('searchform').submit();	
+		  	<%}%>
+		  	
 		});
 		$("#Atag1_click").click(function(){
 			var sort="1";
+			<%if(TagSearch.equals("")==false){%>
+		  	document.tag_search.sort.value = sort;
+		  	document.getElementById('tag_search').submit();
+		  	<%}else{%>
 		  	document.searchform.sort.value = sort;
-		  	document.getElementById('searchform').submit();
+		  	document.getElementById('searchform').submit();	
+		  	<%}%>
 		});
 		$("#Atag2_click").click(function(){
 			var sort="2";
+			<%if(TagSearch.equals("")==false){%>
+		  	document.tag_search.sort.value = sort;
+		  	document.getElementById('tag_search').submit();
+		  	<%}else{%>
 		  	document.searchform.sort.value = sort;
-		  	document.getElementById('searchform').submit();
+		  	document.getElementById('searchform').submit();	
+		  	<%}%>
 		});
 		
 	 });
@@ -131,9 +160,10 @@
           </ul>
 
 
-          <form class="navbar-form form-inline  navbar-right" role="search">
+          <form class="navbar-form form-inline  navbar-right" role="search" action="./Project.bo" method="get" id="tag_search" name="tag_search">
+          	<input type="hidden" name="sort" value="">
               <div class="input-group">
-                 <input type="text" class="search-box" placeholder="#해시">
+                 <input type="text" name="TagSearch" id="TagSearch" class="search-box" placeholder="#해시">
                  <button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>
               
               <% if(MemberDto==null){%>
@@ -298,11 +328,19 @@
 <!--hash-->
 <div id="hash" class="container">
     <div id="hash_font">
-      <a href="#" rel="hash">#해시go</a>
-      <a href="#" rel="hash">#해시</a>
-      <a href="#" rel="hash">#해시</a>
-      <a href="#" rel="hash">#해시</a>
-      <a href="#" rel="hash">#해시</a>
+    <%
+    System.out.println("태그리스트는 :" + TagList);
+    if(TagList.size()!=0){
+    	for(int i=0; i<TagList.size();i++){
+    %>
+      <a href="./Project.bo?TagSearch=<%=TagList.get(i)%>" rel="hash">#<%=TagList.get(i)%></a>
+   	<%
+    	}
+    }else{%>
+    <span>검색 결과가 없습니다.</span>
+    <%	
+    } 
+    %>
     </div>
 </div>
 <!--/hash-->
@@ -361,24 +399,37 @@
 						String reg = reg_splitdate[1]+"."+reg_splitdate[2];  
 						String dead_date = sdFormat.format(list.get(i).getBoa_rec_deadline());
 						String[] dead_splitdate = dead_date.split("-");
-						String RegAndDead =reg+" ~ "+ dead_splitdate[1]+"."+dead_splitdate[2];
+						String RegAndDead =reg+"~"+ dead_splitdate[1]+"."+dead_splitdate[2];
                       %>
-                      <p style="text-align: center;"><%=RegAndDead%> </p>
+                      <div class="D-Day-block">
+                      <p style="display:inline-block;" ><%=RegAndDead%> </p>
+                      </div>
                     </div>
                 </div>
                 <div class="project-content">
                   <div id="card_hash">
                       <%for(int j=0; j<list.get(i).getBoa_hashtag().size(); j++ ){%>
-                      <a href="#" rel="hash">
+                      <a href="./Project.bo?TagSearch=<%=list.get(i).getBoa_hashtag().get(j)%>" rel="hash">
                       #<%=list.get(i).getBoa_hashtag().get(j)%>
                       </a>
                       <%}%>
                   </div>
-                  
-                 <p>분류 <%=list.get(i).getBoa_category()%></p>
-                 <p>필요 직군 <%=list.get(i).getBoa_job()%></p>
-                  
-                <p>지원자 수 <%=list.get(i).getApp_number()%></p>
+                 <table>
+                    <tr>
+                      <td class="td_block" style="font-weight: bold;">분류</td>
+                      <td><%=list.get(i).getBoa_category()%></td>
+                    </tr>
+                    <tr>
+                      <td class="td_block" style="font-weight: bold;">필요 직군</td>
+                      <td><%=list.get(i).getBoa_job()%></td>
+                    </tr>
+                    <tr>
+                      <td class="td_block" style="font-weight: bold;">지원자 수</td>
+                      <td><%=list.get(i).getApp_number()%></td>
+                    </tr>
+                  </table>
+                
+                
                </div>
               </div>
             </div>

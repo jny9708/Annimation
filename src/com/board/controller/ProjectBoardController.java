@@ -22,22 +22,24 @@ public class ProjectBoardController implements Controller {
 		HttpSession session=request.getSession();
 		//MemberDao MemberDao =new MemberDao();
 		ProBoardDao ProBoardDao = new ProBoardDao(); 
-		int sort = 0;
+		String TagSearch = null;
+		ArrayList<ProBoardDto> list = new ArrayList<ProBoardDto>();
+		ArrayList<String> TagList = new ArrayList<String>();
+		Map<String,Object> SearchMap = new HashMap<String,Object>();
+		if(request.getParameter("TagSearch")!=null) {
+			if(request.getParameter("TagSearch").equals("")==false) {
+			TagSearch = request.getParameter("TagSearch");
+			}
+		}  
+		int sort = 0; 
 		if(request.getParameter("sort")!=null) {
 		sort = Integer.parseInt(request.getParameter("sort"));
 		}
-		
-		if(request.getParameter("Project_Search")!=null) {
-			
-		}
-		Map<String,Object> SearchMap = new HashMap<String,Object>();
-		
-		
 		if(request.getParameter("Project_Search")!=null) {
 			if(request.getParameter("Project_Search").equals("")==false) {
 			SearchMap.put("Project_Search", request.getParameter("Project_Search"));
 			}
-		}
+		} 
 		if(request.getParameter("Occupation")!=null) {
 			if(request.getParameter("Occupation").equals("직군")==false) {
 			SearchMap.put("Occupation", request.getParameter("Occupation"));
@@ -61,16 +63,33 @@ public class ProjectBoardController implements Controller {
 		if(request.getParameter("Experience")!=null) {
 			SearchMap.put("Experience", request.getParameter("Experience"));
 		}
-		System.out.println(request.getParameter("Experience"));
 		request.setAttribute("SearchMap",SearchMap);
-		ArrayList<ProBoardDto> list = new ArrayList<ProBoardDto>();
 		if(SearchMap.size()==0||SearchMap.get("Genre")==null) {
 			list = ProBoardDao.getProBoradList(sort, SearchMap);
 		}else if(SearchMap.get("Genre")!=null) {
 			list =ProBoardDao.getSearchProBoradList(sort, SearchMap);
 		}
+		//태그 검식시
+		if(TagSearch!=null) {
+			list=ProBoardDao.getTagSearchList(sort, TagSearch);
+		}
+		//System.out.println("태그 검색 이후 리스트는 "+list);
+		//System.out.println("검색어가 있나요 : "+TagSearch);
+		if(SearchMap.size()==0&&TagSearch==null) {	//검색내용이 없음
+			if(list.size()!=0) { //가져오는 list가 없으면 tag가져오는 dao도 실행되지 않음
+				int state=0; //전체글내용에 따른 인기 tag를 가져옴
+				TagList = ProBoardDao.getTagList(state,list);
+			} 
+		}else if(SearchMap.size()!=0||TagSearch!=null) { //검색내용이 있음.
+			if(list.size()!=0) {
+				int state=1;	//검색 내용에 따른 게시글의 인기 tag를 가져옴
+				TagList = ProBoardDao.getTagList(state,list);
+			}   
+		}    
+		 
 		
 		request.setAttribute("projectlist", list);
+		request.setAttribute("TagList", TagList);
 		System.out.println(SearchMap.size());
 		System.out.println("잘되고있는겨?");
 		forward.setRedirect(false); 
