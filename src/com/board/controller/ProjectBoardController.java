@@ -41,15 +41,18 @@ public class ProjectBoardController implements Controller {
 			}
 		} 
 		if(request.getParameter("Occupation")!=null) {
-			if(request.getParameter("Occupation").equals("직군")==false) {
+			if(request.getParameter("Occupation").equals("모집분야")==false) {
 			SearchMap.put("Occupation", request.getParameter("Occupation"));
 			}
-		}
+		} 
 		if(request.getParameter("Category")!=null) {
 			if(request.getParameter("Category").equals("분류")==false) {
 			SearchMap.put("Category", request.getParameter("Category"));
 			}
 		} 
+		if(request.getParameter("Region")!=null) {
+			SearchMap.put("Region", request.getParameter("Region"));
+		}
 		if(request.getParameter("Genre")!=null) {
 			String[] Genre =request.getParameterValues("Genre");
 			SearchMap.put("Genre",Genre);
@@ -69,7 +72,7 @@ public class ProjectBoardController implements Controller {
 		}else if(SearchMap.get("Genre")!=null) {
 			list =ProBoardDao.getSearchProBoradList(sort, SearchMap);
 		}
-		//태그 검식시
+		//태그 검식시        
 		if(TagSearch!=null) {
 			list=ProBoardDao.getTagSearchList(sort, TagSearch);
 		}

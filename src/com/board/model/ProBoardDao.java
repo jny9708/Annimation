@@ -50,70 +50,72 @@ public class ProBoardDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql="select *,TO_DAYS(boa_rec_deadline)-TO_DAYS(now())as d_day from pro_board ";
-		
+		int where =0;
 		if(SearchMap.get("Project_Search")!=null) {
-			if(SearchMap.get("Occupation")==null&&SearchMap.get("Category")==null
-					&&SearchMap.get("Period")==null&&SearchMap.get("Size")==null
-					&&SearchMap.get("Experience")==null) {
+			if(where==0) {
 				sql+="where boa_title like '%"+SearchMap.get("Project_Search")+"%'";
+				where = 1;
 			}else {
 				sql+=" and boa_title like '%"+SearchMap.get("Project_Search")+"%'";	
 			}
 		}
 		if(SearchMap.get("Occupation")!=null) {
-			if(SearchMap.get("Project_Search")==null&&SearchMap.get("Category")==null
-					&&SearchMap.get("Period")==null&&SearchMap.get("Size")==null
-					&&SearchMap.get("Experience")==null) {
+			if(where==0) {
 				sql+="where boa_job='"+SearchMap.get("Occupation")+"'";
+				where = 1;
 			}else {
 				sql+=" and boa_job='"+SearchMap.get("Occupation")+"'";	
 			}
 		}
 		if(SearchMap.get("Category")!=null) {
-			if(SearchMap.get("Project_Search")==null&&SearchMap.get("Occupation")==null
-					&&SearchMap.get("Period")==null&&SearchMap.get("Size")==null
-					&&SearchMap.get("Experience")==null) {
+			if(where==0) {
 				sql+="where boa_category='"+SearchMap.get("Category")+"'";
+				where = 1;
 			}else {
 				sql+=" and boa_category='"+SearchMap.get("Category")+"'";	
 			}
 		}
+		if(SearchMap.get("Region")!=null) {
+			if(where==0) {
+				sql+="where boa_region='"+SearchMap.get("Region")+"'";
+				where = 1;
+			}else {
+				sql+=" and boa_region='"+SearchMap.get("Region")+"'";	
+			}
+		} 
 		if(SearchMap.get("Period")!=null) {
-			if(SearchMap.get("Project_Search")==null&&SearchMap.get("Occupation")==null
-					&&SearchMap.get("Category")==null&&SearchMap.get("Size")==null
-					&&SearchMap.get("Experience")==null) {
+			if(where==0) {
 				sql+="where boa_pro_period='"+SearchMap.get("Period")+"'";
+				where=1;
 			}else {
 				sql+=" and boa_pro_period='"+SearchMap.get("Period")+"'";	
 			}
 		}
 		if(SearchMap.get("Size")!=null) {
-			if(SearchMap.get("Project_Search")==null&&SearchMap.get("Occupation")==null
-					&&SearchMap.get("Category")==null&&SearchMap.get("Period")==null
-					&&SearchMap.get("Experience")==null) {
+			if(where==0) {
 				sql+="where boa_size='"+SearchMap.get("Size")+"'";
+				where=1;
 			}else {
 				sql+=" and boa_size='"+SearchMap.get("Size")+"'";	
 			}			
 		}
 		if(SearchMap.get("Experience")!=null) {
-			if(SearchMap.get("Project_Search")==null&&SearchMap.get("Occupation")==null
-					&&SearchMap.get("Category")==null&&SearchMap.get("Period")==null
-					&&SearchMap.get("Size")==null) {
+			if(where==0) {
 				sql+="where boa_experi='"+SearchMap.get("Experience")+"'";
+				where=1;
 			}else {
 				sql+=" and boa_experi='"+SearchMap.get("Experience")+"'";	
 			}
 			
-		}
-		System.out.println(sql);
+		}   
+		System.out.println(sql);  
 		
 		if(sort==0) {
-			sql=sql+"order by boa_no desc";
+			sql=sql+" having d_day>0 or d_day=0 order by boa_no desc";
 		}else if(sort==1) {
-			sql=sql+"order by boa_hit desc,boa_no desc";
+			sql=sql+" having d_day>0 or d_day=0 order by boa_hit desc,boa_no desc";
 		}else if(sort==2) {
-			sql=sql+"having d_day>0 or d_day=0 order by d_day asc";
+			sql=sql+" having d_day>0 or d_day=0 order by d_day asc";
 		}
 		try {
 			connection = ds.getConnection();
@@ -131,7 +133,7 @@ public class ProBoardDao {
 				ProBoardDto.setBoa_d_day(rs.getInt("d_day"));
 				list.add(ProBoardDto);
 			}
-			sql="select mem_nickname,mem_icon from member where mem_no=?";
+			sql="select mem_nickname,mem_icon,mem_job from member where mem_no=?";
 			for(int i=0; i<list.size(); i++) {
 			pstmt = connection.prepareStatement(sql);
 			pstmt.setInt(1,list.get(i).getMem_no());
@@ -140,6 +142,7 @@ public class ProBoardDao {
 			if(rs.next()) {
 				list.get(i).setMem_nickname(rs.getString("mem_nickname"));
 				list.get(i).setMem_icon(rs.getString("mem_icon"));
+				list.get(i).setMem_job(rs.getString("mem_job"));
 			}
 			}
 			
@@ -241,12 +244,15 @@ public class ProBoardDao {
 						if(SearchMap.get("Experience")!=null) {
 							sql+=" and boa_experi='"+SearchMap.get("Experience")+"'";
 						}
+						if(SearchMap.get("Region")!=null) {
+							sql+=" and boa_region='"+SearchMap.get("Region")+"'";
+						}
 						System.out.println(sql);
 						 
 						if(sort==0) {
-							sql=sql+" order by boa_no desc";
+							sql=sql+" having d_day>0 or d_day=0 order by boa_no desc";
 						}else if(sort==1) {
-							sql=sql+" order by boa_hit desc,boa_no desc";
+							sql=sql+" having d_day>0 or d_day=0 order by boa_hit desc,boa_no desc";
 						}else if(sort==2) {
 							sql=sql+" having d_day>0 or d_day=0 order by d_day asc";
 						} 
@@ -267,7 +273,7 @@ public class ProBoardDao {
 							list.add(ProBoardDto);
 						}
 						if(list.size()!=0) {
-						sql="select mem_nickname,mem_icon from member where mem_no=?";
+						sql="select mem_nickname,mem_icon,mem_job from member where mem_no=?";
 						for(int i=0; i<list.size(); i++) {
 						pstmt = connection.prepareStatement(sql);
 						pstmt.setInt(1,list.get(i).getMem_no());
@@ -276,6 +282,7 @@ public class ProBoardDao {
 						if(rs.next()) {
 							list.get(i).setMem_nickname(rs.getString("mem_nickname"));
 							list.get(i).setMem_icon(rs.getString("mem_icon"));
+							list.get(i).setMem_job(rs.getString("mem_job"));
 						}
 						}
 						

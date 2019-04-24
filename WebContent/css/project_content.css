@@ -1,0 +1,32 @@
+.proContent_block{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-top: 2px solid black;
+    background: beige;
+    width: 100%;
+    padding: 20px;
+}
+
+.proCon_title{
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    align-content: center;
+    border: 1px solid black;
+}
+.proCon_team{
+    display: inline-block;
+    width: 20%;
+    height: 100px;
+    border: 1px solid black;
+    text-align: center;
+}
+.proCon_head{
+    display: inline-block;
+    align-content: center;
+    width: 77%;
+    margin-left: 3%;
+    height: 100px;
+    border: 1px solid black;
+}

@@ -1,26 +1,20 @@
 textarea:focus, select:focus, select[type]:focus, .uneditable-select:focus,input:focus, input[type]:focus, .uneditable-input:focus { /*부트스트랩 input 색상*/
-    border-color: #157ba1;
+    border-color: #082e3c;
     box-shadow: 0 0px 0px rgba(229, 103, 23, 0.075) inset, 0 0 0px rgba(229, 103, 23, 0.6);
     outline: 0 none;
   }
 .form-control option:focus,
   .form-control:focus {
-    border-color:#157ba1!important;
+    border-color:#082e3c!important;
     outline: 0;
     -webkit-box-shadow: inset 0 0px 0px rgba(0,0,0,.075),0 0 0px rgba(102,175,233,.6)!important;
     box-shadow: inset 0 0px 0px rgba(0,0,0,.075),0 0 0px rgba(102,175,233,.6)!important;
   }
-  .td_block{
-    width: 80px;
-    height: 30px;
+  body{
+    background: #f2f2f2;
 }
 #project-name{
     float: left;
-}
-.D-Day-block{
-    display: inline-block;
-    width: 80px;
-    text-align: center;
 }
 
 .btn-warning:hover,
@@ -52,13 +46,14 @@ main>section.container{
     width: 1122px;
     text-align: center;
 }
+/****************************************/
 #dede{
-    display: inline-block;
-    width: 550px;
-    height: 200px;
-    box-shadow: 0px 0px 10px #dedcee;
-    margin-left:10px;
-    margin-right: 8px;
+    display: table;
+    margin-right: auto;
+    margin-left: auto;
+    width: 1122px;
+    height: 220px;
+    border: #dedcee 0.1px solid;
     margin-bottom: 30px;
     background-color: white;
 
@@ -71,98 +66,140 @@ main>section.container{
 
 
 
-#search{
-    width: 100px;
-    height: 50px;
-    border: 1px black solid;
-    background-color: white;
-    font-weight: bolder;
-    font-size: 20px;
-    outline: none !important;
-}
-#search:hover{
-    border: 1px #7d6825 solid;
-}
-
 section .col-sm-12{ /*카드 마진*/
     margin: 15px 0px 0px 0px !important;
 }
 
 /*프로젝트 카드 유저 정보*/
 #card_User{
+    display: inline;
     float: left;
-    width: 180px;
-    height: 200px;
-    margin: 0px auto;
- 
+    width: 200px;
+    height: 230px;
+    margin: 0px 10px 0px 0px; 
+    border-right: #dedcee 0.1px solid;
+  
 }
 .projact_card_U{
-    width: 140px;
-    height: 140px;
-    margin: 15px 0px 15px 30px;
+    width: 130px;
+    height: 130px;
+    margin: 25px 30px 13px 35px; 
 }
 .projact_card_U_font{
     text-align: center;
     font-weight: bolder;
-    margin-left: 20px;
     font-size: 15px;
 }
 /****************************************/
 /*프로젝트 정보 내용*/
 #card_content{
+    display: inline;
     float: left;
-    width: 330px;
-    height: 200px;
+    width: 80%;
+    height: 230px;
     padding: 10px;
-    margin: 0px auto;
+    margin-left: 5px;
     overflow: inherit;   
 }
 .oneline{
     border: 1px solid white;
-    position: relative;
 }
-
-
-#btn_scrap{
-    background-color: white;
-    font-weight: bolder;
-    margin-top:13px;
-    border-radius: 52px;
-    outline: none !important;
+.oneline ul{
+    padding: 0px;
+    margin: 0px;
 }
-#scrap{
-    font-size:20px; padding-top:2px;
-    color: #2E2E2E;
+.oneline ul li{
+    display:inline;
+    padding:0 10px;
 }
-.card_content .oneline a{
-    display: inline-block;
-}
-
-.D-Day-box{
-    float: right;
-    background-color: #fbd14b;
-    width: 80px;
-    height: 40px;
-    position: relative; 
-    left:10%;
-    top: -48px;
-}
-.D-font{
-    text-align: center;
-    font-weight: bolder;
+.oneline ul li:first-child{border-left:none;}
+.oneline_team{
+    background: #fbd14b;
     font-size: 20px;
-    padding-top: 6px;
+    padding: 8px !important;
+    position: relative;
+    top: -15px;
+}
+.oneline ul li a{
+    width: 400px auto;
+    height: 45px;
+    line-height: 50px;
+    text-overflow: ellipsis; 
+    white-space  : nowrap;    
+    overflow     : hidden;    
+    display      : inline-block;
+    font-size: 24px;
+    color: #082e3c;
+}
+#scrap_btn{
+    padding:0 0 0 0px;
+    height:30px;
+    width: 30px;
+    border-radius: 100%;
+    background: white;
+    border: #082e3c 1px solid;
+    cursor:pointer;
+    position: relative;
+    top: -17px;
+    margin: 0 5px 0 0;
+}
+#scrap_btn:active, #scrap_btn:focus{
+    outline: #95acb4 1px solid;
+}
 
+.twoline{
+    display: inline;
+    float: left;
+    width: 550px;
+    height: 140px;
 }
-.project-content{
-    margin-left: 20px;
+.twoline table{
+    width: 530px;
+    margin: 0px;
+    
 }
-/****************************************/
+.twoline table tr td{
+    height: 20px;
+    border: 1px solid white;
+    border-right: #b8c3d9 1px solid;
+}
+#twoline_title{
+    text-align: center;
+    width: 120px;
+}
+#twoline_content{
+    margin-left: 10px;
+}
+.threeline{
+    display: inline-block;
+    float: left;
+    width: 310px;
+    height: 140px;
+}
+.threeline ul{
+    padding: 0px;
+    height: 100px;
+    margin: 0px;
+}
+.threeline ul li{
+    margin: 5px 10px 0px 10px !important;
+    width: 80px !important;
+    height: 18px;
+    text-overflow: ellipsis;  
+    white-space  : nowrap;    
+    overflow     : hidden;   
+    display      : inline-block;
+}
+/*카드정보오오*/
+
+
+/************************************해시이이ㅣㅣ****/
 #hash{
     width: 1122px;
     height: 50px;
-    background: #e2f5fd;
+    background: white;
     border-radius: 32px;
+    border: #dedcee 1px solid;
 }
 #hash_font>a,
 #hash_font{
@@ -174,38 +211,32 @@ section .col-sm-12{ /*카드 마진*/
 
 #hash_font>a:hover{
     text-decoration: none;
-    background: #157ba1;
+    background: #282c57;
     color: white;
 }
 #hash_font>a{
     margin: 0px 5px 0px 5px;
 }
-
 #card_hash{
     margin: 0px 0px 5px 0px !important;
     height: 20px;
     overflow: hidden; 
-  	text-overflow: ellipsis;
-  	white-space: nowrap; 
-}
-/****************************************/
-#card_title{
-    color: #2E2E2E;
-    width: 200px;
-    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap; 
 }
+/****************************************/
+
+
 .table{
-    background-color: #e2f5fd;
+    background-color: white;
     width: 1122px;
     margin-bottom: 30px;
 }
 td{
-    border: white 1px solid;
+    border: #dedcee 1px solid;
 }
 .act{
-    margin: 0px 0px 0px 30px;
+    margin: 5px 0px 5px 30px;
     width: 300px;
   
 }
@@ -220,23 +251,26 @@ td{
 .btn.btn-default:active{
     background: white;
     outline: none !important;
-    border: #157ba1 1px solid;
+    border: #082e3c 1px solid;
 }
 select.form-control>option:hover,
 select.form-control>option:focus,
 select.form-control>option:active{
-    background: #157ba1 !important;
+    background: #082e3c !important;
 }
 
-
-#maun_card{padding-bottom:5px;
-padding-left: 5px;}                     /*  상단 여백 10px  */
+/*인기순, 마감순, 최신순 ▼*/
+#maun_card{padding-bottom:0px;
+padding-left: 5px;
+margin-top: 15px;
+margin-bottom: 0px;}                     /*  상단 여백 10px  */
 
 #maun_card> li {
             display:inline;                         /*  세로나열을 가로나열로 변경 */
             border-left:1px solid #999;             /* 각 메뉴의 왼쪽에 "|" 표시(분류 표시) */
             font:bold 15px;                     
-            padding:0 10px;                         /* 각 메뉴 간격 */
+            padding:0 10px;                        /* 각 메뉴 간격 */
+            
         }
         #maun_card>li>a{
             color: #999999;
@@ -245,14 +279,6 @@ padding-left: 5px;}                     /*  상단 여백 10px  */
         #maun_card>li.active>a{
             color: #082e3c;
         }
-
-        #adver{
-            width: 1122px;
-            height: 130px;
-            border: #082e3c 1px solid;
-            margin-bottom: 10px;
-        }
-
         .pagination{
             display: block;
             text-align: center;
@@ -262,3 +288,125 @@ padding-left: 5px;}                     /*  상단 여백 10px  */
             margin-left: -5px;
         }
      
+
+
+
+
+
+
+/*상세 검색 지역*/
+#tab_item{
+    width: 100%;
+    margin-bottom: 10px;
+    border-bottom: #082e3c 1px solid;
+}
+#area_item{
+    width: 92.7%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.nav-pills > .active > a, .nav-pills > .active > a:hover,.nav-pills > .active > a:focus {
+    background-color: #fbd14b !important;
+    border-radius: 0px !important;
+}
+.nav-pills>li>a{
+    color: #082e3c;
+}
+.item_pro:hover{
+    border-radius: 0px !important;
+}
+#check_finish{
+    margin-top: 10px;
+    background: #fbd14b;
+    color: #082e3c;
+    position: relative;
+    left: -15px;
+}
+#check_finish:active,#check_finish:visited,#check_finish:focus{
+outline: #082e3c 1px solid;
+
+}
+.checkList{
+    width: 900px;
+    margin-right: auto;
+    margin-left: auto;
+
+}
+
+.checkList ul{
+    width: 100%;
+    padding: 0px;
+}
+
+.checkList ul li { 
+    width:140px;
+    float : left; /* 세로나열을 가로나열로 변경 */ 
+    list-style:none; 
+    margin:1px;
+    text-align: left;
+    font: 12px Dotum; /* 폰트 설정 - 12px의 돋움체 굵은 글씨로 표시 */ 
+    padding:0 20px; /* 각 메뉴 간격 */ 
+    margin-top: 8px;
+}
+.tab-content{
+    width: 100%;
+    height:auto;
+    margin-bottom: 20px !important; 
+}
+#item_detail{
+    margin-right: 5px;
+}
+
+/*검색하기 버튼*/
+
+#search{
+    width: 100px;
+    height: 50px;
+    background-color: #282c57;
+    font-weight: bolder;
+    font-size: 20px;
+    color: white;
+    outline: #282c57 1px solid;
+    border-radius: 0px;
+    margin: 8px 10px 8px 10px;
+}
+#search:focus,#search:active{
+    border: 1px rgb(230, 229, 229) solid;
+}
+
+#btnReset{
+    width: 100px;
+    height: 50px;
+    background-color: white;
+    outline: #dedede 1px solid;
+    font-weight: bolder;
+    font-size: 20px;
+    border-radius: 0px !important;
+    margin: 8px 0px 8px 0px;
+}
+#btnReset:focus{
+    outline: #082e3c 1px solid;
+ 
+}
+#viewhidden:focus,#viewhidden:active,#viewhidden:visited,#viewhidden{
+    color: #000;
+    float: left;
+    text-decoration:none;
+    margin-left: 10px;
+    padding-top: 4px;
+}
+.checkbox-inline{
+    margin-left: 10px;
+    padding-top: 4px;
+}
+.radio-inline{
+    margin-left: 10px;
+    padding-top: 4px;
+}
+#tab_font{
+    font-size: 16px;
+    padding-top: 12px;
+}
+/*상세 검색 지역*/

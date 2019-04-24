@@ -26,11 +26,18 @@ public class ProBoardDto {
 	int mem_no;
 	String mem_nickname;
 	String mem_icon;
+	String mem_job;
 	int app_number;
 	int boa_d_day;
 	ArrayList<String> boa_hashtag = new ArrayList<String>();
 	//MemberDto MemberDto;
 	
+	public String getMem_job() {
+		return mem_job;
+	}
+	public void setMem_job(String mem_job) {
+		this.mem_job = mem_job;
+	}
 	public ArrayList<String> getBoa_hashtag() {
 		return boa_hashtag;
 	}

@@ -49,14 +49,15 @@ header{
       .bs-white .dropdown:hover .dropdown-menu {
         display: block;
       }
+    
       .bs-white .navbar-form {
         padding:0px;
+    
       }	
       .bs-white.navbar-form .search-box {
         width:500px;
         height:32px;
       }
-  
   }
 
   .login-btn{
@@ -75,8 +76,8 @@ header{
 .bs-white .navbar-form .search-box {
     border:1px;
     border-style: solid;
-    border-color: white;
-    background-color: #d0e7f0;
+    border-color: #c7c6d6;
+    background-color: white;
     height:35px;
     outline: none;
     padding-right: 3px;
@@ -151,8 +152,8 @@ header{
   
 }
 .logo{
-  margin-top: 9px;
-  width: 170px;
+  margin-top: 10px;
+  width: 150px;
   height: 50px;
   padding-left: 50px;
 }
@@ -205,8 +206,8 @@ footer>div.container{
 
 
   #copyright
-	{ margin-top: 3em;
-		padding:3em 0em;
+	{ height: 120px;
+    padding:3em 0em;
 		border-top: 1px solid #dedcee;
 		text-align: center;
 	}

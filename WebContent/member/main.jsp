@@ -10,7 +10,7 @@
 	if(session.getAttribute("Member")!=null){
 		MemberDto=(MemberDto)session.getAttribute("Member");
 	}
-	ArrayList<AniBoardDto> list = (ArrayList<AniBoardDto>)request.getAttribute("anis");
+	//ArrayList<AniBoardDto> list = //(ArrayList<AniBoardDto>)request.getAttribute("anis");
 %>
 
 
@@ -81,18 +81,7 @@
 </header>
 
 
-<%
-for(int i=0; i<list.size(); i++){
-%>
-	
-	<%=list.get(i).getBoa_no()%>
-	<br>
-	<%=list.get(i).getBoa_title()%>
-	<br>
-	
-<% 	
-}
-%>
+
 <br>
 <a href="#">더보기</a>
 

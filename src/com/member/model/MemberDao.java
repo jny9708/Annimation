@@ -181,7 +181,7 @@ public class MemberDao {
 	public String getSaltById(MemberDto MemberDto) {
 		Connection connection = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		ResultSet rs = null; 
 		String salt=null;
 		try {
 			connection = ds.getConnection();

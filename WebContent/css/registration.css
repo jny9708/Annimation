@@ -1,0 +1,275 @@
+body{
+    background: #f2f2f2;
+}
+div.row{
+  display: table;
+  width: 850px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.reg_block{
+    display: table;
+    margin-top: 10px;
+    margin-bottom: 100px;
+    border-top: 2px solid black;
+    background: white;
+    width: 100%;
+    padding-bottom: 10px;
+    padding: 20px;
+}
+
+#team_line_1{
+    width: 150px;
+    margin: 0 auto;
+    margin-top: 20px;
+    border: none;
+}
+#team_line_2{
+    width: 650px;
+    margin: 0 auto;
+    margin-top: 20px;
+    border: none;
+}
+#Team{
+    display: inline-block;
+    border-radius: 0px;
+    height: 50px;
+    box-shadow: none;
+    border: none;
+    border-bottom:1px solid black;
+
+}
+#reg_title{
+    display: inline-block;
+    border-radius: 0px;
+    height: 50px;
+    border: none;
+    border-bottom:1px solid black;
+    box-shadow: none;
+    margin-left: 10px;
+    padding-left: 20px;
+}
+/*/one line*/
+
+/*two line*/
+#reg_teamName{
+    display: inline-block;
+    border-radius: 0px;
+    margin: 0 auto; 
+    width: 620px;
+    height: 40px;
+    border:none; 
+    border-bottom:1px solid black;
+    box-shadow: none;
+    margin-left: 10px;
+}
+
+/*장르*/
+.btn-info{
+    background: white;
+    color: black;
+    border: 1px black solid;
+}
+
+.btn-group-toggle{
+    margin-top: 10px;
+}
+.Genre_style{
+    margin-left: 5px;
+    margin-right: 20px;
+}
+.btn-info{
+  margin: 0px 2px 0px 2px;
+}
+/*장르*/
+
+
+/**/
+.radio input[type="radio"], .radio-inline input[type="radio"]{
+  position: absolute;
+  margin-left: -25px;
+}
+.checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+  position: absolute;
+  margin-left: -20px;
+}
+.length_b3{
+  margin-left: 20px !important;
+}
+.length_b{ /**/
+  display: inline-block;
+  width: 120px;
+  text-align: center;
+  margin: 0px 20px 0px 5px;
+}
+.length_b2{
+  margin-top: 20px;
+}
+.radio-inline{
+  width: 60px;
+}
+#radio_size{
+  width: 100px;
+}
+#radio_size2{
+  width: 70px;
+}
+.radio-inline>input{
+  width: 20px;
+  height: 20px;
+  margin-top: 0px !important;
+}
+/**/
+.similar_exp{
+  margin-right: 20px;
+}
+.checkbox-inline>input{
+  width: 15px;
+  height: 15px;
+  margin-top: 2px !important;
+}
+/**/
+/**/
+#progress_block1{
+  width: 500px;
+}
+#progress_block2{
+  width: 100px;
+}
+
+#progress_size{
+  display: inline-block;
+  width: 480px;
+  height: 30px;
+}
+#progress_input{
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  box-shadow: none;
+}
+/**/
+#team_member{
+  display: inline-block;
+    border-radius: 0px;
+    margin: 0 auto; 
+    width: 100px;
+    height: 40px;
+    border:none; 
+    border-bottom:1px solid black;
+    box-shadow: none;
+    margin-left: 10px;
+    padding: 0px 15px 0px 40px;
+}
+#contact_number{
+  display: inline-block;
+    border-radius: 0px;
+    margin: 0 auto; 
+    width: 200px;
+    height: 40px;
+    border:none; 
+    border-bottom:1px solid black;
+    box-shadow: none;
+    margin-left: 10px;
+    padding: 0px 40px 0px 40px;
+}
+/*슬라이드바*/
+
+#ragne_b{
+  display: inline-block;
+  width: 75%;
+}
+
+input[type=range] {
+  -webkit-appearance: none; /* 바 */
+  height:5px;
+  width:100%;
+  cursor: pointer;
+  background: #07C;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 2px solid #07C;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  background: #fff;
+  cursor: pointer;
+  margin-top: 0px; /*원*/
+}
+input[type=range]:focus {
+  outline: none;
+}
+.output {
+  width: 50%;
+  margin-left: 55.8%;
+  font-weight: bold;
+}
+
+/*달려*/
+.date-range {
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  color: #555;
+  text-align: center;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  border-left: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  cursor: pointer;
+  width: auto;
+  white-space: nowrap;
+  vertical-align: middle;
+  display: table-cell;
+}
+/*태그*/
+#tag_form{
+  border-radius: 0px;
+  height: 50px;
+  box-shadow: none;
+  border: none;
+  border-top:1px solid black;
+
+}
+/*등록버트*/
+
+.reg_btn{
+  display: table; 
+  margin-left: auto; 
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 200px;
+  height: 40px;
+  background: #fbd14b;
+  color: white;
+  border: none;
+  box-shadow: none;
+  font-size: 18px;
+  font-weight: bolder;
+}
+
+.btn:focus,.btn:active {
+  border: 1px #b1cee5 solid;
+  outline: none !important;
+ 
+}
+.file_up{
+  box-shadow: none !important;
+  border: #969696 1px solid;
+  background: #fafaf9!important;
+}
+.file_up:focus{
+  box-shadow: none !important;
+  border: #555 1px solid;
+}
+.btn-default{
+  border: #969696 1px solid;
+}
+
