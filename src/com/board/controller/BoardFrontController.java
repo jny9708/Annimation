@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+//import com.board.controller.ControllerForward;
+
 
 
 /**
@@ -37,6 +39,19 @@ public class BoardFrontController extends HttpServlet {
 				controller = new ProjectBoardController();
 				forward=controller.execute(request, response);
 			}
+			else if(command.equals("/ImageUpload.bo")) {
+				controller = new ImageUploadController();
+				forward=controller.execute(request, response);
+			}
+			else if(command.equals("/PostInsert.bo")) {
+				controller = new PostInsertController();
+				forward=controller.execute(request, response);
+			}
+			else if(command.equals("/ProjectAddForm.bo")) {
+				forward=new ControllerForward();
+				 forward.setRedirect(false);
+				 forward.setPath("./project/ProjectAddForm.jsp");  
+			}
 			
 			if(forward != null){
 		    	 if(forward.isRedirect()){
@@ -48,7 +63,7 @@ public class BoardFrontController extends HttpServlet {
 				   }
 		    	}
 			
-		} catch (Exception e) {
+		} catch (Exception e) {  
 			e.printStackTrace();
 		}
 		

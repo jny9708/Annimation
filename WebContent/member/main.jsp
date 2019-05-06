@@ -38,24 +38,24 @@
 
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav" style="margin:10px;">
-            <li ><a href="#">홈 <span class="sr-only">(current)</span></a></li>
-            <li><a href="./Project.bo">프로젝트 </a></li>
-            <li><a href="#">공모전</a></li>
+            <li class="active"><a href="#">홈 <span class="sr-only">(current)</span></a></li>
+            <li><a href="./Project.bo">팀원모집 </a></li>
+            <li><a href="#">공모전 정보</a></li>
           </ul>
 
 
-          <form class="navbar-form form-inline  navbar-right" role="search">
+          <form class="navbar-form form-inline  navbar-right" role="search" action="./Project.bo" method="get" id="tag_search" name="tag_search">
+          	<input type="hidden" name="sort" value="">
               <div class="input-group">
-                 <input type="text" class="search-box" placeholder="#해시">
+                 <input type="text" name="TagSearch" id="TagSearch" class="search-box" placeholder="#해시">
                  <button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>
               
               <% if(MemberDto==null){%>
               
-                 <div class="input-group">
+                 <div class="input-group" style="clear:both">
                      <a href="./LoginForm.do">로그인</a>
                 </div></div>
-                <%}else if(MemberDto!=null){
-                	%>
+                <%}else if(MemberDto!=null){ %>
                 
                 
     	  <ul class="nav navbar-nav navbar-right" id="change">

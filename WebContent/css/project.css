@@ -131,20 +131,18 @@ section .col-sm-12{ /*카드 마진*/
     font-size: 24px;
     color: #082e3c;
 }
-#scrap_btn{
-    padding:0 0 0 0px;
-    height:30px;
-    width: 30px;
-    border-radius: 100%;
-    background: white;
-    border: #082e3c 1px solid;
-    cursor:pointer;
-    position: relative;
+
+.oneline button {
+    overflow: visible;
+     border: 0 none;
+     background: transparent;
+     cursor: pointer;
+     position: relative;
     top: -17px;
-    margin: 0 5px 0 0;
+    
 }
-#scrap_btn:active, #scrap_btn:focus{
-    outline: #95acb4 1px solid;
+.oneline button:focus, .oneline button:active{
+    outline: none;
 }
 
 .twoline{
@@ -236,9 +234,31 @@ td{
     border: #dedcee 1px solid;
 }
 .act{
-    margin: 5px 0px 5px 30px;
-    width: 300px;
-  
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    border-bottom: none;
+}
+.act input{
+    border-radius: 0px;
+    height: 50px;
+    border:none;
+    padding: 20px;
+}
+.act input:focus,
+.act input:active{
+    border: #082e3c 1px solid !important;
+}
+.act button{
+    border-radius: 0px;
+    width: 70px;
+    height: 50px;
+    padding: 0px;
+    border: 0 0 0 1px;
+}
+.act button.btn.btn-default{
+    border: none;
+    border-left: #dedcee 1px solid;
 }
 .text-content{
     text-align: left;
@@ -246,18 +266,16 @@ td{
 .form-control{
     padding-right: 50px;
 }
+
 .btn.btn-default:hover, 
 .btn.btn-default:focus, 
-.btn.btn-default:active{
+.btn.btn-default:active,
+.btn.btn-default:visited{
     background: white;
-    outline: none !important;
-    border: #082e3c 1px solid;
+    border: #082e3c 1px solid !important;
+    outline-color: #282c57;
 }
-select.form-control>option:hover,
-select.form-control>option:focus,
-select.form-control>option:active{
-    background: #082e3c !important;
-}
+
 
 /*인기순, 마감순, 최신순 ▼*/
 #maun_card{padding-bottom:0px;
@@ -406,6 +424,7 @@ outline: #082e3c 1px solid;
     padding-top: 4px;
 }
 #tab_font{
+    width: 320px;
     font-size: 16px;
     padding-top: 12px;
 }

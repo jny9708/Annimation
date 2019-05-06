@@ -1,3 +1,7 @@
+.reg .radio-inline {
+  width: 110px;
+}
+
 body{
     background: #f2f2f2;
 }
@@ -18,36 +22,17 @@ div.row{
     padding: 20px;
 }
 
-#team_line_1{
-    width: 150px;
-    margin: 0 auto;
-    margin-top: 20px;
-    border: none;
-}
-#team_line_2{
-    width: 650px;
-    margin: 0 auto;
-    margin-top: 20px;
-    border: none;
-}
-#Team{
-    display: inline-block;
-    border-radius: 0px;
-    height: 50px;
-    box-shadow: none;
-    border: none;
-    border-bottom:1px solid black;
-
-}
 #reg_title{
     display: inline-block;
     border-radius: 0px;
-    height: 50px;
+    width: 620px ;
+    height: 40px;
     border: none;
     border-bottom:1px solid black;
     box-shadow: none;
     margin-left: 10px;
-    padding-left: 20px;
+    margin-top: 20px;
+    padding-left: 18px;
 }
 /*/one line*/
 
@@ -95,12 +80,14 @@ div.row{
 }
 .length_b3{
   margin-left: 20px !important;
+
+
 }
 .length_b{ /**/
   display: inline-block;
   width: 120px;
   text-align: center;
-  margin: 0px 20px 0px 5px;
+  margin: 20px 30px 0px 5px;
 }
 .length_b2{
   margin-top: 20px;
@@ -149,7 +136,7 @@ div.row{
   box-shadow: none;
 }
 /**/
-#team_member{
+#team_number{
   display: inline-block;
     border-radius: 0px;
     margin: 0 auto; 
@@ -273,3 +260,27 @@ input[type=range]:focus {
   border: #969696 1px solid;
 }
 
+/*지역선택*/
+#reg_select_city{
+  display: inline-block;
+  margin-top: 12px;
+  margin-right: 7px;
+  width: 200px;
+  height: 40px;
+  box-shadow: none;
+  
+}
+#reg_select_city:active,#reg_select_city:focus{
+  border: #082e3c 1px solid;
+}
+
+#reg_select_village{
+  display: inline-block;
+  margin-top: 12px;
+  width: 200px;
+  height: 40px;
+  box-shadow: none;
+}
+#reg_select_village:active, #reg_select_village:focus{
+  border: #082e3c 1px solid;
+}

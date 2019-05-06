@@ -7,6 +7,8 @@
 <%@page import="java.util.Date"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
+
+
 <!DOCTYPE html>
 <%
 	
@@ -37,7 +39,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
  	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>아울러 : 프로젝트</title>
+	<title>아울러 : 팀원모집</title>
     <link href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
@@ -70,6 +72,17 @@
 		 alert("스크랩 해제 되었습니다.");
 		 }	 
 	 } 
+ 
+ function logincheck(){
+	 var check = '<%=MemberDto%>';
+	  if(check!='null'){
+		  location.href='./ProjectAddForm.bo';
+		    
+	  }else{
+		  alert('로그인을 해주세요.');
+		  location.href='./LoginForm.do';
+	  }
+ }
  
 
  $(document).ready(function(){
@@ -113,10 +126,7 @@
 	 else if('<%=SearchMap.get("Category")%>'=="팀구해요"){$("#Category option:eq(2)").prop("selected", true);}
 	 <%}
 	 if(SearchMap.get("Occupation")!=null){%>
-	 if('<%=SearchMap.get("Occupation")%>'=="애니메이터"){$("#Occupation option:eq(1)").prop("selected", true);}
-	 else if('<%=SearchMap.get("Occupation")%>'=="작가"){$("#Occupation option:eq(2)").prop("selected", true);}
-	 else if('<%=SearchMap.get("Occupation")%>'=="성우"){$("#Occupation option:eq(3)").prop("selected", true);}
-	 else if('<%=SearchMap.get("Occupation")%>'=="기타"){$("#Occupation option:eq(4)").prop("selected", true);}
+	 $("input:radio[value='<%=SearchMap.get("Occupation")%>']").prop("checked", true);
 	 <%}
 	 if(SearchMap.get("Project_Search")!=null){%>
 	 $('#Project_Search').val('<%=SearchMap.get("Project_Search")%>');
@@ -215,8 +225,8 @@ $(function(){
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav" style="margin:10px;">
             <li ><a href="#">홈 <span class="sr-only">(current)</span></a></li>
-            <li class="active"><a href="#">팀 / 팀원구하기 </a></li>
-            <li><a href="#">공모전</a></li>
+            <li class="active"><a href="#">팀원모집 </a></li>
+            <li><a href="#">공모전 정보</a></li>
           </ul>
 
 
@@ -259,15 +269,15 @@ $(function(){
   <main><!--메인-->
     <section class="container"> <!--검색표-->
       <div class="con-block">
-          <h2 id="project-name">팀 / 팀원구하기</h2>
-          <button class="btn btn-warning btn-lg" onclick="location.href='../html/registration.html'" name="project_Registration"><b>프로젝트 등록</b></button>
+          <h2 id="project-name">팀원 모집</h2>
+          <button class="btn btn-warning btn-lg" onclick="logincheck()" name="project_Registration"><b>모집글 등록</b></button>
           <form class="frm_reset" role="form" action="./Project.bo" method="get" id="searchform" name="searchform">
           <input type="hidden" name="sort" value="">
           <table class="table">
            <tr>
-             <td style="border-top:#dedcee 1px solid;">
+             <td colspan="3" style="border: #dedede 1px solid; padding: 0; background: #f2f2f2;">
                 <div class="input-group act">
-                  <input type="search" class="form-control" placeholder="프로젝트 검색" name="Project_Search" id="Project_Search">
+                  <input type="search" class="form-control" placeholder="모집글 검색" name="Project_Search" id="Project_Search">
                   <span class="input-group-btn">
                     <button class="btn btn-default" type="submit" name="project_search_btn">
                         <span class="glyphicon glyphicon-search"></span>
@@ -275,21 +285,28 @@ $(function(){
                   </span>
                 </div><!-- /input-group -->  
             </td>
-            <td style="border-top:#dedcee 1px solid;">
-              <select class="form-control act" name="Occupation" id="Occupation">
-                  <option>모집분야</option>
-                  <option>애니메이터</option>
-                  <option>작가</option>
-                  <option>성우</option>
-                  <option>기타</option>
-              </select>
-            </td>
-            <td style="border-top:#dedcee 1px solid;">
-              <select class="form-control act" name="Category" id="Category">
-                  <option>분류</option>
-                  <option>팀원구해요</option>
-                  <option>팀구해요</option>
-              </select>
+            
+            </tr>
+            <tr>
+            <td id="tab_font" style="border-top: none;"><b>모집 분야</b></td>
+            <td colspan="2" class="text-content" style="border-top: none;">
+                <form class="frm_reset">
+                    <label class="radio-inline">
+                        <input type="radio" name="Occupation" value="애니메이터">애니메이터
+                      </label>
+                      <label class="radio-inline">
+                        <input type="radio" name="Occupation" value="시나리오작가"> 시나리오작가
+                      </label>
+                      <label class="radio-inline">
+                        <input type="radio" name="Occupation" value="성우"> 성우
+                      </label>
+                      <label class="radio-inline">
+                        <input type="radio" name="Occupation" value="작곡가"> 작곡가
+                      </label>
+                      <label class="radio-inline">
+                        <input type="radio" name="Occupation" value="그외"> 그 외
+                      </label>
+                </form>
             </td>
           </tr>
           <!-- 지역별 -->
@@ -801,7 +818,7 @@ $(function(){
             <td id="tab_font"><b>작업 기간</b></td>
             <td colspan="2" class="text-content">
               <label class="radio-inline">
-                <input type="radio" name="Period" id="Period1" value="Period_No" ondblclick="this.checked=false" >관련사항 없음
+                <input type="radio" name="Period" id="Period1" value="Period_No" ondblclick="this.checked=false" >무관
               </label>
               <label class="radio-inline">
                 <input type="radio" name="Period" id="Period2" value="Period_Week" ondblclick="this.checked=false" >~1주일
@@ -824,7 +841,7 @@ $(function(){
             <td id="tab_font"><b>프로젝트 크기</b></td>
             <td colspan="2" class="text-content">
               <label class="radio-inline">
-                <input type="radio" name="Size" id="Size1" value="Size_No" ondblclick="this.checked=false" >관련사항 없음
+                <input type="radio" name="Size" id="Size1" value="Size_No" ondblclick="this.checked=false" >무관
               </label>
               <label class="radio-inline">
                 <input type="radio" name="Size" id="Size2" value="Size_Very_Short" ondblclick="this.checked=false" >초단편
@@ -906,7 +923,7 @@ $(function(){
 
         	<div class="row">
           <div class="col-sm-12">
-              
+               
               <%
               for(int i=0; i<list.size(); i++){
               %>
@@ -924,7 +941,7 @@ $(function(){
               <div id="card_content">
                 <div class="oneline">
                 <ul>
-                	<li class="oneline_team"><%=list.get(i).getBoa_category()%></li>
+                	<li class="oneline_team">팀원모집</li>
                		<li><a href="#"><%=list.get(i).getBoa_title()%></a>
                		<button class='star' type="button" title="스크랩" data-toggle="tooltip" onclick="star(<%=list.get(i).getBoa_no()%>)" title="스크랩" data-original-title="Default tooltip"><img id="i_<%=list.get(i).getBoa_no()%>" src="<%=request.getContextPath()%>/image/graystar.png"></button>
 					
@@ -940,7 +957,21 @@ $(function(){
                       </tr>
                 	  <tr>
                         <td id="twoline_title">작업기간</td>
-                        <td><b id="twoline_content"><%=list.get(i).getBoa_reg_date()%> ~ <%=list.get(i).getBoa_rec_deadline()%></b></td>
+                        <td><b id="twoline_content">
+                        <%if(list.get(i).getBoa_pro_period().equals("Period_Week")){%>
+                        ~1주일
+                        <%}else if(list.get(i).getBoa_pro_period().equals("Period_One")){ %>
+                        1주일 ~ 1개월
+                        <%}else if(list.get(i).getBoa_pro_period().equals("Period_Three")){ %>
+                        1개월 ~ 3개월
+                        <%}else if(list.get(i).getBoa_pro_period().equals("Period_Six")){ %>
+                        3개월 ~ 6개월
+                        <%}else if(list.get(i).getBoa_pro_period().equals("Period_Year")){ %>
+                        6개월 ~ 1년
+                        <%} %>
+                                                        
+                        </b></td>
+                        
                       </tr>
                       <tr>
                         <td id="twoline_title">마감날짜</td>
@@ -956,7 +987,7 @@ $(function(){
                       </tr>
                       <tr>
                         <td id="twoline_title">모집인원</td>
-                        <td><b id="twoline_content"><%=list.get(i).getApp_number()%>/4 &nbsp;명</b></td>
+                        <td><b id="twoline_content"><%=list.get(i).getApp_number()%>/<%=list.get(i).getBoa_num()%> &nbsp;명</b></td>
                       </tr>
                     </table>
                   </div>
@@ -990,6 +1021,7 @@ $(function(){
           <p>성결대학교 미디어소프트웨어학부 <br> 2019 <strong>아울러.</strong> 인지해 정나영 한수지</p>
         </div>
     </footer>
+  
   
   
   

@@ -89,13 +89,13 @@ public class ProjectBoardController implements Controller {
 				TagList = ProBoardDao.getTagList(state,list);
 			}   
 		}    
-		 
+		     
 		
 		request.setAttribute("projectlist", list);
 		request.setAttribute("TagList", TagList);
 		System.out.println(SearchMap.size());
-		System.out.println("잘되고있는겨?");
-		forward.setRedirect(false); 
+		System.out.println("잘되고있는겨...");  
+		forward.setRedirect(false);              
 		forward.setPath("./project/Project.jsp");
 		return forward;
 	} 

@@ -23,4 +23,15 @@ $(document).ready(function() {
 	 });
 	 
 
+
+$(document).ready(function () { /*상세검색 지역! */
+$("#check_finish").click(function () { 
+status = $("#hidden").css("display"); 
+if (status == "none") { 
+  $("#hidden").css("display", ""); 
+} else { 
+  $("#hidden").css("display", "none"); 
+} 
+}); 
+}); 
 	
