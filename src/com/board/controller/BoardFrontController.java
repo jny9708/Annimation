@@ -1,13 +1,15 @@
 package com.board.controller;
 
 import java.io.IOException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.member.model.MemberDto;
 
 //import com.board.controller.ControllerForward;
 
@@ -34,6 +36,7 @@ public class BoardFrontController extends HttpServlet {
 		
 		ControllerForward forward = null;
 		Controller controller = null;
+		HttpSession session=request.getSession();
 		try {
 			if(command.equals("/Project.bo")) {
 				controller = new ProjectBoardController();
@@ -47,10 +50,22 @@ public class BoardFrontController extends HttpServlet {
 				controller = new PostInsertController();
 				forward=controller.execute(request, response);
 			}
+			else if(command.equals("/ProDetail.bo")) {
+				controller = new BoardDetailController();
+				forward=controller.execute(request, response);
+			}
 			else if(command.equals("/ProjectAddForm.bo")) {
 				forward=new ControllerForward();
-				 forward.setRedirect(false);
-				 forward.setPath("./project/ProjectAddForm.jsp");  
+				if((MemberDto)session.getAttribute("Member")==null) {
+					//int error=0;
+					//request.setAttribute("error", error);
+					forward.setRedirect(true);
+			   		forward.setPath("./LoginForm.do");
+				}else {
+					
+					forward.setRedirect(false);
+					 forward.setPath("./project/ProjectAddForm.jsp");
+				}
 			}
 			
 			if(forward != null){

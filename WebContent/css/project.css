@@ -1,3 +1,4 @@
+
 textarea:focus, select:focus, select[type]:focus, .uneditable-select:focus,input:focus, input[type]:focus, .uneditable-input:focus { /*부트스트랩 input 색상*/
     border-color: #082e3c;
     box-shadow: 0 0px 0px rgba(229, 103, 23, 0.075) inset, 0 0 0px rgba(229, 103, 23, 0.6);
@@ -429,3 +430,5 @@ outline: #082e3c 1px solid;
     padding-top: 12px;
 }
 /*상세 검색 지역*/
+
+

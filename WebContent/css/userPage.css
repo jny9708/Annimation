@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+  }
+  
+  .wrap {
+    left: 0;
+    perspective: 0;
+    perspective-origin: 50% 10vw;
+    position: absolute;
+    top: 0;
+    width: 20vw;
+    z-index: 1;
+  }
+  .wrap .sidebar {
+    height: 100vh;
+    position: relative;
+    transform-origin: 50% 50% 50%;
+    transform-style: preserve-3d;
+    transition: transform 1s ease-in-out;
+    width: 20vw;
+  }
+  .wrap .sidebar .side {
+    backface-visibility: hidden;
+    box-sizing: border-box;
+    color: #fff;
+    height: 100vh;
+    padding: 2em;
+    position: absolute;
+    width: 20vw;
+  }
+  .wrap .sidebar .front {
+    background-color: sienna;
+  }
+  
+  main {
+    margin-left: 20vw;
+    padding: 2em;
+  }

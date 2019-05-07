@@ -33,23 +33,23 @@
   var target = document.getElementById("reg_select_village");
 
   if(e.value == "reg_city") var d = sel_city;
-  else if(e.value == "reg_Seoul") var d = sel_Seoul;
-  else if(e.value == "reg_Gyeonggi") var d = sel_Gyeonggi;
-  else if(e.value == "reg_Incheon") var d = sel_Incheon;
-  else if(e.value == "reg_Gangwon") var d = sel_Gangwon;
-  else if(e.value == "reg_Daejeon") var d = sel_Daejeon;
-  else if(e.value == "reg_Sejong") var d = sel_Sejong;
-  else if(e.value == "reg_Chungcheongnam") var d = sel_Chungcheongnam;
-  else if(e.value == "reg_NorthChungcheong") var d = sel_NorthChungcheong;
-  else if(e.value == "reg_Busan") var d = sel_Busan;
-  else if(e.value == "reg_Ulsan") var d = sel_Ulsan;
-  else if(e.value == "reg_Gyeongsangnam") var d = sel_Gyeongsangnam;
-  else if(e.value == "reg_Gyeongbuk") var d = sel_Gyeongbuk;
-  else if(e.value == "reg_Daegu") var d = sel_Daegu;
-  else if(e.value == "reg_Gwangju") var d = sel_Gwangju;
-  else if(e.value == "reg_Jeonnam") var d = sel_Jeonnam;
-  else if(e.value == "reg_Jeonbuk") var d = sel_Jeonbuk;
-  else if(e.value == "reg_Jeju") var d = sel_Jeju;
+  else if(e.value == "서울") var d = sel_Seoul;
+  else if(e.value == "경기") var d = sel_Gyeonggi;
+  else if(e.value == "인천") var d = sel_Incheon;
+  else if(e.value == "강원") var d = sel_Gangwon;
+  else if(e.value == "대전") var d = sel_Daejeon;
+  else if(e.value == "세종") var d = sel_Sejong;
+  else if(e.value == "충남") var d = sel_Chungcheongnam;
+  else if(e.value == "충북") var d = sel_NorthChungcheong;
+  else if(e.value == "부산") var d = sel_Busan;
+  else if(e.value == "울산") var d = sel_Ulsan;
+  else if(e.value == "경남") var d = sel_Gyeongsangnam;
+  else if(e.value == "경북") var d = sel_Gyeongbuk;
+  else if(e.value == "대구") var d = sel_Daegu;
+  else if(e.value == "광주") var d = sel_Gwangju;
+  else if(e.value == "전남") var d = sel_Jeonnam;
+  else if(e.value == "전북") var d = sel_Jeonbuk;
+  else if(e.value == "제주") var d = sel_Jeju;
 
   target.options.length = 0;
  

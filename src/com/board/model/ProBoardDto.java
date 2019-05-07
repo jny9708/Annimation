@@ -18,7 +18,6 @@ public class ProBoardDto {
 	int boa_num;
 	String boa_con_address;
 	Date boa_rec_deadline;
-	String boa_rec_deadline_insert;
 	String boa_size;
 	String boa_pro_period;
 	String boa_contents;
@@ -28,6 +27,7 @@ public class ProBoardDto {
 	String mem_nickname;
 	String mem_icon;
 	String mem_job;
+	String mem_email;
 	int app_number;
 	int boa_d_day;
 	String boa_region;
@@ -35,11 +35,12 @@ public class ProBoardDto {
 	String file_name;
 	ArrayList<String> boa_hashtag = new ArrayList<String>();
 	//MemberDto MemberDto;
-	public String getBoa_rec_deadline_insert() {
-		return boa_rec_deadline_insert;
+	
+	public String getMem_email() {
+		return mem_email;
 	}
-	public void setBoa_rec_deadline_insert(String boa_rec_deadline_insert) {
-		this.boa_rec_deadline_insert = boa_rec_deadline_insert;
+	public void setMem_email(String mem_email) {
+		this.mem_email = mem_email;
 	}
 	public String getFile_name() {
 		return file_name;

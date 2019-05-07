@@ -1,5 +1,6 @@
 package com.board.controller;
 
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,16 +24,18 @@ public class PostInsertController implements Controller {
 	@Override
 	public ControllerForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
+		int result=0;
 		ControllerForward forward = new ControllerForward();
 		ProBoardDao ProBoardDao = new ProBoardDao();
 		ProBoardDto ProBoardDto = new ProBoardDto();
 		MemberDto MemberDto=null;
 		HttpSession session=request.getSession();
 		if((MemberDto)session.getAttribute("Member")==null) {
+			//request.setAttribute("error", 0);
 			forward.setRedirect(true);
 	   		forward.setPath("./LoginForm.do");
 			return forward;
-		}else {
+		}else {   
 			MemberDto=(MemberDto)session.getAttribute("Member");
 			ProBoardDto.setMem_no(MemberDto.getMem_no());
 		}
@@ -109,9 +112,16 @@ public class PostInsertController implements Controller {
 			}
 			if(multi.getParameter("Region")!=null) {
 				// 지역
+				String reg_city= multi.getParameter("reg_city");
 				String Region = multi.getParameter("Region");
-				ProBoardDto.setBoa_region(Region);
-				System.out.println("지역:"+Region);
+				if(Region.contains("전체")) {
+					ProBoardDto.setBoa_region(Region);
+					System.out.println("지역:"+Region);
+				}else {
+					String boa_region = reg_city+Region;
+					ProBoardDto.setBoa_region(boa_region);
+					System.out.println("지역:"+boa_region);
+				}
 			}
 			if(multi.getParameter("reg_period")!=null) {
 				//  기간
@@ -168,16 +178,25 @@ public class PostInsertController implements Controller {
 				System.out.println("파일이름 :"+fileName);
 				ProBoardDto.setFile_name(fileName);
 			}  
-			ProBoardDao.BoardInsert(ProBoardDto);
+			result=ProBoardDao.BoardInsert(ProBoardDto);
 			    
 			
 		}catch(Exception e){     
 			e.printStackTrace();
 		} 
 		
-		forward.setRedirect(true); 
-		forward.setPath("./Project.bo");
-		return forward;
+		if(result==1) {
+			forward.setRedirect(true); 
+			forward.setPath("./Project.bo");
+			return forward;
+		}else {
+			
+			request.setAttribute("InsertResult", result );
+			forward.setRedirect(false); 
+			forward.setPath("./Project.bo");
+			return forward;
+		}
+		
 		
 		//return null;        
 	}

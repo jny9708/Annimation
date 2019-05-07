@@ -7,6 +7,7 @@
 <%@page import="java.util.Date"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.io.PrintWriter"%>
 
 
 <!DOCTYPE html>
@@ -33,6 +34,17 @@
     	TagSearch = request.getParameter("TagSearch");
     }
     System.out.println("태그검색어는 "+TagSearch);
+    int result=9;
+    if(request.getParameter("InsertResult")!=null){
+    	result=Integer.parseInt(request.getParameter("InsertResult"));
+    }
+    
+    if(result==0){
+    	PrintWriter wir = response.getWriter();
+    	wir.println("<script>");
+    	wir.println("alert('등록 에러');");
+   		wir.println("</script>");
+    }
 %>
 <html>
 <head>
@@ -224,8 +236,8 @@ $(function(){
 
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav" style="margin:10px;">
-            <li ><a href="#">홈 <span class="sr-only">(current)</span></a></li>
-            <li class="active"><a href="#">팀원모집 </a></li>
+            <li ><a href="./Main.do">홈 <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="./Project.bo">팀원모집 </a></li>
             <li><a href="#">공모전 정보</a></li>
           </ul>
 
@@ -248,9 +260,13 @@ $(function(){
             <li class="dropdown">
               <a href="#"  class="dropdown-toggle navbar-img" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               <h5 style="display: inline-block;"><%=MemberDto.getMem_id() %></h5>
-              <%if(MemberDto.getMem_icon()==null){ %>
+              <%if(MemberDto.getMem_icon().equals("profile.jpg")){ %>
               <img src="<%=request.getContextPath()%>/image/profile.jpg" class="img-circle" alt="Profile Image"/>
-              <%}else if(MemberDto.getMem_icon()!=null){System.out.println("아이콘경로있음");} %>
+              <%}else{
+            	  System.out.println("아이콘경로있음");%>
+            	  <img src="<%=request.getContextPath()%>/image/<%=MemberDto.getMem_icon()%>" class="img-circle" alt="Profile Image"/>
+            	  <%} %>
+            	  
               </a>
               <ul class="dropdown-menu">
                 <li><a href="#">마이페이지</a></li>
@@ -912,7 +928,7 @@ $(function(){
                     <a href="#" rel="maun_card_Latest" id="Atag0_click">최신순</a></li>
                     <li<%if(sort==1){ %>
                     class="active"<%}%>>
-                    <a href="#" rel="maun_card_popularity" id="Atag1_click">인기순</a></li>
+                    <a href="#" rel="maun_card_popularity" id="Atag1_click">조회순</a></li>
                     <li<%if(sort==2){ %>
                     class="active"<%}%>>
                     <a href="#" rel="maun_card_Deadline" id="Atag2_click">마감순</a></li>
@@ -931,9 +947,14 @@ $(function(){
             <div id="dede"> 
               <div id="card_User">
                 <a href="#">
-                <%if(list.get(i).getMem_icon()==null){ %>
+                
+                <%if(list.get(i).getMem_icon().equals("profile.jpg")){ %>
                 <img src="<%=request.getContextPath()%>/image/profile.jpg" alt="User-img" class="projact_card_U img-circle" data-toggle="tooltip" title="닉네임 페이지 보기" data-original-title="Default tooltip">
-                <%}else if(list.get(i).getMem_icon()!=null){System.out.println("아이콘경로있음");} %>
+                <%}else{
+                	System.out.println("아이콘경로있음");%>
+                	<img src="<%=request.getContextPath()%>/image/<%=list.get(i).getMem_icon()%>" alt="User-img" class="projact_card_U img-circle" data-toggle="tooltip" title="닉네임 페이지 보기" data-original-title="Default tooltip">
+                	<%} %>
+                
                 </a>
                 <p class="projact_card_U_font"><%=list.get(i).getMem_nickname() %><br><small><%=list.get(i).getMem_job() %></small></p>
               </div>
@@ -941,8 +962,8 @@ $(function(){
               <div id="card_content">
                 <div class="oneline">
                 <ul>
-                	<li class="oneline_team">팀원모집</li>
-               		<li><a href="#"><%=list.get(i).getBoa_title()%></a>
+                	<li class="oneline_team"><%=list.get(i).getBoa_region()%></li>
+               		<li><a href="./ProDetail.bo?no=<%=list.get(i).getBoa_no()%>"><%=list.get(i).getBoa_title()%></a>
                		<button class='star' type="button" title="스크랩" data-toggle="tooltip" onclick="star(<%=list.get(i).getBoa_no()%>)" title="스크랩" data-original-title="Default tooltip"><img id="i_<%=list.get(i).getBoa_no()%>" src="<%=request.getContextPath()%>/image/graystar.png"></button>
 					
                 	</li>

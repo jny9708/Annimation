@@ -1,7 +1,3 @@
-.reg .radio-inline {
-  width: 110px;
-}
-
 body{
     background: #f2f2f2;
 }
@@ -77,6 +73,7 @@ div.row{
 .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
   position: absolute;
   margin-left: -20px;
+  
 }
 .length_b3{
   margin-left: 20px !important;
@@ -94,6 +91,9 @@ div.row{
 }
 .radio-inline{
   width: 60px;
+}
+.reg .radio-inline {
+  width: 110px;
 }
 #radio_size{
   width: 100px;

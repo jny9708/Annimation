@@ -45,6 +45,18 @@
 	}
 	
 	function submitcheck(){
+		  var isgenreChk = false;
+	        var arr_genre = document.getElementsByName("reg_genre");
+	        for(var i=0;i<arr_genre.length;i++){
+	            if(arr_genre[i].checked == true) {
+	                isgenreChk = true;
+	                break;
+	            }
+	        }
+	        if(!isgenreChk){
+	            alert("최소 1개의 장르를 선택해주세요.");
+	            return false;
+	        }
 		 if(document.getElementById("file-selector").value!=""){
 			    var fileSize = document.getElementById("file-selector").files[0].size;
 			    var maxSize  = 10 * 1024 * 1024;
@@ -140,9 +152,12 @@ $(document).ready(function(){
             <li class="dropdown">
               <a href="#"  class="dropdown-toggle navbar-img" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               <h5 style="display: inline-block;"><%=MemberDto.getMem_id() %></h5>
-              <%if(MemberDto.getMem_icon()==null){ %>
+              <%if(MemberDto.getMem_icon().equals("profile.jpg")){ %>
               <img src="<%=request.getContextPath()%>/image/profile.jpg" class="img-circle" alt="Profile Image"/>
-              <%}else if(MemberDto.getMem_icon()!=null){System.out.println("아이콘경로있음");} %>
+              <%}else{
+            	  System.out.println("아이콘경로있음");%>
+            	  <img src="<%=request.getContextPath()%>/image/<%=MemberDto.getMem_icon()%>" class="img-circle" alt="Profile Image"/>
+            	  <%} %>
               </a>
               <ul class="dropdown-menu">
                 <li><a href="#">마이페이지</a></li>
@@ -187,7 +202,7 @@ $(document).ready(function(){
                         <div class="form-group">
                                 <label class="length_b length_b2">희망 구성</label>
                                 <label class="radio-inline length_b3">
-                                    <input type="radio" name="reg_member" value="hope_none" ondblclick="this.checked=false"> 무관
+                                    <input type="radio" name="reg_member" value="hope_none" ondblclick="this.checked=false" required> 무관
                                 </label>
                                 <label class="radio-inline">
                                     <input type="radio" name="reg_member" value="hope_individual" ondblclick="this.checked=false"> 개인
@@ -318,23 +333,23 @@ $(document).ready(function(){
                                                     <label class="length_b">작업 지역</label>
                                                     <select onchange="categoryChange(this)" class="form-control length_b3" id="reg_select_city" required>
                                                         <option name="reg_city" value="">시/도</option>
-                                                        <option name="reg_Seoul" value="reg_Seoul">서울</option>
-                                                        <option name="reg_Gyeonggi" value="reg_Gyeonggi">경기</option>
-                                                        <option name="reg_Incheon" value="reg_Incheon">인천</option>
-                                                        <option name="reg_Gangwon" value="reg_Gangwon">강원</option>
-                                                        <option name="reg_Daejeon" value="reg_Daejeon">대전</option>
-                                                        <option name="reg_Sejong" value="reg_Sejong">세종</option>
-                                                        <option name="reg_Chungcheongnam" value="reg_Chungcheongnam">충남</option>
-                                                        <option name="reg_NorthChungcheong" value="reg_NorthChungcheong">충북</option>
-                                                        <option name="reg_Busan" value="reg_Busan">부산</option>
-                                                        <option name="reg_Ulsan" value="reg_Ulsan">울산</option>
-                                                        <option name="reg_Gyeongsangnam" value="reg_Gyeongsangnam">경남</option>
-                                                        <option name="reg_Gyeongbuk" value="reg_Gyeongbuk">경북</option>
-                                                        <option name="reg_Daegu" value="reg_Daegu">대구</option>
-                                                        <option name="reg_Gwangju" value="reg_Gwangju">광주</option>
-                                                        <option name="reg_Jeonnam" value="reg_Jeonnam">전남</option>
-                                                        <option name="reg_Jeonbuk" value="reg_Jeonbuk">전북</option>
-                                                        <option name="reg_Jeju" value="reg_Jeju">제주</option>
+                                                        <option name="reg_city" value="서울">서울</option>
+                                                        <option name="reg_city" value="경기">경기</option>
+                                                        <option name="reg_city" value="인천">인천</option>
+                                                        <option name="reg_city" value="강원">강원</option>
+                                                        <option name="reg_city" value="대전">대전</option>
+                                                        <option name="reg_city" value="세종">세종</option>
+                                                        <option name="reg_city" value="충남">충남</option>
+                                                        <option name="reg_city" value="충북">충북</option>
+                                                        <option name="reg_city" value="부산">부산</option>
+                                                        <option name="reg_city" value="울산">울산</option>
+                                                        <option name="reg_city" value="경남">경남</option>
+                                                        <option name="reg_city" value="경북">경북</option>
+                                                        <option name="reg_city" value="대구">대구</option>
+                                                        <option name="reg_city" value="광주">광주</option>
+                                                        <option name="reg_city" value="전남">전남</option>
+                                                        <option name="reg_city" value="전북">전북</option>
+                                                        <option name="reg_city" value="제주">제주</option>
                                                   </select>
                                                   <select class="form-control" name="Region" id="reg_select_village" required>
                                                         <option value="">시/도/군</option>

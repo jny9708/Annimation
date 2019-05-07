@@ -38,7 +38,7 @@
 
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav" style="margin:10px;">
-            <li class="active"><a href="#">홈 <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="./Main.do">홈 <span class="sr-only">(current)</span></a></li>
             <li><a href="./Project.bo">팀원모집 </a></li>
             <li><a href="#">공모전 정보</a></li>
           </ul>
@@ -62,9 +62,12 @@
             <li class="dropdown">
               <a href="#"  class="dropdown-toggle navbar-img" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               <h5 style="display: inline-block;"><%=MemberDto.getMem_id() %></h5>
-              <%if(MemberDto.getMem_icon()==null){ %>
+             <%if(MemberDto.getMem_icon().equals("profile.jpg")){ %>
               <img src="<%=request.getContextPath()%>/image/profile.jpg" class="img-circle" alt="Profile Image"/>
-              <%}else if(MemberDto.getMem_icon()!=null){System.out.println("아이콘경로있음");} %>
+              <%}else{
+            	  System.out.println("아이콘경로있음");%>
+            	  <img src="<%=request.getContextPath()%>/image/<%=MemberDto.getMem_icon()%>" class="img-circle" alt="Profile Image"/>
+            	  <%} %>
               </a>
               <ul class="dropdown-menu">
                 <li><a href="#">마이페이지</a></li>

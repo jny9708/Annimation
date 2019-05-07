@@ -1,6 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.io.PrintWriter"%>
 <!DOCTYPE html>
+<%
+	/*int result=9;
+	if(request.getParameter("error")!=null){
+		result=Integer.parseInt(request.getParameter("error"));
+	}	
+	System.out.println("error"+result);
+	if(result==0){
+		PrintWriter wir = response.getWriter();
+		wir.println("<script>");
+		wir.println("alert('로그인을 해주세요');");
+		wir.println("</script>");
+	}
+*/
+%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -27,8 +42,8 @@
 
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav" style="margin:10px;">
-            <li ><a href="#">홈 <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">팀원모집</a></li>
+            <li ><a href="./Main.do">홈 <span class="sr-only">(current)</span></a></li>
+            <li><a href="./Project.bo">팀원모집</a></li>
             <li><a href="#">공모전 정보</a></li>
           </ul>
 
@@ -42,20 +57,7 @@
                  <div class="input-group">
                      <a href="./LoginForm.do">로그인</a>
                 </div></div>
-     <!--     <ul class="nav navbar-nav navbar-right" id="change">
-            <li class="dropdown">
-              <a href="#"  class="dropdown-toggle navbar-img" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <h5 style="display: inline-block;">닉네임</h5>
-              <img src="<%=request.getContextPath()%>/image/profile.jpg" class="img-circle" alt="Profile Image"/>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="#">마이페이지</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">로그아웃</a></li>
-              </ul>
-            </li>
-          </ul>  
-로그인 햇으면 이걸로! 드롭다운에는 마이페이지와 로그아웃 넘어가는 드롭다운!-->
+     
 
         </form>
       </div>

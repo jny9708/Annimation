@@ -34,7 +34,7 @@ public class ProjectBoardController implements Controller {
 		int sort = 0; 
 		if(request.getParameter("sort")!=null) {
 		sort = Integer.parseInt(request.getParameter("sort"));
-		}
+		}  
 		if(request.getParameter("Project_Search")!=null) {
 			if(request.getParameter("Project_Search").equals("")==false) {
 			SearchMap.put("Project_Search", request.getParameter("Project_Search"));
@@ -94,8 +94,8 @@ public class ProjectBoardController implements Controller {
 		request.setAttribute("projectlist", list);
 		request.setAttribute("TagList", TagList);
 		System.out.println(SearchMap.size());
-		System.out.println("잘되고있는겨...");  
-		forward.setRedirect(false);              
+		System.out.println("잘되고있는겨!!");  
+		forward.setRedirect(false);                
 		forward.setPath("./project/Project.jsp");
 		return forward;
 	} 

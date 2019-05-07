@@ -140,6 +140,7 @@ public class ProBoardDao {
 				ProBoardDto.setBoa_d_day(rs.getInt("d_day"));
 				ProBoardDto.setBoa_num(rs.getInt("boa_num"));
 				ProBoardDto.setBoa_pro_period(rs.getString("boa_pro_period"));
+				ProBoardDto.setBoa_region(rs.getString("boa_region"));
 				list.add(ProBoardDto);
 			}
 			sql="select mem_nickname,mem_icon,mem_job from member where mem_no=?";
@@ -165,7 +166,7 @@ public class ProBoardDao {
 					list.get(i).setApp_number(rs.getInt(1));
 				}
 			}
-			sql="select tag_contents from hashtag where boa_no=? limit 4";
+			sql="select tag_contents from hashtag where boa_no=? limit 9";
 			for(int i=0; i<list.size(); i++) {
 				pstmt = connection.prepareStatement(sql);
 				pstmt.setInt(1,list.get(i).getBoa_no());
@@ -312,7 +313,7 @@ public class ProBoardDao {
 								list.get(i).setApp_number(rs.getInt(1));
 							}
 						}
-						sql="select tag_contents from hashtag where boa_no=? limit 4";
+						sql="select tag_contents from hashtag where boa_no=? limit 9";
 						for(int i=0; i<list.size(); i++) {
 							pstmt = connection.prepareStatement(sql);
 							pstmt.setInt(1,list.get(i).getBoa_no());
@@ -452,7 +453,7 @@ public class ProBoardDao {
 							list.get(i).setApp_number(rs.getInt(1));
 						}
 					}
-					sql="select tag_contents from hashtag where boa_no=? limit 4";
+					sql="select tag_contents from hashtag where boa_no=? limit 9";
 					for(int i=0; i<list.size(); i++) {
 						pstmt = connection.prepareStatement(sql);
 						pstmt.setInt(1,list.get(i).getBoa_no());
@@ -620,13 +621,133 @@ public int BoardInsert(ProBoardDto ProBoardDto) {
 			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
 			if(connection!=null) try {connection.close();} catch(Exception ex) {}
 		}
-		
-		
-		
-		
 		return 0;
 	}
 	
+	public ProBoardDto getDetail (int no){
+		ProBoardDto ProBoardDto = new ProBoardDto();
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="select *,TO_DAYS(boa_rec_deadline)-TO_DAYS(now())as d_day from pro_board where boa_no=?";
+		try {
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1,no);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				ProBoardDto.setMem_no(rs.getInt("mem_no"));
+				ProBoardDto.setBoa_no(rs.getInt("boa_no"));
+				ProBoardDto.setBoa_title(rs.getString("boa_title"));
+				ProBoardDto.setBoa_teamname(rs.getString("boa_teamname"));
+				ProBoardDto.setBoa_format(rs.getString("boa_format"));
+				ProBoardDto.setBoa_experi(rs.getString("boa_experi"));
+				ProBoardDto.setBoa_con_method(rs.getString("boa_con_method"));
+				ProBoardDto.setBoa_job(rs.getString("boa_job"));
+				ProBoardDto.setBoa_rec_deadline(rs.getDate("boa_rec_deadline"));
+				ProBoardDto.setBoa_reg_date(rs.getDate("boa_reg_date"));
+				ProBoardDto.setBoa_d_day(rs.getInt("d_day"));
+				ProBoardDto.setBoa_num(rs.getInt("boa_num"));
+				ProBoardDto.setBoa_pro_period(rs.getString("boa_pro_period"));
+				ProBoardDto.setBoa_region(rs.getString("boa_region"));
+				ProBoardDto.setBoa_progress(rs.getInt("boa_progress"));
+				ProBoardDto.setBoa_con_address(rs.getString("boa_con_address"));
+				ProBoardDto.setBoa_size(rs.getString("boa_size"));
+				ProBoardDto.setBoa_contents(rs.getString("boa_contents")); 
+				ProBoardDto.setBoa_hit(rs.getInt("boa_hit"));
+			}
+			
+		} catch (Exception e) {
+			System.out.println("getDetail pro_board테이블 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		} 
+		try {
+			sql="select mem_nickname,mem_icon,mem_job,mem_email from member where mem_no=?";
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1,ProBoardDto.getMem_no());
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				ProBoardDto.setMem_nickname(rs.getString("mem_nickname"));
+				ProBoardDto.setMem_icon(rs.getString("mem_icon"));
+				ProBoardDto.setMem_job(rs.getString("mem_job"));
+				ProBoardDto.setMem_email(rs.getString("mem_email"));
+			}
+		
+		} catch (Exception e) {
+			System.out.println("getDetail member테이블 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		} 
+		try {
+			sql="select count(*) from application where boa_no=?";
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1,no);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				ProBoardDto.setApp_number(rs.getInt(1));
+			}
+		
+		} catch (Exception e) {
+			System.out.println("getDetail application테이블 count 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		} 
+		
+		try {
+			sql="select tag_contents from hashtag where boa_no=? limit 9";
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1,no);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				ProBoardDto.boa_hashtag.add(rs.getString("tag_contents"));
+			}
+			
+		} catch (Exception e) {
+			System.out.println("getDetail hashtag테이블 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		} 
+		
+		try {
+			sql="select genre_contents from genre where boa_no=?";
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1,no);
+			rs=pstmt.executeQuery();
+			rs.last();
+			int row = rs.getRow();
+			rs.beforeFirst();
+			System.out.println("열개수"+row);
+			String[] genre = new String[row];   
+			for(int i=0; rs.next(); i++) {
+				genre[i] = rs.getString("genre_contents");	 
+				System.out.println(genre[i]);
+				
+			}
+			ProBoardDto.setGenre_contents(genre);
+			
+		} catch (Exception e) {
+			System.out.println("getDetail genre테이블 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		}
+
+		return ProBoardDto;
+	}
 	
 	
 
