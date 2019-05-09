@@ -192,6 +192,7 @@ public class PostInsertController implements Controller {
 		}else {
 			
 			request.setAttribute("InsertResult", result );
+			//나중에 true로 해도 되는지 테스트 해보기
 			forward.setRedirect(false); 
 			forward.setPath("./Project.bo");
 			return forward;

@@ -18,11 +18,18 @@
 			}
 	}
 	String[] genre = ProBoardDto.getGenre_contents();
-	System.out.println("장르"+genre[0]+genre[1]);
 	int writercheck=0;
-	if(ProBoardDto.getMem_no()==MemberDto.getMem_no()){
-		writercheck=1;
+	if(MemberDto!=null){
+		if(ProBoardDto.getMem_no()==MemberDto.getMem_no()){
+			writercheck=1;
+		}	
 	}
+	int no = Integer.parseInt(request.getParameter("no"));
+	int result=-1;
+	if(request.getAttribute("InsertResult")!=null){
+		result = ((Integer)request.getAttribute("InsertResult")).intValue();
+	}
+	
 	%>
 <html>
 <head>
@@ -48,6 +55,53 @@
 
     <title>아울러:게시글 제목</title>
 </head>
+<script type="text/javascript">
+	function send(){
+		var contents=$('#summernote').summernote('code');
+		console.log(contents);
+		document.register.notecontents.value = contents;
+	}
+	
+	var result =<%=result%>
+	if(result==0){
+		alert("지원에 실패하였습니다.");
+	}
+	
+    $(document).ready(function() {
+        $('#summernote').summernote({
+        	callbacks: { // 콜백을 사용
+                // 이미지를 업로드할 경우 이벤트를 발생
+			    onImageUpload: function(files, editor, welEditable) {
+			    	console.log("업로드이벤트발생");
+				    sendFile(files[0], this);
+				}
+			}
+        });                         
+    });
+    
+    /* summernote에서 이미지 업로드시 실행할 함수 */
+ 	function sendFile(file, editor) {
+        // 파일 전송을 위한 폼생성
+ 		data = new FormData();
+ 	    data.append("uploadFile", file);
+ 	    $.ajax({ // ajax를 통해 파일 업로드 처리
+ 	        data : data,
+ 	        type : "POST",
+ 	        url : "./ImageUpload.bo",
+ 	        cache : false,
+ 	        contentType : false,
+ 	        processData : false,
+ 	        success : function(data) { // 처리가 성공할 경우
+ 	        	console.log("성공");
+ 	        	console.log(data.url);
+                // 에디터에 이미지 출력
+ 	        	$(editor).summernote('editor.insertImage', data.url);
+                
+ 	        }
+ 	    });
+ 	}
+
+</script>
 <body>
  <header>
     <!------------- Navbar -------------->
@@ -326,6 +380,13 @@
                             <h2>추가사항</h2>
                             <div class="add_content">
 								<%=ProBoardDto.getBoa_contents()%>
+								<div class="add_con_file">
+                               		   첨부파일| &nbsp; 
+                               		   <% if(ProBoardDto.getFile_name()!=null){%>
+                               		   <a href="./FileDownload.bo?filename=<%=ProBoardDto.getFile_name()%>"><%=ProBoardDto.getFile_name()%></a>
+                               		   <%}%>
+                                </div>
+								
                             </div>
                         </div>
                         <div id="proCon_hash">
@@ -407,31 +468,142 @@
             </div>
         </div>
   
-
+		<%if(writercheck!=1){%>
         <div class="container">
             <div id="application">
                 <h2>지원하기</h2>
                 <div id="app_sum">
+               <%if(MemberDto!=null){ %>
                     <div id="summernote">
                       <p>자유롭게 지원글을 작성해주세요.</p>
                       <p>이름 :</p>
                       <p>연락처 :</p>
                       <p>지원이유 :</p>
                     </div>
-                    <form class="form-inline center-block" action="/" method="POST" enctype="multipart/form-data">
+                     <form class="form-inline center-block" action="./AppInsert.bo?boa_no=<%=no%>&mem_no=<%if(MemberDto!=null){ %><%=MemberDto.getMem_no()%><%}%>
+                     " method="POST" enctype="multipart/form-data" name="register">
+                 <input type="hidden" name="notecontents" value="">
                         <div class="input-group">
                             <label id="appbutton" class="btn btn-default input-group-addon" for="file-selector" style="background-color:white;">
                                 <input id="file-selector" type="file" style="display:none;" name="file_selector">
-                                파일 추가
+                                		파일 추가
                             </label>
                             <input id="file_content" type="text" class="form-control file_up" readonly=""/>
                         </div>
-                    </form>                     
-                    <button class="btn-change7" type="submit" name="app_btn"><b>지원하기</b></button>
+                        
+                    <button class="btn-change7" type="submit" name="app_btn" onclick="send()"><b>지원하기</b></button>
+                    </form>
+                 <%}else{%>
+                	
+                	<div id="summernote">
+                      <p>로그인을 하면 지원을 하실 수 있습니다.</p>
+                    </div>
+                    <form class="form-inline center-block" action="#" method="POST" enctype="multipart/form-data">
+                        <div class="input-group">
+                            <label id="appbutton" class="btn btn-default input-group-addon" for="file-selector" style="background-color:white;">
+                                <input id="file-selector" type="file" style="display:none;" name="file_selector">
+                                		파일 추가
+                            </label>
+                            <input id="file_content" type="text" class="form-control file_up" readonly=""/>
+                        </div>
+                        </form>
+                 <%} %>
+                    
+                                         
+                    
+                    
                 </div>
             </div>
         </div>
-
+	<%}else{%>
+		
+	<!-- 여기다가 그  높이값 넣으면 될듯? -->
+			
+		
+	<% } %>
+	
+	<div class="container" id="plus">
+            <span class="glyphicon glyphicon-plus" style="text-align: center; width: 100%;"></span>
+        </div>
+        
+          <div class="container">
+            <div id="recommen">
+                <h2>추천<small>&nbsp;&nbsp;*최대 3개를 볼 수 있습니다.</small></h2>
+                <div class="recommen_card">
+                    <div class="row">
+                        <div class="col-sm-12">
+                          <div id="dede">
+                            <div id="card_User">
+                              <a href="../html/index.html"><img src="../image/profile.jpg" alt="User-img" class="projact_card_U img-circle" data-toggle="tooltip" title="닉네임 페이지 보기" data-original-title="Default tooltip"></a>
+                              <p class="projact_card_U_font">닉네임<br><small>애니메이터</small></p>
+                            </div>
+                           
+                            <div id="card_content">
+                              <div class="oneline">
+                                <ul>
+                                  <li class="oneline_team">경기성남</li>
+                                  <li><a href="#">베스킨라빈스 1+1 한다아앙</a>  
+                                    <button class='star' type="button" title="스크랩" data-toggle="tooltip" onclick="star('star1')" title="스크랩" data-original-title="Default tooltip"><img id="i_star1" src="../image/graystar.png"></button>            
+                                  </li>
+                                  <li><small style="float:right; margin:22px 20px 0px 0px;">등록일|&nbsp;&nbsp;2019-04-23</small></li>
+                                </ul> 
+                              </div>
+                              <div class="twoline">
+                                <table class="table">
+                                  <tr>
+                                    <td id="twoline_title">모집분야</td>
+                                    <td ><b id="twoline_content">애니메이터,성우</b></td>
+                                  </tr>
+                                  <tr>
+                                    <td id="twoline_title">작업기간</td>
+                                    <td><b id="twoline_content">2019-04-23 ~ 2019-05-10</b></td>
+                                  </tr>
+                                  <tr>
+                                    <td id="twoline_title">마감</td>
+                                    <td><b id="twoline_content">TODAY</b></td>
+                                  </tr>
+                                  <tr>
+                                    <td id="twoline_title">모집인원</td>
+                                    <td><b id="twoline_content">0/4 &nbsp;명</b></td>
+                                  </tr>
+                                </table>
+                              </div>
+                              <div class="threeline_recom">
+                                <h4 style="margin-top:2px;"><b>#</b>해시태그</h4>
+                                <ul>
+                                  <li><a href="#">#해dddddddddddd시</a></li>
+                                  <li><a href="#">#해ddddddd시</a></li>
+                                  <li><a href="#">#로롤롤ccㄹㄴ</a></li>
+                                  <li><a href="#">#초코파이</a></li>
+                                  <li><a href="#">#해시</a></li>
+                                  <li><a href="#">#해시</a></li>
+                                  <li><a href="#">#해시안녕</a></li>
+                                  <li><a href="#">#해시</a></li>
+                                  <li><a href="#">#해시</a></li>
+                                </ul>
+                                <small style="float:right">*최대 9개의 해시 태그를 볼 수 있습니다.</small>
+                              </div>
+                            </div><!--카드상세내용-->
+                          </div><!--전체카드dede-->
+            
+                          <!--전체카드dede-->
+                         
+                      
+                        </div><!--col-->
+                      </div><!--row-->
+              
+                </div>
+            </div>
+        </div>
+        
+        
+	  </main>
+	  </div>
+<footer style="clear:both; background-color: white;">
+    <div id="copyright" class="container-fluid">
+      <p>성결대학교 미디어소프트웨어학부 <br> 2019 <strong>아울러.</strong> 인지해 정나영 한수지</p>
+    </div>
+  </footer>
 
 </body>
 </html>

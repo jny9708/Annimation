@@ -23,6 +23,8 @@ public class BoardDetailController implements Controller {
 		
 		no = Integer.parseInt(request.getParameter("no"));
 		
+		ProBoardDao.AddHit(no);
+		
 		ProBoardDto = ProBoardDao.getDetail(no);
 		
 		request.setAttribute("Detail",ProBoardDto);

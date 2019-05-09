@@ -389,7 +389,7 @@ $(document).ready(function(){
                                 <div class="btn-group-toggle" data-toggle="buttons" name="Genre">
                                     <label class="length_b length_b2">제작 장르</label>
                                     <label class="btn btn-info length_b3">
-                                        <input type="checkbox" name="reg_genre" value="Genre_Action" required="required"> 액션
+                                        <input type="checkbox" name="reg_genre" value="Genre_Action"> 액션
                                     </label>
                                     <label class="btn btn-info">
                                         <input type="checkbox" name="reg_genre" value="Genre_Romance"> 로멘스

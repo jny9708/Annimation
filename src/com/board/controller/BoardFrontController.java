@@ -62,10 +62,17 @@ public class BoardFrontController extends HttpServlet {
 					forward.setRedirect(true);
 			   		forward.setPath("./LoginForm.do");
 				}else {
-					
 					forward.setRedirect(false);
 					 forward.setPath("./project/ProjectAddForm.jsp");
 				}
+			}
+			else if(command.equals("/FileDownload.bo")) {
+				controller = new FileDownloadController();
+				forward=controller.execute(request, response);
+			}
+			else if(command.equals("/AppInsert.bo")) {
+				controller = new AppInsertController();
+				forward=controller.execute(request, response);
 			}
 			
 			if(forward != null){

@@ -745,8 +745,49 @@ public int BoardInsert(ProBoardDto ProBoardDto) {
 			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
 			if(connection!=null) try {connection.close();} catch(Exception ex) {}
 		}
+		
+		try {
+			sql="select file_name from boa_file where boa_no=?";
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1,no);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				ProBoardDto.setFile_name(rs.getString("file_name"));
+			}
+			
+		} catch (Exception e) {
+			System.out.println("getDetail boa_file테이블 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		} 
 
 		return ProBoardDto;
+	}
+	
+	public int AddHit(int no){
+		int result = -1;
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="update pro_board set boa_hit=boa_hit+1 where boa_no=?";
+		
+		try {
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1,no);
+			result=pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("AddHit 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		} 
+		
+		return result;
 	}
 	
 	

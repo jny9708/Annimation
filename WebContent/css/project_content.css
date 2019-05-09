@@ -1,3 +1,10 @@
+.add_con_file{
+  border-top: #d9dde8 1px solid;
+  padding: 12px 0px 12px 0px;
+  font-size: 18px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin-top: 40px;
+}
 .con_number{
   margin:0px; 
   display: inline-block;
