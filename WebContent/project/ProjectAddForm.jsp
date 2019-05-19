@@ -10,6 +10,12 @@
 	if(session.getAttribute("Member")!=null){
 		MemberDto=(MemberDto)session.getAttribute("Member");
 	}	
+	
+	ProBoardDto ProBoardDto = null;
+	if(request.getAttribute("OrgDto")!=null){
+		ProBoardDto = (ProBoardDto)request.getAttribute("OrgDto");	
+	}
+	
 
 %>
 
@@ -38,6 +44,66 @@
     <title>아울러 : 팀원 모집글 등록</title>
 </head>
 <script  type="text/javascript">
+$(document).ready(function() {
+	<%if(ProBoardDto!=null){%>
+	var OrgDto = '<%=ProBoardDto%>';
+	if(OrgDto!='null'){
+		$("#reg_title").val('<%=ProBoardDto.getBoa_title()%>');
+		$("#reg_teamName").val('<%=ProBoardDto.getBoa_teamname()%>');
+		$("input:radio[value='<%=ProBoardDto.getBoa_format()%>']").prop("checked", true);
+		$("input:radio[value='<%=ProBoardDto.getBoa_experi()%>']").prop("checked", true);
+		$("input:radio[value='<%=ProBoardDto.getBoa_con_method()%>']").prop("checked", true);
+		$("input:radio[value='<%=ProBoardDto.getBoa_job()%>']").prop("checked", true);
+		$("#team_number").val('<%=ProBoardDto.getBoa_num()%>');
+		$("#contact_number").val('<%=ProBoardDto.getBoa_con_address()%>');
+		$("#ragne_b").val('<%=ProBoardDto.getBoa_progress()%>');
+		document.getElementById('currentValue').innerHTML=<%=ProBoardDto.getBoa_progress()%>;
+		$("input:radio[value='<%=ProBoardDto.getBoa_size()%>']").prop("checked", true);
+		
+		var region = '<%=ProBoardDto.getBoa_region()%>';
+		var city1;
+		var city2;
+		city1 = region.substring(0,2); 
+		
+		
+		
+	    substring = "전체";
+	    if(region.indexOf(substring) != -1){
+	    	city2= region;
+	    }else{
+	    	city2 = region.substring(2,region.length);	    	
+	    }
+		
+		categoryChange2(city1);
+		
+		$('#reg_select_city').val(city1);
+		$('#reg_select_village').val(city2);
+		$("input:radio[value='<%=ProBoardDto.getBoa_pro_period()%>']").prop("checked", true);
+		<%for(int i=0; i<ProBoardDto.getGenre_contents().length; i++){%>
+			$("input:checkbox[value='<%=ProBoardDto.getGenre_contents()[i]%>']").prop("checked", true);	
+			 $('#<%=ProBoardDto.getGenre_contents()[i]%>').addClass('active');
+		<%}%>
+		$('#edate1').val('<%=ProBoardDto.getBoa_rec_deadline()%>');
+		var contents='<%=ProBoardDto.getBoa_contents()%>';
+		$('#summernote').summernote('code', contents);
+		
+		var filename='<%=ProBoardDto.getFile_name()%>'
+		if(filename!='null'){
+			$("#file_content").attr('placeholder','<%=ProBoardDto.getFile_name()%>')	
+		}
+		
+		var tag;
+		tag=''.concat(<%for(int i=0; i<ProBoardDto.getBoa_hashtag().size(); i++){%>'<%=ProBoardDto.getBoa_hashtag().get(i)%>',' ',<%}%>'');
+		console.log("tag"+tag);
+		$('#tag_form').val(tag);
+		
+		
+		
+	}
+	<%}%>
+	  });
+
+	
 	function send(){
 		var contents=$('#summernote').summernote('code');
 		console.log(contents);
@@ -177,7 +243,14 @@ $(document).ready(function(){
         <div class="container">
             <h2 style="margin-top:40px;">모집글 등록</h2>
             <div class="reg_block">
-                <form role="form" action="./PostInsert.bo" method="post" enctype="multipart/form-data" name="register" onsubmit="return submitcheck();"> 
+            <%if(ProBoardDto!=null){%>
+            	<form role="form" action="./PostUpdate.bo?boa_no=<%=ProBoardDto.getBoa_no()%>" method="post" enctype="multipart/form-data" name="register" onsubmit="return submitcheck();">
+            	<%}
+        	else{%>
+        		    <form role="form" action="./PostInsert.bo" method="post" enctype="multipart/form-data" name="register" onsubmit="return submitcheck();">	
+        	<% } %>
+            
+                 
                 <input type="hidden" name="notecontents" value="">
                     <div class="row">   
                             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -331,7 +404,7 @@ $(document).ready(function(){
                                             <div class="col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
                                                     <label class="length_b">작업 지역</label>
-                                                    <select onchange="categoryChange(this)" class="form-control length_b3" id="reg_select_city" required>
+                                                    <select onchange="categoryChange(this)" class="form-control length_b3" id="reg_select_city" name="reg_city" required>
                                                         <option name="reg_city" value="">시/도</option>
                                                         <option name="reg_city" value="서울">서울</option>
                                                         <option name="reg_city" value="경기">경기</option>
@@ -388,28 +461,28 @@ $(document).ready(function(){
                             <div class="form-group">
                                 <div class="btn-group-toggle" data-toggle="buttons" name="Genre">
                                     <label class="length_b length_b2">제작 장르</label>
-                                    <label class="btn btn-info length_b3">
+                                    <label class="btn btn-info length_b3" id="Genre_Action">
                                         <input type="checkbox" name="reg_genre" value="Genre_Action"> 액션
                                     </label>
-                                    <label class="btn btn-info">
+                                    <label class="btn btn-info" id="Genre_Romance">
                                         <input type="checkbox" name="reg_genre" value="Genre_Romance"> 로멘스
                                     </label>
-                                    <label class="btn btn-info">
+                                    <label class="btn btn-info" id="Genre_Fantasy">
                                         <input type="checkbox" name="reg_genre" value="Genre_Fantasy"> 판타지
                                     </label>
-                                    <label class="btn btn-info">
+                                    <label class="btn btn-info" id="Genre_Thriller">
                                         <input type="checkbox" name="reg_genre" value="Genre_Thriller"> 스릴러
                                     </label>
-                                    <label class="btn btn-info">
+                                    <label class="btn btn-info" id="Genre_SF">
                                         <input type="checkbox" name="reg_genre" value="Genre_SF"> SF
                                     </label>
-                                    <label class="btn btn-info">
+                                    <label class="btn btn-info" id="Genre_Daily">
                                         <input type="checkbox" name="reg_genre" value="Genre_Daily"> 일상
                                     </label>
-                                    <label class="btn btn-info">
+                                    <label class="btn btn-info" id="Genre_Growth">
                                         <input type="checkbox" name="reg_genre" value="Genre_Growth"> 성장
                                     </label>
-                                    <label class="btn btn-info">
+                                    <label class="btn btn-info" id="Genre_different">
                                         <input type="checkbox" name="reg_genre" value="Genre_different"> 기타
                                     </label>
                                 </div>
@@ -459,7 +532,14 @@ $(document).ready(function(){
                            <input type="text" id="tag_form" class="form-control"  placeholder="#태그" name="reg_tag">
                        </div>
                        <div>
-                           <button type="submit" class="btn bbtn-warning reg_btn" name="reg_btn" onclick="send()">등록</button>
+                       	<%if(ProBoardDto!=null){%>
+                       		<button type="submit" class="btn bbtn-warning reg_btn" name="reg_btn" onclick="send()">수정</button>
+                       	<%}
+                       	
+                       	else{%>
+                       		<button type="submit" class="btn bbtn-warning reg_btn" name="reg_btn" onclick="send()">등록</button>
+                       	<% } %>
+                           
                        </div>
                    </div><!--추가-->
            

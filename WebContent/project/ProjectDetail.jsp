@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
  <%@page import="com.member.model.*"%>
  <%@page import="com.board.model.*" %>
+<%@page import="java.util.ArrayList"%>
+
 <!DOCTYPE html>
 <%
 	
@@ -11,6 +13,13 @@
 	}
 	
 	ProBoardDto ProBoardDto = (ProBoardDto)request.getAttribute("Detail");
+	ArrayList<ApplicationDto> list =null;
+	
+	if(request.getAttribute("ApplicationList")!=null){
+		 list = (ArrayList<ApplicationDto>)request.getAttribute("ApplicationList");	
+	}
+	
+	
 	String con_address="";
 	if(ProBoardDto.getBoa_con_address()!=null){
 		if(ProBoardDto.getBoa_con_address().equals("null")==false){
@@ -24,11 +33,16 @@
 			writercheck=1;
 		}	
 	}
+	
 	int no = Integer.parseInt(request.getParameter("no"));
 	int result=-1;
 	if(request.getAttribute("InsertResult")!=null){
 		result = ((Integer)request.getAttribute("InsertResult")).intValue();
 	}
+	int jsp_app_no=0;
+	
+	ArrayList<ProBoardDto> re_list = (ArrayList<ProBoardDto>)request.getAttribute("re_list");
+	
 	
 	%>
 <html>
@@ -39,6 +53,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="shortcut icon" type="image⁄x-icon" href="<%=request.getContextPath()%>/image/final_logo(mini_size_2).png">
     <link href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
     <script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.js"></script>
     
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -56,10 +71,42 @@
     <title>아울러:게시글 제목</title>
 </head>
 <script type="text/javascript">
+
+	var app_no;
+
+	function fileclick(_app_no){
+		app_no=_app_no
+		console.log(app_no+"ddd"+_app_no);
+	}
+	
+	/*파일업로드 수정 */
+    $(document).ready(function(){
+    	
+		var real_app_no='#appbutton_modify_'+app_no+' :file'
+		console.log(real_app_no);
+		
+        $(real_app_no).change(function(e){
+            var fileName = e.target.files[0].name; /*이벤트가 발생한 타겟->file의 이름을 가져옴!*/
+            var name=$(this).attr('name');
+            console.log(name+"ddd");
+            $("#file_content_m_"+name).attr('placeholder',fileName) /*file_content의 내용을 파일 이름으로 바꿈!*/
+        });
+        
+        
+    });
+	
 	function send(){
-		var contents=$('#summernote').summernote('code');
+		var contents=$('#summernote2').summernote('code');
 		console.log(contents);
 		document.register.notecontents.value = contents;
+	}
+	function app_send(app_no){
+		var contents=$('#summernote_app_'+app_no).summernote('code');
+		console.log(contents);
+		$('#notecontents_'+app_no).val(contents);
+		var dd =$('#notecontents_'+app_no).val();
+		console.log(dd);
+		
 	}
 	
 	var result =<%=result%>
@@ -67,8 +114,25 @@
 		alert("지원에 실패하였습니다.");
 	}
 	
+	function app_delete(mem_no,boa_no,filename){
+		 var result = confirm("정말 지원글을 삭제하겠습니까?");
+		 if(result){
+			 var path = './AppDelete.bo?mem_no='.concat(mem_no,'&boa_no=',boa_no,'&filename=',filename);
+			 window.location.href= path;
+		 }else{
+			 
+		 }
+	}
+	
+	
+	function YesOrNo(mem_no,boa_no,state){
+		
+		var link='./YesOrNo.bo?mem_no='.concat(mem_no,'&boa_no=',boa_no,'&state=',state);
+		window.location.href = link;
+	}
+	
     $(document).ready(function() {
-        $('#summernote').summernote({
+        $('.summernote').summernote({
         	callbacks: { // 콜백을 사용
                 // 이미지를 업로드할 경우 이벤트를 발생
 			    onImageUpload: function(files, editor, welEditable) {
@@ -76,7 +140,9 @@
 				    sendFile(files[0], this);
 				}
 			}
-        });                         
+        });
+        
+        
     });
     
     /* summernote에서 이미지 업로드시 실행할 함수 */
@@ -167,8 +233,8 @@
                 <a href="#plus" class="w3-bar-item w3-button" style="margin-bottom:20px;">추천</a>
                 <%if(writercheck==1){%>
                 <hr>
-                <a href="#" class="w3-bar-item w3-button sidebar_login">모집글 수정</a>
-                <a href="#" class="w3-bar-item w3-button sidebar_login">모집글 삭제</a>
+                <a href="./PostUpdateForm.bo?boa_no=<%=no%>" class="w3-bar-item w3-button sidebar_login">모집글 수정</a>
+                <a href="./PostDelete.bo?boa_no=<%=no%>&filename=<%=ProBoardDto.getFile_name()%>" onclick="return confirm('정말 모집글을 삭제하겠습니까?');" class="w3-bar-item w3-button sidebar_login">모집글 삭제</a>
                 <hr>	
                 	
                 <%} %>
@@ -414,48 +480,101 @@
                 <h2>지원현황 <small>현재 지원자 수 : <%=ProBoardDto.getApp_number()%>명</small></h2>
                 <div id="support_block">
                     <div class="panel-group" id="accordion" role="support" aria-multiselectable="true">
-                        
-<!--1지원자-->       <div class="panel panel-default">
+                      
+                       <%if(list!=null){
+                    	   if(list.size()<1){%>
+                    		   <div style="text-align: center;  font-size: x-large; margin-top: 15px; " >지원글이 없습니다.</div>
+                    	   <%}else{
+                       		for(int i =0; i<list.size(); i++){ %>
+ <!--1지원자-->     	  <div class="panel panel-default">
                           <div class="panel-heading" role="tab" id="headingOne">
                             <h4 class="panel-title">
-                              <a data-toggle="collapse" data-parent="#accordion" href="#support_1" aria-expanded="false" aria-controls="support_1">
+                              <a data-toggle="collapse" data-parent="#accordion" href="#app_<%=list.get(i).getBoa_app_no()%>" aria-expanded="false" aria-controls="support_1">
                                <div class="sp_number">
-                                   1
+                                   <%=++jsp_app_no%>
                                </div>
                                 <ul id="support_content">
-                                   <li><b>와퍼주니어</b></li>
-                                   <li><b>010-****-****</b></li>
-                                   <li><b style="color:#282aa9; border-right: none;">미승인</b></li>
+                                   <li><b><%=list.get(i).getMem_nickname()%></b></li>
+                                   <li><b><%=list.get(i).getMem_email()%></b></li>
+                                   <li><b style="color:#282aa9; border-right: none;"><%=list.get(i).getBoa_app_state()%></b></li>
                                </ul>
-                               <!-- 승인거부
-                               <div class="sp_button_yesno">
-                                <button class="btn_sp_yes btn btn-default" type="submit" id="sp_yes" value="yes">승인</button>
-                                <button class="btn_sp_no btn btn-default" type="submit" id="sp_no" value="no">거부</button>
-                               </div>-->
+                               <!-- 승인거부-->
+                               <%if(writercheck==1){%>
+                               
+                               <button class="btn btn-default" type="button" id="show">변경</button>
+                            	 <div id="sp_button_yesno" style="display:none">
+                            		 <button class="btn btn-default" type="submit" id="sp_yes" value="yes" onclick="YesOrNo(<%=list.get(i).getMem_no()%>,<%=no%>,'승인')">승인</button>
+                                  <button class="btn btn-default" type="submit" id="sp_no" value="no" onclick="YesOrNo(<%=list.get(i).getMem_no()%>,<%=no%>,'거부')">거부</button>
+                                  <button class="btn btn-default" type="button" id="hide">취소</button>
+                                  </div>
+                               <%
+                               } %>
+                               
                               </a>
                             </h4>
                           </div>
-                          <div id="support_1" class="panel-collapse collapse">
+                          <div id="app_<%=list.get(i).getBoa_app_no()%>" class="panel-collapse collapse">
                             <div class="panel-body">
-                                <div id="support_pro"><!--지원자 프로필-->
-                                    <a href="#"><img src="../image/profile.jpg" alt="User-img" class="support_img img-circle" data-toggle="tooltip" title="닉네임 페이지 보기" data-original-title="Default tooltip"></a>
-                                    <p class="support_text">닉네임<br><small>애니메이터</small></p>
-                                    <button class="btn sp_revise" type="submit" name="sp_revise">수정하기</button>
-                                    <button class="btn sp_deletion" type="submit" name="sp_deletion">삭제하기</button>
+                                <div id="support_pro" class=""><!--지원자 프로필-->
+                                    <a href="#">
+                                    
+                                    <img src="<%=request.getContextPath()%>/image/<%=list.get(i).getMem_icon()%>" alt="User-img" class="support_img img-circle" data-toggle="tooltip" title="닉네임 페이지 보기" data-original-title="Default tooltip">
+
+                                    </a>
+                                    <p class="support_text"><%=list.get(i).getMem_nickname()%><br><small><%=list.get(i).getMem_job()%></small></p>
+                                    <%
+                                    if(MemberDto!=null){
+                                		if(list.get(i).getMem_no()==MemberDto.getMem_no()){%>
+                                			<button class="btn sp_revise" type="submit" name="app_<%=list.get(i).getBoa_app_no()%>" id="sp_revise">수정하기</button>
+                                    		<button class="btn sp_deletion" type="submit" name="sp_deletion" onclick="app_delete(<%=list.get(i).getMem_no()%>,<%=no%>,'<%=list.get(i).getApp_file()%>');">삭제하기</button>
+                                    		<!-- onclick함수에 boa_app_no만 가져와서 인자로 넘기면 되는데 바보같이 모든 정보 넘겨버림 근데 또 바꾸기는 귀찮아서 걍 냅둠 -->
+                                	<%		
+                                		}	
+                                	}
+                                    %>
+                                    
+                                    
                                 </div>
-                                <div id="support_content_ask"><!--지원자가 작성한 내용-->
-                                        <div id="lone">
-                                            <img src="../image/루루1.png">
-                                            <p>ddd</p>
-                                            <b>ss</b>
+                                <div id="support_content_ask" class="con_app_<%=list.get(i).getBoa_app_no()%>"><!--지원자가 작성한 내용-->
+                                  <div id="lone_true_app_<%=list.get(i).getBoa_app_no()%>">  
+                                        <div id="lone" class="lone1_app_<%=list.get(i).getBoa_app_no()%>">
+                                            <%=list.get(i).getBoa_app_contents()%>
                                         </div>
                                         <div id="lone_add">
-                                        첨부파일|&nbsp; <a href="#" download="">ddd.javascript</a>
+                                        첨부파일|&nbsp; 
+										<%if(list.get(i).getApp_file()!=null){%>
+										<a id="app_download" href="./FileDownload.bo?filename=<%=list.get(i).getApp_file()%>"><%=list.get(i).getApp_file()%></a>	
+										<%} %>
+                                        
                                         </div>
-                                </div>
+                                       </div><!--/lone_true-->
+                                
+                                  <div id="lone_modify" style="display:none;" class="lone_app_<%=list.get(i).getBoa_app_no()%>">
+                                          <div class="summernote" id="summernote_app_<%=list.get(i).getBoa_app_no()%>"></div>
+                                          <form class="form-inline center-block_m" name="app_update_<%=list.get(i).getBoa_app_no()%>" method="POST" action="./AppUpdate.bo?app_no=<%=list.get(i).getBoa_app_no()%>&boa_no=<%=no%>" enctype="multipart/form-data">
+                                            <input type="hidden" name="notecontents" id="notecontents_<%=list.get(i).getBoa_app_no()%>" value="" >
+                                               
+                                               <!--  <div class="input-group">
+                                                   <label id="appbutton_modify_<%=list.get(i).getBoa_app_no()%>" class="btn btn-default input-group-addon" for="file_modify" style="background-color:white; padding-top: 5px !important;" >
+                                                       <input id="file_modify" type="file" style="display:none;" name="app_<%=list.get(i).getBoa_app_no()%>">
+                                                             파일 추가
+                                                   </label>
+                                                   <input id="file_content_m_app_<%=list.get(i).getBoa_app_no()%>" type="text" class="form-control file_up_m" readonly=""/>
+                                               </div> -->
+                                              <button class="btn-modify" type="submit" name="lone_modify" onclick="app_send(<%=list.get(i).getBoa_app_no()%>)" id="lone_modify_finish"><b>수정완료</b></button>
+                                           </form>
+                                        </div><!--/lone_modify-->
+                              
+                                        </div><!--/support_content_ask-->
                             </div><!--/panel-body-->
                         </div><!--/support-body-->
-                    </div>
+                    </div>  
+                    	   
+                    	   
+                       <%}
+                       	}
+                       } %> 
+  
 
                        
                        
@@ -468,13 +587,26 @@
             </div>
         </div>
   
-		<%if(writercheck!=1){%>
+		<%
+		boolean app_user=false;
+		for(int i=0; i<list.size(); i++){
+			if(MemberDto!=null){
+				if(MemberDto.getMem_no()==list.get(i).getMem_no()){
+					app_user=true;		
+				}	
+			}
+		}
+		
+		
+		if(writercheck!=1){
+			if(app_user==false){%>
+		
         <div class="container">
             <div id="application">
                 <h2>지원하기</h2>
                 <div id="app_sum">
                <%if(MemberDto!=null){ %>
-                    <div id="summernote">
+                    <div class="summernote" id="summernote2">
                       <p>자유롭게 지원글을 작성해주세요.</p>
                       <p>이름 :</p>
                       <p>연락처 :</p>
@@ -495,7 +627,7 @@
                     </form>
                  <%}else{%>
                 	
-                	<div id="summernote">
+                	<div class="summernote">
                       <p>로그인을 하면 지원을 하실 수 있습니다.</p>
                     </div>
                     <form class="form-inline center-block" action="#" method="POST" enctype="multipart/form-data">
@@ -508,78 +640,108 @@
                         </div>
                         </form>
                  <%} %>
-                    
-                                         
-                    
-                    
                 </div>
             </div>
         </div>
-	<%}else{%>
+	<%}else{
 		
-	<!-- 여기다가 그  높이값 넣으면 될듯? -->
-			
+	}
+			}else{%>
+		
+	<!-- 여기다가 그  높이값 넣으면 될듯? -->			
 		
 	<% } %>
 	
 	<div class="container" id="plus">
-            <span class="glyphicon glyphicon-plus" style="text-align: center; width: 100%;"></span>
+            <span class="glyphicon glyphicon-plus" style="text-align: center; width: 100%; margin-top: 35px;"></span>
         </div>
         
           <div class="container">
             <div id="recommen">
                 <h2>추천<small>&nbsp;&nbsp;*최대 3개를 볼 수 있습니다.</small></h2>
+                
+                <%if(re_list.size()<1){%>
+                	<div style="text-align: center;  font-size: x-large; margin-top: 35px; " >추천 게시글이 없습니다.</div>
+                <%}else{
+                
+               		 for(int i=0; i< re_list.size(); i++){%>
+                	
+                
                 <div class="recommen_card">
                     <div class="row">
                         <div class="col-sm-12">
                           <div id="dede">
                             <div id="card_User">
-                              <a href="../html/index.html"><img src="../image/profile.jpg" alt="User-img" class="projact_card_U img-circle" data-toggle="tooltip" title="닉네임 페이지 보기" data-original-title="Default tooltip"></a>
-                              <p class="projact_card_U_font">닉네임<br><small>애니메이터</small></p>
+                              <a href="#">
+                              <%if(re_list.get(i).getMem_icon().equals("profile.jpg")){ %>
+                              <img src="<%=request.getContextPath()%>/image/profile.jpg" alt="User-img" class="projact_card_U img-circle" data-toggle="tooltip" title="닉네임 페이지 보기" data-original-title="Default tooltip">
+                               <%}else{ %>
+                            	  <img src="<%=request.getContextPath()%>/image/<%=re_list.get(i).getMem_icon()%>" alt="User-img" class="projact_card_U img-circle" data-toggle="tooltip" title="닉네임 페이지 보기" data-original-title="Default tooltip"> 
+								<%} %>
+
+                              </a>
+                              <p class="projact_card_U_font"><%=re_list.get(i).getMem_nickname()%><br><small><%=re_list.get(i).getBoa_job()%></small></p>
                             </div>
                            
                             <div id="card_content">
                               <div class="oneline">
                                 <ul>
-                                  <li class="oneline_team">경기성남</li>
-                                  <li><a href="#">베스킨라빈스 1+1 한다아앙</a>  
-                                    <button class='star' type="button" title="스크랩" data-toggle="tooltip" onclick="star('star1')" title="스크랩" data-original-title="Default tooltip"><img id="i_star1" src="../image/graystar.png"></button>            
+                                  <li class="oneline_team"><%=re_list.get(i).getBoa_region()%></li>
+                                  <li><a href="./ProDetail.bo?no=<%=re_list.get(i).getBoa_no()%>"><%=re_list.get(i).getBoa_title()%></a>  
+                                    <button class='star' type="button" title="스크랩" data-toggle="tooltip" title="스크랩" data-original-title="Default tooltip"><img id="i_star1" src="<%=request.getContextPath()%>/image/graystar.png"></button>            
                                   </li>
-                                  <li><small style="float:right; margin:22px 20px 0px 0px;">등록일|&nbsp;&nbsp;2019-04-23</small></li>
+                                  <li><small style="float:right; margin:22px 20px 0px 0px;">등록일|&nbsp;&nbsp;<%=re_list.get(i).getBoa_reg_date()%></small></li>
                                 </ul> 
                               </div>
                               <div class="twoline">
                                 <table class="table">
                                   <tr>
                                     <td id="twoline_title">모집분야</td>
-                                    <td ><b id="twoline_content">애니메이터,성우</b></td>
+                                    <td ><b id="twoline_content"><%=re_list.get(i).getBoa_job()%></b></td>
                                   </tr>
                                   <tr>
                                     <td id="twoline_title">작업기간</td>
-                                    <td><b id="twoline_content">2019-04-23 ~ 2019-05-10</b></td>
+                                    <td><b id="twoline_content">
+                                    <%if(re_list.get(i).getBoa_pro_period().equals("Period_Week")){%>
+                        				~1주일
+                        			<%}else if(re_list.get(i).getBoa_pro_period().equals("Period_One")){ %>
+                        				1주일 ~ 1개월
+                        			<%}else if(re_list.get(i).getBoa_pro_period().equals("Period_Three")){ %>
+                        				1개월 ~ 3개월
+                        			<%}else if(re_list.get(i).getBoa_pro_period().equals("Period_Six")){ %>
+                        				3개월 ~ 6개월
+                        			<%}else if(re_list.get(i).getBoa_pro_period().equals("Period_Year")){ %>
+                        				6개월 ~ 1년
+                        			<%} %>
+                                    </b></td>
                                   </tr>
                                   <tr>
-                                    <td id="twoline_title">마감</td>
-                                    <td><b id="twoline_content">TODAY</b></td>
+                                    <td id="twoline_title">마감날짜</td>
+                                    <td><b id="twoline_content">
+                                     <%if(re_list.get(i).getBoa_d_day()>0){ %>
+                      					D - <%=re_list.get(i).getBoa_d_day()%>
+                      				<%}else if(re_list.get(i).getBoa_d_day()==0){ %>
+                      					TODAY
+                      				<%}else if(re_list.get(i).getBoa_d_day()<0){  
+                      					int d_day=Math.abs(re_list.get(i).getBoa_d_day()); %>
+                      					D + <%=d_day%>
+                      				<%} %>
+                                    </b></td>
                                   </tr>
                                   <tr>
                                     <td id="twoline_title">모집인원</td>
-                                    <td><b id="twoline_content">0/4 &nbsp;명</b></td>
+                                    <td><b id="twoline_content"><%=re_list.get(i).getApp_number()%>/<%=re_list.get(i).getBoa_num()%> &nbsp;명</b></td>
                                   </tr>
                                 </table>
                               </div>
                               <div class="threeline_recom">
                                 <h4 style="margin-top:2px;"><b>#</b>해시태그</h4>
                                 <ul>
-                                  <li><a href="#">#해dddddddddddd시</a></li>
-                                  <li><a href="#">#해ddddddd시</a></li>
-                                  <li><a href="#">#로롤롤ccㄹㄴ</a></li>
-                                  <li><a href="#">#초코파이</a></li>
-                                  <li><a href="#">#해시</a></li>
-                                  <li><a href="#">#해시</a></li>
-                                  <li><a href="#">#해시안녕</a></li>
-                                  <li><a href="#">#해시</a></li>
-                                  <li><a href="#">#해시</a></li>
+                                <%for(int j=0; j<re_list.get(i).getBoa_hashtag().size(); j++ ){%>
+                                  <li><a href="./Project.bo?TagSearch=<%=re_list.get(i).getBoa_hashtag().get(j)%>">
+                                  #<%=re_list.get(i).getBoa_hashtag().get(j)%>
+                                  </a></li>
+                                  <%}%>
                                 </ul>
                                 <small style="float:right">*최대 9개의 해시 태그를 볼 수 있습니다.</small>
                               </div>
@@ -593,6 +755,9 @@
                       </div><!--row-->
               
                 </div>
+                
+                <% }
+                } %>
             </div>
         </div>
         

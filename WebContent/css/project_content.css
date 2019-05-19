@@ -1,16 +1,4 @@
-.add_con_file{
-  border-top: #d9dde8 1px solid;
-  padding: 12px 0px 12px 0px;
-  font-size: 18px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  margin-top: 40px;
-}
-.con_number{
-  margin:0px; 
-  display: inline-block;
-  margin-left: 5px;
-}
-.container {
+﻿.container {
     padding-right: 0px;
     padding-left: 0px;
     margin-right: auto;
@@ -141,6 +129,11 @@ body{
     background: white;
     padding: 0px;
 }
+.con_number{
+  margin:0px; 
+  display: inline-block;
+  margin-left: 5px;
+}
 /*게시글 제목*/
 .proCon_title{
     display: table;
@@ -257,7 +250,7 @@ body{
   font-size:18px;
   color: #999999;
   width: 200px !important;
-  border:none;
+ border: none;
   padding: 0px 0px 0px 60px;
 }
 .basic_font{
@@ -297,6 +290,13 @@ body{
 .add_content{
   padding: 30px 60px 30px 60px;
   min-width: 720px;
+}
+.add_con_file{
+  border-top: #d9dde8 1px solid;
+  padding: 12px 0px 12px 0px;
+  font-size: 18px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin-top: 40px;
 }
 /*/추가내용*/
 
@@ -408,7 +408,7 @@ main{
 #support_content{
   display: inline-block;
   background: white;
-  width:84%;
+  width:88%;
   margin: 0px 10px 0px 10px;
   padding: 0px;
   height: 25px;
@@ -546,7 +546,6 @@ main{
   min-height: 200px;
   width: 100%;
   margin-top: 30px;
-  margin-bottom: 30px;
 }
 #application h2{
   padding:20px 0 10px 20px; 
@@ -575,6 +574,9 @@ main{
 #app_sum .panel-default{
   margin-bottom: 5px;
 }
+#application form{
+width: 99%;
+}
 
 .btn-change7{
   display: table-cell;
@@ -595,6 +597,58 @@ main{
   color: #1b2339;
   font-size: 17px;
 }
+.btn-modify{
+  display: table-cell;
+  float: right;
+  height: 50px;
+  width: 100px;
+  margin: 0px 0px 10px 10px;
+  background: #293456;
+  border:0px;
+  color:#fff;
+  box-shadow: 0 0 1px #ccc;
+  -webkit-transition-duration: 0.5s;
+  -webkit-transition-timing-function: linear;
+  box-shadow:0px 0 0 #fbd14b inset;
+}
+.btn-modify:hover{
+  box-shadow:100px 0 0 #fbd14b inset;
+  color: #1b2339;
+  font-size: 17px;
+}
+
+/**섬머노트수정********************/
+#lone_modify{
+  height: 350px;
+}
+#lone_modify .note-editor{
+  margin: 30px 20px 20px 20px;
+}
+#lone_modify .panel-heading{
+  background: #f3f3f3 !important;
+  padding: 0px 0px 0px 0px;
+  position: relative !important;
+  width: 736px;
+}
+#lone_modify .note-editing-area{
+  height: 200px;
+}
+#lone_modify .note-editable{
+  height: 208px !important;
+  min-height: 208px !important;
+  max-height: 208px !important;
+}
+#lone_modify .panel-heading.note-toolbar>.btn-group{
+  margin-right: 0px;
+}
+#lone_modify .panel-heading.note-toolbar>.btn-group .note-current-fontname{
+  font-size: 10px !important;
+}
+#lone_modify .btn-sm{
+  width: 67.5px;
+}
+
+/*********************************************************************/
 
 .file_up{
   box-shadow: none !important;
@@ -613,6 +667,26 @@ main{
   display: inline-block;
   width: 80%;
   margin: 5px 10px 10px 10px;
+}
+#file_content_m{
+  width: 400px;
+}
+.center-block_m{
+  display: inline-block;
+  width: 740px;
+  margin: 0px 20px 0px 20px;
+}
+#lone_modify .input-group>label.btn-default{
+  width: 100px;
+  position: relative;
+top: 0px;
+}
+.file_up_m{
+  box-shadow: none !important;
+  border: #969696 1px solid;
+  background: #fafaf9!important;
+  width: 100%;
+  border-radius: 0px;
 }
 /*****************************지원하기/*********************************/
 
@@ -636,20 +710,21 @@ main{
   min-height: 200px;
 
 }
-.threeline_recom{
+/************************카드 재 설정*********************/
+.threeline{
   display: inline-block;
     float: left;
     width: 300px;
     height: 140px;
 }
 
-.threeline_recom ul{
+.threeline ul{
   padding: 0px;
   height: 100px;
   margin: 0px;
   width: 350px;
 }
-.threeline_recom ul li{
+.threeline ul li{
   margin: 5px 3px 0px 3px !important;
   width: 90px !important;
   height: 18px;
@@ -658,7 +733,7 @@ main{
   overflow     : hidden;   
   display      : inline-block;
 }
-.threeline_recom ul li a{
+.threeline ul li a{
   color: #455890;
 }
 /************************추천/*********************/

@@ -50,6 +50,18 @@ public class BoardFrontController extends HttpServlet {
 				controller = new PostInsertController();
 				forward=controller.execute(request, response);
 			}
+			else if(command.equals("/PostDelete.bo")) {
+				controller = new PostDeleteController();
+				forward=controller.execute(request, response);
+			}
+			else if(command.equals("/PostUpdateForm.bo")) {
+				controller = new PostUpdateFormController();
+				forward=controller.execute(request, response);
+			}
+			else if(command.equals("/PostUpdate.bo")) {
+				controller = new PostUpdateController();
+				forward=controller.execute(request, response);
+			}
 			else if(command.equals("/ProDetail.bo")) {
 				controller = new BoardDetailController();
 				forward=controller.execute(request, response);
@@ -72,6 +84,24 @@ public class BoardFrontController extends HttpServlet {
 			}
 			else if(command.equals("/AppInsert.bo")) {
 				controller = new AppInsertController();
+				forward=controller.execute(request, response);
+			}
+			else if(command.equals("/AppUpdate.bo")) {
+				controller = new AppUpdateController();
+				forward=controller.execute(request, response);
+			}
+			else if(command.equals("/AppDelete.bo")) {
+				controller = new AppDeleteController();
+				forward=controller.execute(request, response);
+			}
+			else if(command.equals("/YesOrNo.bo")) {
+				controller = new YesOrNoController();
+				forward=controller.execute(request, response);
+			}else if(command.equals("/ScrapInsert.bo")) {
+				controller = new ScrapInsertController();
+				forward=controller.execute(request, response);
+			}else if(command.equals("/ScrapDelete.bo")) {
+				controller = new ScrapDeleteController();
 				forward=controller.execute(request, response);
 			}
 			

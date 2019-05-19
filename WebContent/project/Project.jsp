@@ -12,12 +12,14 @@
 
 <!DOCTYPE html>
 <%
-	
+	int logincheck=0;
 	MemberDto MemberDto = null;
 	if(session.getAttribute("Member")!=null){
 		MemberDto=(MemberDto)session.getAttribute("Member");
+		logincheck=1;
 	}	
 	ArrayList<ProBoardDto> list = (ArrayList<ProBoardDto>)request.getAttribute("projectlist");
+	ArrayList<Integer> sc_list =(ArrayList<Integer>)request.getAttribute("sc_list");
     int sort = 0;
     if(request.getParameter("sort")!=null) {
     	sort =  Integer.parseInt(request.getParameter("sort"));
@@ -45,6 +47,8 @@
     	wir.println("alert('등록 에러');");
    		wir.println("</script>");
     }
+    
+    int roop=-1;
 %>
 <html>
 <head>
@@ -72,16 +76,42 @@
     }
 	</style>
  <script type="text/javascript">
-
+	
+	
  function star(boa_id) {
 	 console.log($('#i_'+boa_id).attr('src'));
 	 if($('#i_'+boa_id).attr('src')=='<%=request.getContextPath()%>/image/graystar.png'){
-	 $('#i_'+boa_id).attr('src', '<%=request.getContextPath()%>/image/yellowstar.png');
-	 alert("스크랩 되었습니다.");
+		 $('#i_'+boa_id).attr('src', '<%=request.getContextPath()%>/image/yellowstar.png');
+	 
+		 $.ajax({
+				type:"POST",
+				url:"./ScrapInsert.bo?boa_no="+boa_id,
+				success: function(){
+				alert("스크랩 되었습니다.");
+			},
+			error: function() {
+				alert('안됨');
+			}	
+		});
+	 
+	 
+	 
 	 }
 	 else if($('#i_'+boa_id).attr('src')=='<%=request.getContextPath()%>/image/yellowstar.png'){
 		 $('#i_'+boa_id).attr('src', '<%=request.getContextPath()%>/image/graystar.png');
-		 alert("스크랩 해제 되었습니다.");
+		
+
+		 $.ajax({
+				type:"POST",
+				url:"./ScrapDelete.bo?boa_no="+boa_id,
+				success: function(){
+					 alert("스크랩 해제 되었습니다.");
+			},
+			error: function() {
+				alert('안됨');
+			}	
+		});
+	 
 		 }	 
 	 } 
  
@@ -962,10 +992,24 @@ $(function(){
               <div id="card_content">
                 <div class="oneline">
                 <ul>
+               
                 	<li class="oneline_team"><%=list.get(i).getBoa_region()%></li>
                		<li><a href="./ProDetail.bo?no=<%=list.get(i).getBoa_no()%>"><%=list.get(i).getBoa_title()%></a>
-               		<button class='star' type="button" title="스크랩" data-toggle="tooltip" onclick="star(<%=list.get(i).getBoa_no()%>)" title="스크랩" data-original-title="Default tooltip"><img id="i_<%=list.get(i).getBoa_no()%>" src="<%=request.getContextPath()%>/image/graystar.png"></button>
-					
+               		<button class='star' type="button" title="스크랩" data-toggle="tooltip" onclick="star(<%=list.get(i).getBoa_no()%>)" title="스크랩" data-original-title="Default tooltip">
+               		<%if(logincheck==1){
+               			for(int j=0; j<sc_list.size(); j++){
+               				if(sc_list.get(j)==list.get(i).getBoa_no()){%>
+               			<img id="i_<%=list.get(i).getBoa_no()%>" src="<%=request.getContextPath()%>/image/yellowstar.png">
+               					 
+               				<%roop=1;}
+               				}if(roop!=1){%>
+               					<img id="i_<%=list.get(i).getBoa_no()%>" src="<%=request.getContextPath()%>/image/graystar.png">		
+               				<%}roop=0;} %>
+               				
+               			
+               		
+               		
+					</button>
                 	</li>
                 	<li><small style="float:right; margin:22px 20px 0px 0px;">등록날짜|&nbsp;&nbsp;<%=list.get(i).getBoa_reg_date()%></small></li>
                 </ul>

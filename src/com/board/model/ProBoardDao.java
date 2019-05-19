@@ -27,26 +27,7 @@ public class ProBoardDao {
 		}
 	}
 	
-	/*public int getAppCount(ProBoardDto ProBoardDto) {
-		int x=0;
-		String sql="select count(*) from application where boa_no=?";
-		Connection connection = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			connection = ds.getConnection();
-			pstmt = connection.prepareStatement(sql);
-			pstmt.setString(1,);
-		} catch (Exception e) {
-			System.out.println("getAppCount 오류: " + e);		
-		}finally {
-			if(rs!=null) try{rs.close();}catch(SQLException ex){}
-			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
-			if(connection!=null) try {connection.close();} catch(Exception ex) {}
-		} 
-		return x;
-	}*/
-		
+
 	public ArrayList<ProBoardDto> getProBoradList(int sort, Map<String,Object> SearchMap){
 		ArrayList<ProBoardDto> list = new ArrayList<ProBoardDto>();
 		Connection connection = null;
@@ -790,6 +771,356 @@ public int BoardInsert(ProBoardDto ProBoardDto) {
 		return result;
 	}
 	
+	public ArrayList<ProBoardDto> getRe_List(String re_job,int boa_no){
+		ArrayList<ProBoardDto> re_list = new ArrayList<ProBoardDto>();
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="select *,TO_DAYS(boa_rec_deadline)-TO_DAYS(now())as d_day from pro_board where boa_job =? and boa_no!= ? limit 3";
+		try {
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setString(1,re_job);
+			pstmt.setInt(2,boa_no);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ProBoardDto ProBoardDto = new ProBoardDto();
+				ProBoardDto.setMem_no(rs.getInt("mem_no"));
+				ProBoardDto.setBoa_no(rs.getInt("boa_no"));
+				ProBoardDto.setBoa_title(rs.getString("boa_title"));
+				ProBoardDto.setBoa_job(rs.getString("boa_job"));
+				ProBoardDto.setBoa_rec_deadline(rs.getDate("boa_rec_deadline"));
+				ProBoardDto.setBoa_reg_date(rs.getDate("boa_reg_date"));
+				ProBoardDto.setBoa_d_day(rs.getInt("d_day"));
+				ProBoardDto.setBoa_num(rs.getInt("boa_num"));
+				ProBoardDto.setBoa_pro_period(rs.getString("boa_pro_period"));
+				ProBoardDto.setBoa_region(rs.getString("boa_region"));
+				re_list.add(ProBoardDto);
+				
+			}
+			
+			
+		} catch (Exception e) {
+			System.out.println("getRe_List pro_board테이블 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		} 
+		
+		try {
+			sql="select mem_nickname,mem_icon,mem_job from member where mem_no=?";
+			connection = ds.getConnection();
+			for(int i=0; i<re_list.size(); i++) {
+				pstmt = connection.prepareStatement(sql);
+				pstmt.setInt(1,re_list.get(i).getMem_no());
+				rs=pstmt.executeQuery();
+				if(rs.next()) {
+					re_list.get(i).setMem_nickname(rs.getString("mem_nickname"));
+					re_list.get(i).setMem_icon(rs.getString("mem_icon"));
+					re_list.get(i).setMem_job(rs.getString("mem_job"));
+				}
+				}
+		} catch (Exception e) {
+			System.out.println("getRe_List member테이블  오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		} 
+		
+		try {
+			sql="select count(*) from application where boa_no=?";
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			for(int i=0; i<re_list.size(); i++) {
+				pstmt = connection.prepareStatement(sql);
+				pstmt.setInt(1,re_list.get(i).getBoa_no());
+				rs=pstmt.executeQuery();
+				
+				if(rs.next()) {
+					re_list.get(i).setApp_number(rs.getInt(1));
+				}
+			}
+			
+		} catch (Exception e) {
+			System.out.println("getRe_List application count 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		} 
+		
+		try {
+			sql="select tag_contents from hashtag where boa_no=? limit 9";
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			for(int i=0; i<re_list.size(); i++) {
+				pstmt = connection.prepareStatement(sql);
+				pstmt.setInt(1,re_list.get(i).getBoa_no());
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					re_list.get(i).boa_hashtag.add(rs.getString("tag_contents"));
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("getRe_List hashtag 테이블 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		} 
+		return re_list;
+	}
 	
+	public int BoardDelete(int boa_no) {
+		int result = -1;
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="delete from pro_board where boa_no=?";
+		
+		try {
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1,boa_no);
+			result=pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("BoardDelete 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		} 
+		
+		
+		return result;
+	}
+	public int BoardUpdate(ProBoardDto ProBoardDto) {
+		int x = 0;
+		int result=-1;
+		ArrayList<String> list = new ArrayList<String>();
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="update pro_board set boa_title=?,boa_experi=?,boa_job=?,boa_num=?,boa_rec_deadline=?,"
+						+"boa_size=?,boa_pro_period=?,boa_region=?,mem_no=?";
+		
+		if(ProBoardDto.getBoa_format()!=null||ProBoardDto.getBoa_format().equals(null)==false) {
+			sql+=",boa_format=?";
+			++x;
+			list.add("boa_format");
+		}
+		if(ProBoardDto.getBoa_con_method()!=null||ProBoardDto.getBoa_con_method().equals(null)==false) {
+			sql+=",boa_con_method=?";
+			++x;
+			list.add("boa_con_method");
+		}
+		if(ProBoardDto.getBoa_progress()!=0) {
+			sql+=",boa_progress=?";
+			++x;
+			list.add("boa_progress");
+		}
+		if(ProBoardDto.getBoa_con_address()!=null||ProBoardDto.getBoa_con_address().equals(null)==false) {
+			sql+=",boa_con_address=?";
+			++x;
+			list.add("boa_con_address");
+		}
+		if(ProBoardDto.getBoa_contents()!=null||ProBoardDto.getBoa_contents().equals(null)==false) {
+			sql+=",boa_contents=?";
+			list.add("boa_contents");
+			++x;
+		}
+		if(ProBoardDto.getBoa_teamname()!=null||ProBoardDto.getBoa_teamname().equals(null)==false) {
+			sql+=",boa_teamname=?";
+			list.add("boa_teamname");
+			++x;
+		}
+		
+		sql+=" where boa_no=?";
+
+		
+		try {
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			Date dead = new Date(ProBoardDto.getBoa_rec_deadline().getTime());
+			System.out.println("update dead:" +dead);
+			pstmt.setString(1,ProBoardDto.getBoa_title());
+			pstmt.setString(2,ProBoardDto.getBoa_experi());
+			pstmt.setString(3,ProBoardDto.getBoa_job());
+			pstmt.setInt(4,ProBoardDto.getBoa_num());
+			pstmt.setDate(5,dead);
+			pstmt.setString(6,ProBoardDto.getBoa_size());
+			pstmt.setString(7,ProBoardDto.getBoa_pro_period());
+			pstmt.setString(8,ProBoardDto.getBoa_region());
+			pstmt.setInt(9,ProBoardDto.getMem_no());
+			int i=0;
+			for( i = 0; i < list.size(); i++) {
+				switch(list.get(i)) {
+				case "boa_format":
+					pstmt.setString(i+10,ProBoardDto.getBoa_format());
+					break;
+				case "boa_con_method":
+					pstmt.setString(i+10,ProBoardDto.getBoa_con_method());
+					break;
+				case "boa_progress":
+					pstmt.setInt(i+10,ProBoardDto.getBoa_progress());
+					break;
+				case "boa_con_address":
+					pstmt.setString(i+10,ProBoardDto.getBoa_con_address());
+					break;
+				case "boa_contents":
+					pstmt.setString(i+10,ProBoardDto.getBoa_contents());
+					break;
+				case "boa_teamname":
+					pstmt.setString(i+10,ProBoardDto.getBoa_teamname());
+					break;
+				}
+
+				}
+			pstmt.setInt(i+10,ProBoardDto.getBoa_no());
+			
+			result=pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("BoardUpdate pro_board테이블 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		} 
+		
+		try {
+			
+			sql="delete from genre where boa_no=?";
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1,ProBoardDto.getBoa_no());
+			pstmt.executeUpdate();
+			
+			
+			sql="insert into genre (genre_contents,boa_no) values(?,?)";			
+			String[] genre = ProBoardDto.getGenre_contents();
+
+			for(int i=0; i<genre.length; i++) {
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setString(1,genre[i]);
+			pstmt.setInt(2,ProBoardDto.getBoa_no());
+			pstmt.executeUpdate();
+			}
+
+
+			if(ProBoardDto.getBoa_hashtag()!=null) {
+				sql="delete from hashtag where boa_no=?";
+				pstmt = connection.prepareStatement(sql);
+				pstmt.setInt(1,ProBoardDto.getBoa_no());
+				pstmt.executeUpdate();
+				
+				
+			sql="insert into hashtag (tag_contents,boa_no) values(?,?)";
+			ArrayList<String> tag = ProBoardDto.getBoa_hashtag();
+			for(int i=0; i<tag.size(); i++) {
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setString(1,tag.get(i));
+			pstmt.setInt(2,ProBoardDto.getBoa_no());
+			pstmt.executeUpdate();
+			}
+			}
+
+
+			if(ProBoardDto.getFile_name()!=null) {
+				sql="delete from boa_file where boa_no=?";
+				pstmt = connection.prepareStatement(sql);
+				pstmt.setInt(1,ProBoardDto.getBoa_no());
+				pstmt.executeUpdate();
+				
+				sql="insert into boa_file (file_name,boa_no) values(?,?)";
+				pstmt = connection.prepareStatement(sql);
+				pstmt.setString(1,ProBoardDto.getFile_name());
+				pstmt.setInt(2,ProBoardDto.getBoa_no());
+				pstmt.executeUpdate();
+			}
+
+
+			return 1;
+			}catch (Exception e) {
+			System.out.println("BoardUpdate 태그장르파일업로드오류:" + e);
+			}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+			}
+		return result;	
+	}
+	
+	public int InsertScrap(int boa_no, int mem_no) {
+		int result =-1;
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="insert into boa_scrap (mem_no,boa_no) values(?,?)";
+		try {
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1,mem_no);
+			pstmt.setInt(2,boa_no);
+			result=pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("InsertScrap 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		} 
+		 
+		return result;
+	}
+	
+	public int DeleteScrap(int boa_no, int mem_no) {
+		int result =-1;
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="delete from boa_scrap where mem_no=? and boa_no=?";
+		try {
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1,mem_no);
+			pstmt.setInt(2,boa_no);
+			result=pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("InsertScrap 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		} 
+		
+		return result;
+	}
+	
+	public ArrayList<Integer> getScrapListSimple(int mem_no){
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="select boa_no from boa_scrap where mem_no=?";
+		try {
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1,mem_no);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				list.add(rs.getInt("boa_no"));
+			}
+		} catch (Exception e) {
+			System.out.println("InsertScrap 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		}
+		return list;
+	}
 
 }

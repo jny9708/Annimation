@@ -1,36 +1,37 @@
-﻿/*승인거부 */
-$(document).ready(function () {
-$('.btn_sp_yes').click(function(e) {
-    $('.btn_sp_yes').not(this).removeClass('active');   
-    $(this).toggleClass('active');
-    if($(this).hasClass('active')){
-        $('.btn_sp_no').attr('disabled',true);
-        alert('지원자 승인');
-    }else{
-        $('.btn_sp_no').attr('disabled',false);
-        alert('지원자 승인 해제');
-    }
-    e.preventDefault();
+﻿$(document).ready(function(){
     
-});
-}); 
+    $("#show").click(function(){
+      $("#sp_button_yesno").show();
+      $("#support_content").css("width","77%")
+      $("#sp_button_yesno").css("display","inline-block")
+      $("#show").hide();
+    });
+    $("#hide").click(function(){
+        $("#sp_button_yesno").hide();
+        $("#support_content").css("width","88%")
+        $("#show").show();
+      });  
+    
+  });
 
-$(document).ready(function () {
-    $('.btn_sp_no').click(function(e) {
-        $('.btn_sp_no').not(this).removeClass('active');   
-        $(this).toggleClass('active');
-        if($(this).hasClass('active')){
-            $('.btn_sp_yes').attr('disabled',true);
-            alert('지원자 거부');
-        }else{
-            $('.btn_sp_yes').attr('disabled',false);
-            alert('지원자 거부 해제');
-        }
-        
-        e.preventDefault();
+$(document).ready(function(){  
+    $("#sp_revise").click(function(){
+    	var name = $(this).attr('name');  	
+        $(".lone_"+name).show();
+        $("#lone_true_"+name).hide();
+        $("#sp_revise").hide();
+        $(".con_"+name).css("border-bottom","#1b2339 1px solid")
+        var contents = $(".lone1_"+name).html();
+        console.log(contents);
+        $('#summernote_'+name).summernote('code', contents);
+        console.log(name+"뭐지?");
+        var filename=$("#"+name+" #app_download").text();
+        if(filename!='null'){
+			$("#file_content_m").attr('placeholder',filename);	
+		}
         
     });
-    }); 
+  });
 
 
     $(document).ready(function() {
@@ -56,20 +57,12 @@ $(document).ready(function () {
             viewport: {selector: '.container-viewport', padding: 2}
         });
          });
-
-/*썸머노트 */
-$(document).ready(function() {
-    $('#summernote').summernote({
-        height: 150,
-        minHeight: null,             
-        maxHeight: null,             
-        focus: false 
-    });                         
-});
-/*파일업로드 */
-$(document).ready(function(){
-    $('#appbutton :file').change(function(e){
-        var fileName = e.target.files[0].name; /*이벤트가 발생한 타겟->file의 이름을 가져옴!*/
-        $("#file_content").attr('placeholder',fileName) /*file_content의 내용을 파일 이름으로 바꿈!*/
+    /*파일업로드 */
+    $(document).ready(function(){
+        $('#appbutton :file').change(function(e){
+            var fileName = e.target.files[0].name; /*이벤트가 발생한 타겟->file의 이름을 가져옴!*/
+            $("#file_content").attr('placeholder',fileName) /*file_content의 내용을 파일 이름으로 바꿈!*/
+        });
     });
-});
+    
+    

@@ -40,7 +40,7 @@ public class AppInsertController implements Controller {
 				ApplicationDto.setApp_file(fileName);
 			}  
 			
-			result=ApplicationDao.ApplicationInset(ApplicationDto);
+			result=ApplicationDao.ApplicationInsert(ApplicationDto);
 			
 			  
 		}catch(Exception e){     

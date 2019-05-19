@@ -1,38 +1,230 @@
+.container {
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+ 
+}
+html{ height:100%; }
 body {
     margin: 0;
-  }
-  
+}
+#my_wb{
+  min-height: 700px !important;
+}
+
+/**************************사용자 정보****************************/
   .wrap {
-    left: 0;
-    perspective: 0;
-    perspective-origin: 50% 10vw;
     position: absolute;
-    top: 0;
-    width: 20vw;
+    top:0px;
+    width: 270px;
     z-index: 1;
   }
-  .wrap .sidebar {
-    height: 100vh;
-    position: relative;
-    transform-origin: 50% 50% 50%;
-    transform-style: preserve-3d;
-    transition: transform 1s ease-in-out;
-    width: 20vw;
-  }
-  .wrap .sidebar .side {
-    backface-visibility: hidden;
-    box-sizing: border-box;
-    color: #fff;
-    height: 100vh;
-    padding: 2em;
+  .wrap .side {
+    display: inline-block;
+    color: black;
+    padding: 2.5em 1.5em 1em 1.5em;
     position: absolute;
-    width: 20vw;
+    width: 270px;
+    margin-top: 70px;
+    position: relative;
+    z-index: -1;
   }
-  .wrap .sidebar .front {
-    background-color: sienna;
-  }
-  
+
   main {
-    margin-left: 20vw;
+    margin-left: 270px;
     padding: 2em;
+    width: 900px;
+    min-height: 750px;
+    border-left: #dedcee 1px solid;
   }
+  .my_profile{
+    width: 180px;
+    margin-left: 25px;
+    height: 180px;
+  }
+  .my_pro_font{
+    margin-top: 10px;
+    font-size: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    text-align: center;
+  }
+  .my_pro_block{
+    width: 100%;
+    min-height: 100px;
+    overflow:hidden;
+    height: auto;
+    background: #e1f0ff;
+    position: relative;
+    top: -15px;
+    padding: 20px;
+    line-height: 25px;
+  }
+  .my_pro_font small{
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    position: relative;
+    top: -17px;
+  }
+  .my_modify{
+    height: 30px;
+    width: 150px;
+    background: #293456;
+    margin: 0px 0px 0px 38.5px; 
+    float: left;
+    border:0px;
+    color:#fff;
+    font-weight: bold;
+    box-shadow: 0 0 1px #ccc;
+    -webkit-transition-duration: 0.5s;
+    -webkit-transition-timing-function: ease-out;
+
+    outline: none;
+  }
+  .my_modify:hover, .my_modify:focus, .my_modify:active{
+    -webkit-box-shadow: 0px 50px 0 0px #fbd14b inset , 0px -50px 0 0px #fbd14b inset; 
+    outline: none !important;
+  }
+  /*************************탭*****************************/
+  .tabs{
+  display: flex;
+  flex-direction: row;
+  padding: 0px;
+  width: 100%;
+  border-bottom: #dedcee 0.1px solid !important;
+  }
+  .tab-pane{
+    padding-top: 10px;
+  }
+  .tab {
+    height: 50px;
+    width: 150px;
+    display: block;
+    margin-right: 5px;
+  }
+  .tab .lable{
+    font-size: 20px;
+    line-height: 50px;
+    text-align: center; 
+    padding-left: 45px;
+    padding-right: 45px;
+    color: #293456;
+    text-decoration: none;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bolder;
+  }
+  .tabs li.active{
+    border-bottom: #fdce33 4px solid;
+  }
+  .tabs li:hover{
+    border-bottom: #fdecb6 4px solid;
+  }
+  .tabs > li:hover > a {
+    border: 0;
+    background: none !important;
+    color: #e4e1d7;
+  }
+  .tabs > li.active > a {
+    border: 0;
+    color: #fdce33;
+  }
+/*************************카드RE*****************************/
+  #dede{
+    width: 845px;
+    margin-bottom: 15px;
+  }
+  .twoline{
+    width: 250px;
+  }
+  .twoline table{
+    width: 300px;
+    margin: 0px;  
+}
+#card_content{
+  width: 70%;
+  height: 230px;
+  padding: 10px;
+  margin-left: 0px;
+  overflow: inherit;   
+}
+.oneline small{
+  font-size: 15px;
+}
+.threeline h4{
+  padding-left: 30px;
+  padding-top: 5px;
+}
+.threeline{
+  width: 300px;
+  margin-left: 20px;
+  border-left: #dedcee 1px solid;
+}
+.threeline ul{
+  margin: 0px !important;
+  width: 350px;
+  padding-left: 30px;
+}
+.threeline ul li{
+  margin: 5px 10px 0px 10px !important;
+  width: 70px !important;
+  height: 18px;
+  text-overflow: ellipsis;  
+  white-space  : nowrap;    
+  overflow     : hidden;   
+  display      : inline-block;
+}
+#twoline_content{
+  margin-left: 10px;
+}
+.twoline table tr td{
+  border-right: none;
+}
+.oneline small{
+  font-size: 10px;
+  position: relative;
+  left: 30px !important;
+  margin: 0px !important;
+}
+
+.threeline small{
+  position: relative;
+  top: -5px;
+  font-size: 10px;
+}
+
+/*************************카드가 없을때 나오는 문구*****************************/
+#my_text{
+  color: rgb(122, 122, 122);
+  text-align: center;
+  margin-top: 200px;
+}
+/*************************페이지네이션*****************************/
+#my_next{
+  margin-top: 40px;
+}
+#my_next li.active{
+  background: #293456;
+}
+
+#my_next  .active > a, 
+#my_next  .active > span, 
+#my_next  .active > a:hover, 
+#my_next .active > span:hover, 
+#my_next  .active > a:focus, 
+#my_next .active > span:focus {
+  background: #293456;
+  color: white;
+  font-weight: bold;
+  border-color: #c5c3d3;
+}
+#my_next li> a{
+  color: #293456;
+  font-weight: bold;
+  border-color: #c5c3d3;
+}

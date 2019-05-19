@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.board.model.ApplicationDao;
+import com.board.model.ApplicationDto;
 import com.board.model.ProBoardDao;
 import com.board.model.ProBoardDto;
 
@@ -16,21 +18,29 @@ public class BoardDetailController implements Controller {
 		
 		ControllerForward forward = new ControllerForward();
 		HttpSession session=request.getSession();
+		ApplicationDao ApplicationDao = new ApplicationDao();
 		ProBoardDao ProBoardDao = new ProBoardDao();
 		ProBoardDto ProBoardDto = new ProBoardDto();
-		ArrayList<ProBoardDto> list = new ArrayList<ProBoardDto>();
+		ArrayList<ApplicationDto> list = new ArrayList<ApplicationDto>();
+		ArrayList<ProBoardDto> re_list= new ArrayList<ProBoardDto>(); 
 		int no=0;
-		
 		no = Integer.parseInt(request.getParameter("no"));
 		
 		ProBoardDao.AddHit(no);
 		
 		ProBoardDto = ProBoardDao.getDetail(no);
+		list = ApplicationDao.getApplicationList(no);
 		
+		String re_job=ProBoardDto.getBoa_job();
+		
+		re_list = ProBoardDao.getRe_List(re_job,no);
+		
+		request.setAttribute("re_list", re_list);
+		request.setAttribute("ApplicationList", list);
 		request.setAttribute("Detail",ProBoardDto);
 		forward.setRedirect(false); 
 		forward.setPath("./project/ProjectDetail.jsp");
-		return forward;
+		return forward;  
 	}
        
-}
+}  

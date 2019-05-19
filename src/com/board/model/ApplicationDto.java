@@ -2,6 +2,8 @@ package com.board.model;
 
 public class ApplicationDto {
 
+	int boa_app_no;
+	String boa_app_date;    
 	String boa_app_contents;
 	String boa_app_state;
 	int boa_no;
@@ -11,6 +13,20 @@ public class ApplicationDto {
 	String mem_nickname;
 	String mem_job;
 	String mem_icon;
+	
+	
+	public int getBoa_app_no() {
+		return boa_app_no;
+	}
+	public void setBoa_app_no(int boa_app_no) {
+		this.boa_app_no = boa_app_no;
+	}
+	public String getBoa_app_date() {
+		return boa_app_date;
+	}
+	public void setBoa_app_date(String boa_app_date) {
+		this.boa_app_date = boa_app_date;
+	}
 	public String getBoa_app_contents() {
 		return boa_app_contents;
 	}

@@ -12,6 +12,7 @@ import com.board.controller.ControllerForward;
 import com.board.model.ProBoardDao;
 import com.board.model.ProBoardDto;
 import com.member.model.MemberDao;
+import com.member.model.MemberDto;
 
 public class ProjectBoardController implements Controller {
 
@@ -24,8 +25,15 @@ public class ProjectBoardController implements Controller {
 		ProBoardDao ProBoardDao = new ProBoardDao(); 
 		String TagSearch = null;
 		ArrayList<ProBoardDto> list = new ArrayList<ProBoardDto>();
+		ArrayList<Integer> sc_list = new ArrayList<Integer>(); 
 		ArrayList<String> TagList = new ArrayList<String>();
 		Map<String,Object> SearchMap = new HashMap<String,Object>();
+		MemberDto MemberDto=null;
+		if(session.getAttribute("Member")!=null) {
+			MemberDto=(MemberDto)session.getAttribute("Member");
+			sc_list=ProBoardDao.getScrapListSimple(MemberDto.getMem_no());
+		}
+		
 		if(request.getParameter("TagSearch")!=null) {
 			if(request.getParameter("TagSearch").equals("")==false) {
 			TagSearch = request.getParameter("TagSearch");
@@ -90,11 +98,11 @@ public class ProjectBoardController implements Controller {
 			}   
 		}    
 		     
-		
+		request.setAttribute("sc_list",sc_list);
 		request.setAttribute("projectlist", list);
 		request.setAttribute("TagList", TagList);
 		System.out.println(SearchMap.size());
-		System.out.println("잘되고있는겨!!");  
+		System.out.println("잘되고있는겨");  
 		forward.setRedirect(false);                
 		forward.setPath("./project/Project.jsp");
 		return forward;
