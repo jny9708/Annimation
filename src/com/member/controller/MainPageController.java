@@ -16,6 +16,7 @@ public class MainPageController implements Controller {
 		ControllerForward forward = new ControllerForward();
 		HttpSession session=request.getSession();
 		MemberDao MemberDao =new MemberDao();
+		System.out.println("업데이트?");
 		//AniBoardDao AniBoardDao = new AniBoardDao(); 
 		
 		/*
@@ -31,3 +32,4 @@ public class MainPageController implements Controller {
 	} 
 
 }  
+  

@@ -140,7 +140,7 @@ public class MemberDao {
 		return no;
 	}*/
 	
-	public MemberDto getMember(String id) {
+	public MemberDto getMember(String id) {		// 로그인할때 쓰임
 		Connection connection = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -200,8 +200,112 @@ public class MemberDao {
 		}
 		return salt;
 	}
-	    
+	  public MemberDto getUserInfo(int mem_no) {
+		  MemberDto MemberDto = new MemberDto();
+		  Connection connection = null;
+		  PreparedStatement pstmt = null;
+		  ResultSet rs = null; 
+		  String sql = "select * from member where mem_no=?";
+		  try {
+				connection = ds.getConnection();
+				pstmt = connection.prepareStatement(sql);
+				pstmt.setInt(1, mem_no);
+				rs=pstmt.executeQuery();
+				if(rs.next()) {
+					MemberDto = new MemberDto();
+					MemberDto.setMem_no(rs.getInt("mem_no"));
+					MemberDto.setMem_id(rs.getString("mem_id"));
+					MemberDto.setMem_email(rs.getString("mem_email"));
+					MemberDto.setMem_password(rs.getString("mem_password"));
+					MemberDto.setMem_username(rs.getString("mem_username"));
+					MemberDto.setMem_nickname(rs.getString("mem_nickname"));
+					MemberDto.setMem_phone(rs.getString("mem_phone"));
+					MemberDto.setMem_job(rs.getString("mem_job"));
+					MemberDto.setMem_profile_content(rs.getString("mem_profile_content"));
+					MemberDto.setMem_icon(rs.getString("mem_icon"));
+					MemberDto.setMem_birthday(rs.getString("mem_birthday"));
+				}
+				
+				
+			} catch (Exception e) {
+				System.out.println("getUserInfo 오류: " + e);		
+			}finally {
+				if(rs!=null) try{rs.close();}catch(SQLException ex){}
+				if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+				if(connection!=null) try {connection.close();} catch(Exception ex) {}
+			}
+		  
+		  return MemberDto;
+	  } 
+	public int MemberUpdate(MemberDto MemberDto) {
+		int result =-1;
+		Connection connection = null;
+		  PreparedStatement pstmt = null;
+		  ResultSet rs = null; 
+		  String sql = "update member set mem_nickname = ?, mem_birthday = ?, mem_job=?,mem_email=?,mem_phone=?,mem_profile_content=?";
+		  if(!MemberDto.getMem_icon().equals("profile.jpg")){
+			  sql+=", mem_icon=?";
+		  }
+		  sql+=" where mem_no=?";
+		  System.out.println(sql);
+		  try {
+				connection = ds.getConnection();
+				pstmt = connection.prepareStatement(sql);
+				pstmt.setString(1,MemberDto.getMem_nickname());
+				pstmt.setString(2,MemberDto.getMem_birthday());
+				pstmt.setString(3,MemberDto.getMem_job());
+				pstmt.setString(4,MemberDto.getMem_email());
+				pstmt.setString(5,MemberDto.getMem_phone());
+				pstmt.setString(6,MemberDto.getMem_profile_content());
+				
+				if(MemberDto.getMem_icon().equals("profile.jpg")){
+					pstmt.setInt(7,MemberDto.getMem_no());
+				 }else {
+					 pstmt.setString(7,MemberDto.getMem_icon());
+					 pstmt.setInt(8,MemberDto.getMem_no());
+				 }
+				
+				
+				result = pstmt.executeUpdate();
+				
+				
+			} catch (Exception e) {
+				System.out.println("MemberUpdate 오류: " + e);		
+			}finally {
+				if(rs!=null) try{rs.close();}catch(SQLException ex){}
+				if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+				if(connection!=null) try {connection.close();} catch(Exception ex) {}
+			}
+		  
 		
+		return result;
+	}
+	
+	public int MemberDelete(int mem_no) {
+		int result =-1;
+		Connection connection = null;
+		  PreparedStatement pstmt = null;
+		  ResultSet rs = null; 
+		  String sql = "delete from member where mem_no=?";
+		
+		  try {
+				connection = ds.getConnection();
+				pstmt = connection.prepareStatement(sql);
+				pstmt.setInt(1,mem_no);
+				result = pstmt.executeUpdate();
+				  
+				
+			} catch (Exception e) {
+				System.out.println("MemberDelete 오류: " + e);		
+			}finally {
+				if(rs!=null) try{rs.close();}catch(SQLException ex){}
+				if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+				if(connection!=null) try {connection.close();} catch(Exception ex) {}
+			}
+		
+		return result;
+	}
+	  
 }
 	
 

@@ -299,7 +299,7 @@ $(function(){
             	  
               </a>
               <ul class="dropdown-menu">
-                <li><a href="#">마이페이지</a></li>
+                <li><a href="./UserPageApp.do?mem_no=<%=MemberDto.getMem_no()%>">마이페이지</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="./MemberLogout.do">로그아웃</a></li>
               </ul>
@@ -976,7 +976,7 @@ $(function(){
               
             <div id="dede"> 
               <div id="card_User">
-                <a href="#">
+                <a href="./UserPageApp.do?mem_no=<%=list.get(i).getMem_no()%>">
                 
                 <%if(list.get(i).getMem_icon().equals("profile.jpg")){ %>
                 <img src="<%=request.getContextPath()%>/image/profile.jpg" alt="User-img" class="projact_card_U img-circle" data-toggle="tooltip" title="닉네임 페이지 보기" data-original-title="Default tooltip">
@@ -995,8 +995,9 @@ $(function(){
                
                 	<li class="oneline_team"><%=list.get(i).getBoa_region()%></li>
                		<li><a href="./ProDetail.bo?no=<%=list.get(i).getBoa_no()%>"><%=list.get(i).getBoa_title()%></a>
-               		<button class='star' type="button" title="스크랩" data-toggle="tooltip" onclick="star(<%=list.get(i).getBoa_no()%>)" title="스크랩" data-original-title="Default tooltip">
-               		<%if(logincheck==1){
+               		
+               	<button class='star' type="button" title='스크랩' data-toggle="tooltip" onclick="star(<%=list.get(i).getBoa_no()%>)" title="스크랩" data-original-title="Default tooltip">
+               		<%
                			for(int j=0; j<sc_list.size(); j++){
                				if(sc_list.get(j)==list.get(i).getBoa_no()){%>
                			<img id="i_<%=list.get(i).getBoa_no()%>" src="<%=request.getContextPath()%>/image/yellowstar.png">
@@ -1004,7 +1005,7 @@ $(function(){
                				<%roop=1;}
                				}if(roop!=1){%>
                					<img id="i_<%=list.get(i).getBoa_no()%>" src="<%=request.getContextPath()%>/image/graystar.png">		
-               				<%}roop=0;} %>
+               				<%}roop=0; %>
                				
                			
                		

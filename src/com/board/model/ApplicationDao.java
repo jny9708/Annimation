@@ -205,4 +205,60 @@ public class ApplicationDao {
 		return result;
 	}
 	
+	public ArrayList<Integer> getApplicationParent(int mem_no,int pagenum) {
+		ArrayList<Integer> boa_no_List = new ArrayList<Integer>();
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int startrow = (pagenum-1)*5;
+		
+		String sql="select boa_no from application where mem_no=? limit ?,5";
+		
+		try {
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1,mem_no);
+			pstmt.setInt(2,startrow);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				boa_no_List.add(rs.getInt("boa_no"));
+			}
+			
+		} catch (Exception e) {
+			System.out.println("getApplicationParent 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		} 
+		
+		return boa_no_List;
+	}
+	
+	public int getApplicationParentNum(int mem_no) {
+		int ParentNum =-1;
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;		
+		String sql="select count(*) from application where mem_no=?";
+		try {
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1,mem_no);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				ParentNum = rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("getApplicationParentNum 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		} 
+		
+		return ParentNum;
+	}
+	
 }

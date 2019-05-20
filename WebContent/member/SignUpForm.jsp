@@ -160,7 +160,7 @@
                             <label>직업</label>
                               <select id="Select" class="form-control" tabindex="6" name="mem_job">
                                   <option>직업</option>
-                                  <option>스토리 작가</option>
+                                  <option>시나리오작가</option>
                                   <option>애니메이터</option>
                                   <option>성우</option>
                                   <option>작곡가</option>

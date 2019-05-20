@@ -1089,7 +1089,7 @@ public int BoardInsert(ProBoardDto ProBoardDto) {
 			pstmt.setInt(2,boa_no);
 			result=pstmt.executeUpdate();
 		} catch (Exception e) {
-			System.out.println("InsertScrap 오류: " + e);		
+			System.out.println("DeleteScrap 오류: " + e);		
 		}finally {
 			if(rs!=null) try{rs.close();}catch(SQLException ex){}
 			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
@@ -1114,7 +1114,7 @@ public int BoardInsert(ProBoardDto ProBoardDto) {
 				list.add(rs.getInt("boa_no"));
 			}
 		} catch (Exception e) {
-			System.out.println("InsertScrap 오류: " + e);		
+			System.out.println("getScrapListSimple 오류: " + e);		
 		}finally {
 			if(rs!=null) try{rs.close();}catch(SQLException ex){}
 			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
@@ -1122,5 +1122,244 @@ public int BoardInsert(ProBoardDto ProBoardDto) {
 		}
 		return list;
 	}
-
+	public ArrayList<ProBoardDto> getScrapList(int mem_no, int pagenum, ArrayList<Integer> sc_no){
+		ArrayList<ProBoardDto> sc_boa_list = new ArrayList<ProBoardDto>();
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="select *,TO_DAYS(boa_rec_deadline)-TO_DAYS(now())as d_day from pro_board where boa_no = ?";
+		
+		try {
+			connection = ds.getConnection();
+			for(int i =0; i<sc_no.size(); i++) {
+				pstmt = connection.prepareStatement(sql);
+				pstmt.setInt(1,sc_no.get(i));
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					ProBoardDto ProBoardDto =new ProBoardDto();
+					ProBoardDto.setMem_no(rs.getInt("mem_no"));
+					ProBoardDto.setBoa_no(rs.getInt("boa_no"));
+					ProBoardDto.setBoa_title(rs.getString("boa_title"));
+					ProBoardDto.setBoa_job(rs.getString("boa_job"));
+					ProBoardDto.setBoa_rec_deadline(rs.getDate("boa_rec_deadline"));
+					ProBoardDto.setBoa_reg_date(rs.getDate("boa_reg_date"));
+					ProBoardDto.setBoa_d_day(rs.getInt("d_day"));
+					ProBoardDto.setBoa_num(rs.getInt("boa_num"));
+					ProBoardDto.setBoa_pro_period(rs.getString("boa_pro_period"));
+					ProBoardDto.setBoa_region(rs.getString("boa_region"));
+					sc_boa_list.add(ProBoardDto);
+				}
+			}
+			
+			sql="select mem_nickname,mem_icon,mem_job from member where mem_no=?";
+			for(int i=0; i<sc_boa_list.size(); i++) {
+				pstmt = connection.prepareStatement(sql);
+				pstmt.setInt(1,sc_boa_list.get(i).getMem_no());
+				rs=pstmt.executeQuery();   
+				
+				if(rs.next()) {
+					sc_boa_list.get(i).setMem_nickname(rs.getString("mem_nickname"));
+					sc_boa_list.get(i).setMem_icon(rs.getString("mem_icon"));
+					sc_boa_list.get(i).setMem_job(rs.getString("mem_job"));
+					System.out.println("??"+sc_boa_list.get(i).getMem_icon());
+				}
+			}
+			sql="select count(*) from application where boa_no=?";
+			for(int i=0; i<sc_boa_list.size(); i++) {
+				pstmt = connection.prepareStatement(sql);
+				pstmt.setInt(1,sc_boa_list.get(i).getBoa_no());
+				rs=pstmt.executeQuery();
+				
+				if(rs.next()) {
+					sc_boa_list.get(i).setApp_number(rs.getInt(1));
+				}
+			}
+			sql="select tag_contents from hashtag where boa_no=? limit 9";
+			for(int i=0; i<sc_boa_list.size(); i++) {
+				pstmt = connection.prepareStatement(sql);
+				pstmt.setInt(1,sc_boa_list.get(i).getBoa_no());
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					sc_boa_list.get(i).boa_hashtag.add(rs.getString("tag_contents"));
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("getScrapList 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		}
+		return sc_boa_list;
+	}
+	
+	public ArrayList<ProBoardDto> getApplicationParent(ArrayList<Integer> boa_no_List){
+		ArrayList<ProBoardDto> app_parent_list = new ArrayList<ProBoardDto>();
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="select *,TO_DAYS(boa_rec_deadline)-TO_DAYS(now())as d_day from pro_board where boa_no = ?";
+		try {
+			connection = ds.getConnection();
+			for(int i =0; i<boa_no_List.size(); i++) {
+				pstmt = connection.prepareStatement(sql);
+				pstmt.setInt(1,boa_no_List.get(i));
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					ProBoardDto ProBoardDto =new ProBoardDto();
+					ProBoardDto.setMem_no(rs.getInt("mem_no"));
+					ProBoardDto.setBoa_no(rs.getInt("boa_no"));
+					ProBoardDto.setBoa_title(rs.getString("boa_title"));
+					ProBoardDto.setBoa_job(rs.getString("boa_job"));
+					ProBoardDto.setBoa_rec_deadline(rs.getDate("boa_rec_deadline"));
+					ProBoardDto.setBoa_reg_date(rs.getDate("boa_reg_date"));
+					ProBoardDto.setBoa_d_day(rs.getInt("d_day"));
+					ProBoardDto.setBoa_num(rs.getInt("boa_num"));
+					ProBoardDto.setBoa_pro_period(rs.getString("boa_pro_period"));
+					ProBoardDto.setBoa_region(rs.getString("boa_region"));
+					app_parent_list.add(ProBoardDto);
+				}
+			}
+			
+			sql="select mem_nickname,mem_icon,mem_job from member where mem_no=?";
+			for(int i=0; i<app_parent_list.size(); i++) {
+				pstmt = connection.prepareStatement(sql);
+				pstmt.setInt(1,app_parent_list.get(i).getMem_no());
+				rs=pstmt.executeQuery();
+				
+				if(rs.next()) {
+					app_parent_list.get(i).setMem_nickname(rs.getString("mem_nickname"));
+					app_parent_list.get(i).setMem_icon(rs.getString("mem_icon"));
+					app_parent_list.get(i).setMem_job(rs.getString("mem_job"));
+				}
+			}
+			sql="select count(*) from application where boa_no=?";
+			for(int i=0; i<app_parent_list.size(); i++) {
+				pstmt = connection.prepareStatement(sql);
+				pstmt.setInt(1,app_parent_list.get(i).getBoa_no());
+				rs=pstmt.executeQuery();
+				
+				if(rs.next()) {
+					app_parent_list.get(i).setApp_number(rs.getInt(1));
+				}
+			}
+			sql="select tag_contents from hashtag where boa_no=? limit 9";
+			for(int i=0; i<app_parent_list.size(); i++) {
+				pstmt = connection.prepareStatement(sql);
+				pstmt.setInt(1,app_parent_list.get(i).getBoa_no());
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					app_parent_list.get(i).boa_hashtag.add(rs.getString("tag_contents"));
+				}
+			}
+			
+				
+		} catch (Exception e) {
+			System.out.println("getApplicationParent 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		}
+		
+		return app_parent_list;
+	}
+	
+	public ArrayList<ProBoardDto> getUserProBoardList(int mem_no, int pagenum){
+		ArrayList<ProBoardDto> list = new ArrayList<ProBoardDto>();
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int startrow = (pagenum-1)*5;
+		String sql="select *,TO_DAYS(boa_rec_deadline)-TO_DAYS(now())as d_day from pro_board where mem_no = ? limit ?,5";
+		
+		try {
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1,mem_no);
+			pstmt.setInt(2,startrow);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				ProBoardDto ProBoardDto = new ProBoardDto();
+				ProBoardDto.setMem_no(rs.getInt("mem_no"));
+				ProBoardDto.setBoa_no(rs.getInt("boa_no"));
+				ProBoardDto.setBoa_title(rs.getString("boa_title"));
+				ProBoardDto.setBoa_job(rs.getString("boa_job"));
+				ProBoardDto.setBoa_rec_deadline(rs.getDate("boa_rec_deadline"));
+				ProBoardDto.setBoa_reg_date(rs.getDate("boa_reg_date"));
+				ProBoardDto.setBoa_d_day(rs.getInt("d_day"));
+				ProBoardDto.setBoa_num(rs.getInt("boa_num"));
+				ProBoardDto.setBoa_pro_period(rs.getString("boa_pro_period"));
+				ProBoardDto.setBoa_region(rs.getString("boa_region"));
+				list.add(ProBoardDto);
+			}
+			sql="select mem_nickname,mem_icon,mem_job from member where mem_no=?";
+			for(int i=0; i<list.size(); i++) {
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1,list.get(i).getMem_no());
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				list.get(i).setMem_nickname(rs.getString("mem_nickname"));
+				list.get(i).setMem_icon(rs.getString("mem_icon"));
+				list.get(i).setMem_job(rs.getString("mem_job"));
+			}
+			}
+			
+			sql="select count(*) from application where boa_no=?";
+			for(int i=0; i<list.size(); i++) {
+				pstmt = connection.prepareStatement(sql);
+				pstmt.setInt(1,list.get(i).getBoa_no());
+				rs=pstmt.executeQuery();
+				
+				if(rs.next()) {
+					list.get(i).setApp_number(rs.getInt(1));
+				}
+			}
+			sql="select tag_contents from hashtag where boa_no=? limit 9";
+			for(int i=0; i<list.size(); i++) {
+				pstmt = connection.prepareStatement(sql);
+				pstmt.setInt(1,list.get(i).getBoa_no());
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					list.get(i).boa_hashtag.add(rs.getString("tag_contents"));
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("getProBoradList 오류: " + e);		 
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		}
+		
+		return list;
+	}
+	public int getUserProBoardNum(int mem_no) {
+		int BoardNum =-1;
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="select count(*) from pro_board where mem_no=?";
+		try {
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1,mem_no);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				BoardNum = rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("getUserProBoardNum 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		} 
+		return BoardNum;
+	}
+	
+	
+  
 }

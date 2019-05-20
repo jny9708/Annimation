@@ -70,7 +70,7 @@
             	  <%} %>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="#">마이페이지</a></li>
+                <li><a href="./UserPageApp.do?mem_no=<%=MemberDto.getMem_no()%>">마이페이지</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="./MemberLogout.do">로그아웃</a></li>
               </ul>

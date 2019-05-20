@@ -194,7 +194,7 @@ $(document).ready(function(){
 
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav" style="margin:10px;">
-            <li ><a href="#">홈 <span class="sr-only">(current)</span></a></li>
+            <li ><a href="./Main.do">홈 <span class="sr-only">(current)</span></a></li>
             <li class="active"><a href="#">팀원모집 </a></li>
             <li><a href="#">공모전 정보</a></li>
           </ul>
@@ -226,7 +226,7 @@ $(document).ready(function(){
             	  <%} %>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="#">마이페이지</a></li>
+                <li><a href="./UserPageApp.do?mem_no=<%=MemberDto.getMem_no()%>">마이페이지</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="./MemberLogout.do">로그아웃</a></li>
               </ul>

@@ -10,6 +10,7 @@ import com.board.model.ApplicationDao;
 import com.board.model.ApplicationDto;
 import com.board.model.ProBoardDao;
 import com.board.model.ProBoardDto;
+import com.member.model.MemberDto;
 
 public class BoardDetailController implements Controller {
 
@@ -18,13 +19,20 @@ public class BoardDetailController implements Controller {
 		
 		ControllerForward forward = new ControllerForward();
 		HttpSession session=request.getSession();
+		MemberDto MemberDto = new MemberDto();
 		ApplicationDao ApplicationDao = new ApplicationDao();
 		ProBoardDao ProBoardDao = new ProBoardDao();
 		ProBoardDto ProBoardDto = new ProBoardDto();
 		ArrayList<ApplicationDto> list = new ArrayList<ApplicationDto>();
 		ArrayList<ProBoardDto> re_list= new ArrayList<ProBoardDto>(); 
+		ArrayList<Integer> sc_list = new ArrayList<Integer>();
 		int no=0;
 		no = Integer.parseInt(request.getParameter("no"));
+		
+		if(session.getAttribute("Member")!=null) {
+			MemberDto =(MemberDto)session.getAttribute("Member");
+			sc_list=ProBoardDao.getScrapListSimple(MemberDto.getMem_no());
+		}
 		
 		ProBoardDao.AddHit(no);
 		
@@ -38,6 +46,7 @@ public class BoardDetailController implements Controller {
 		request.setAttribute("re_list", re_list);
 		request.setAttribute("ApplicationList", list);
 		request.setAttribute("Detail",ProBoardDto);
+		request.setAttribute("sc_list",sc_list);
 		forward.setRedirect(false); 
 		forward.setPath("./project/ProjectDetail.jsp");
 		return forward;  

@@ -58,6 +58,31 @@ public class MemberFrontController extends HttpServlet {
 	    		controller = new MemberLogoutController();
 	    		forward=controller.execute(request, response);
 	    	}
+	    	else if(command.equals("/UserPageApp.do")) {
+	    		controller = new UserPageAppController();
+	    		forward=controller.execute(request, response);
+	    	}
+	    	else if(command.equals("/UserPageWri.do")) {
+	    		controller = new UserPageWriController();
+	    		forward=controller.execute(request, response);
+	    	}
+	    	else if(command.equals("/UserPageScr.do")) {
+	    		controller = new UserPageScrController();
+	    		forward=controller.execute(request, response);
+	    	}
+	    	else if(command.equals("/UserUpdate.do")) {
+	    		controller = new UserUpdateController();
+	    		forward=controller.execute(request, response);
+	    	}
+	    	else if(command.equals("/MemberDelete.do")) {
+	    		controller = new MemberDeleteController();
+	    		forward=controller.execute(request, response);
+	    	}
+	    	else if(command.equals("/UserUpdateForm.do")) {
+	    		forward=new ControllerForward();
+				 forward.setRedirect(false);
+				 forward.setPath("./member/UserUpdate.jsp");
+	    	}
 	    	else if(command.equals("/SignUpForm.do")) {
 	    		forward=new ControllerForward();
 				 forward.setRedirect(false);

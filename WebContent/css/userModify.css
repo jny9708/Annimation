@@ -64,7 +64,8 @@ table{
     padding: 1px 15px 10px 0px;
 }
 #modify_block label{
-    margin: 0px;;
+    width: 100px !important;
+    margin: 0px;
 }
 #modify_text{
     width: 100%;
@@ -73,7 +74,7 @@ table{
     margin: 0px 0px 15px 0px;
 }
 
-img{
+.newbtn img{
     max-width:200px;
     height:200px;
   }
@@ -129,7 +130,7 @@ img{
 
 .modify_withdrawal{
     float: right;
-    width: 280px;
+    width: 300px;
     position: relative;
     top: -40px;
     color: #2d3a5e;
@@ -147,3 +148,6 @@ main{
 }
 
 
+.m_birthday{
+    width: 212px !important;
+}

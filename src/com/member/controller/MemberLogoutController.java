@@ -9,7 +9,7 @@ public class MemberLogoutController implements Controller {
 	public ControllerForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		ControllerForward forward = new ControllerForward();
-		request.getSession().invalidate();;
+		request.getSession().invalidate();
 		
 		forward.setRedirect(true);
 		forward.setPath("./Main.do");
