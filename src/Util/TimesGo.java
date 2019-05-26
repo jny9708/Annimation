@@ -1,6 +1,7 @@
 package Util;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TimerTask;
@@ -22,6 +23,7 @@ public class TimesGo extends TimerTask{
 		crawler();
 	}
 	public void crawler() {
+		ArrayList<String> url_list = new ArrayList<String>(); 
 		String Domain="https://www.wevity.com/";
 		String url = "https://www.wevity.com/?c=find&s=1&gub=1&sp=contents&sw=%EC%95%A0%EB%8B%88%EB%A9%94%EC%9D%B4%EC%85%98&gp=1";
 		Document doc=null;
@@ -36,7 +38,6 @@ public class TimesGo extends TimerTask{
 		String con_url=null;
 		con_url= ContestDao.getRecentlyUrl();
 		for(Element el : element) {
-			//여기 안에서 href값이 같으면 크롤링메소드 실행 안시키면 될듯? 여기서 dao가 필요함 저장된 링크가져오는..
 			System.out.println("======================");
 			System.out.println(Domain + el.attr("href"));
 			url=Domain+ el.attr("href");
@@ -45,23 +46,27 @@ public class TimesGo extends TimerTask{
 				break;
 			}else {
 				System.out.println(con_url);
-				Crawling(url); 
+				url_list.add(url);
 			}
 			
 			
 		}
 
+		Crawling(url_list);
 	}
 	
-	public static void Crawling(String url) {
+	public static void Crawling(ArrayList<String> url_list) {
 		//이제 이 메소드에서 map을 만들어서 dao로 넘겨주면 될듯
 		String Domain="https://www.wevity.com/";
 		Document detaildoc=null;
 		//Map<String,String> map = new HashMap<String,String>();
 		ContestDao ContestDao = new ContestDao();
 		ContestDto ContestDto = new ContestDto();
+		for(int i =url_list.size()-1; i>-1; i--) {
+			
+		
 		try {
-			detaildoc = Jsoup.connect(url).get();
+			detaildoc = Jsoup.connect(url_list.get(i)).get();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -71,6 +76,13 @@ public class TimesGo extends TimerTask{
 			System.out.println(ContestDto.getCon_img());
 			
 		}
+		element = detaildoc.select(".tit-area");
+		for(Element el : element) {
+			
+			ContestDto.setCon_title(el.select("h6").text());
+			System.out.println("타이틀 "+el.select("h6").text());  
+		}
+		
 		element = detaildoc.select(".cd-info-list");
 		for(Element el : element) {
 			
@@ -106,7 +118,7 @@ public class TimesGo extends TimerTask{
 			System.out.println(con_reward_win);
 			System.out.println(con_homepage);
 			
-			ContestDto.setCon_url(url);
+			ContestDto.setCon_url(url_list.get(i));
 			ContestDto.setCon_field(con_field);
 			ContestDto.setCon_target(con_target);
 			ContestDto.setCon_host(con_host);
@@ -117,7 +129,7 @@ public class TimesGo extends TimerTask{
 			ContestDto.setCon_reward_win(con_reward_win);
 			ContestDto.setCon_homepage(con_homepage);
 			
-		}
+		} 
 		element = detaildoc.select(".comm-desc");
 		for(Element el : element) {
 			
@@ -130,23 +142,19 @@ public class TimesGo extends TimerTask{
 			
 			System.out.println(el.toString());
 			System.out.println("------------------------------");
-			
-			int result =-1;
-			result =ContestDao.InsertContest(ContestDto);
-			if(result==1) {
-				System.out.println("insert성공");
-			}else {
-				System.out.println("insert 실패");
-			}
-			
-			
-			
-			
+
+		}
+		int result =-1;
+		result =ContestDao.InsertContest(ContestDto);
+		if(result==1) {
+			System.out.println("insert성공");
+		}else {
+			System.out.println("insert 실패");
 		}
 		
 		
-		
 	}
+		}
 	
 	
 

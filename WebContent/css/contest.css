@@ -1,0 +1,221 @@
+.container {
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  @media (min-width: 500px) {
+    main.container {
+      width: 1100px;
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+}
+  @media (min-width: 700px) {
+    main.container {
+      width: 1100px;
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+}
+  @media (min-width: 1200px) {
+    main.container {
+      width: 1100px;
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+}
+main{
+    margin-bottom: 0px;
+    height: 1240px;
+    margin-top: 10px;
+}
+body{
+    background: #f2f2f2;
+}
+.contest_popularity{
+    background: white;
+    margin-top: 20px;
+    height: 350px;
+    padding: 10px;
+    width: 100%;
+    position: relative;
+}
+.contest_popularity h3{
+    margin-top: 5px;
+    font-weight: bold;
+    padding-left: 18px;
+    padding-top: 10px;
+    color: #293456;
+}
+.contest_pop{
+    width: 93.5%;
+    display: inline-block;
+    position: relative;
+    left: 10px;
+    position: absolute; 
+    top: 45%; 
+    left: 17.5%; 
+    margin-top: -100px; 
+    margin-left: -150px; 
+
+}
+.contest_pop figure{
+    width: 180px;
+}
+.contest_pop img{
+    width: 180px;
+    height: 180px;
+}
+.contest_pop h3{
+    font-size: 18px;
+    margin-top: 10px;
+    width: 180px;
+    max-height: 38px;
+    padding-left: 0px;
+    padding-top: 0px;
+    line-height: 21px;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 400;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #293456;
+}
+.contest_pop p{
+    text-align: left;
+    margin: 5px;
+    
+}
+.contest_pop a{
+    display: inline;
+    float: left;
+    margin: 10px 10px 10px 10px;
+}
+.contest_pop a:hover,.contest_pop a:link, .contest_pop a:visited{
+    text-decoration: none;
+}
+span img{
+    width: 20px !important;
+    height: 20px !important;
+}
+.contest_pop a p span.con_day{
+    color: #282aa9;
+    font-weight: bold !important;
+}
+.contest_pop a p span{
+    color:#a6a6a6;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.con_eye{
+    position: relative;
+    top: -1px;
+    margin-left: 5px;
+    color: 
+}
+/************************************************/
+.contest_recently{
+    margin-top: 10px;
+    height:860px;
+    padding: 10px;
+}
+.contest_recently h3{
+    font-weight: bold;
+    margin-bottom: 0px;
+    position: relative;
+    top: 5px;
+    border-bottom: 2px solid #293456;
+    width: 1050px;
+    height: 32px;
+    color: #293456;
+}
+.contest_re{
+    display: inline-block;
+    width: 1059px;
+    padding: 28px 8px 20px 8px;
+    padding-bottom: 0px;
+}
+.contest_card{
+    float: left;
+    width: 500px;
+    height: 200px;
+    background: white;
+    margin: 0px 10px 28px 10px;
+}
+.contest_card img{
+    float: left;
+    width: 180px;
+    height: 200px;
+}
+.contest_card figure{
+    float: left;
+    width: 280px;
+    height: 180px;
+    margin: 10px 20px 10px 20px;
+}
+.contest_card figure h4{
+    width: 270px;
+    min-height: 20px;
+    max-height: 40px;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 21px; 
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #293456;
+    margin: 10px 5px 10px 5px;
+}
+.contest_re a{
+    color: #293456;
+}
+.contest_re a .con_institution{
+    width: 270px !important;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 20px;
+    max-height: 40px !important;
+   color: rgb(121, 120, 120);
+   font-size: 15px;
+   margin: 10px 5px 10px 5px;
+}
+.contest_re a p{
+    color: rgb(121, 120, 120);
+    margin: 10px 5px 10px 5px;
+};
+.contest_card p{
+    text-align: left;
+    margin: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.contest_card span{
+    color: rgb(150, 150, 150);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.contest_re a span.con_day{
+    float: left;
+    color: #282aa9;
+    font-weight: bold;
+}
+.re_eye{
+    margin-left: 5px;
+}
+.contest_recently nav{
+    width: 15.8%;
+    margin: 0 auto;
+    height: 75px;
+}
+.contest_recently nav ul{
+    height: 33px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+.contest_recently nav li.active>a{
+    background: #293456;
+    color: white;
+    border-color: #293456;
+}
+.contest_recently nav li>a{
+    color: #293456;
+}

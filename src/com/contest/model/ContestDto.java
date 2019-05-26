@@ -16,6 +16,14 @@ public class ContestDto {
 	String con_img;
 	String con_contents;
 	int con_hit;
+	int d_day;
+	
+	public int getD_day() {
+		return d_day;
+	}
+	public void setD_day(int d_day) {
+		this.d_day = d_day;
+	}
 	public int getCon_no() {
 		return con_no;
 	}

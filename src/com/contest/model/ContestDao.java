@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -84,5 +85,141 @@ public class ContestDao {
 				if(connection!=null) try {connection.close();} catch(Exception ex) {}
 		}
 		return result;
+	}
+	
+	public int getContestNum() {
+		int ContestNum = -1;
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="select count(*) from contest";
+		
+		try {
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				ContestNum = rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("getContestNum 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		} 
+		
+		return ContestNum;
+	}
+	
+	public ArrayList<ContestDto> getContestList(int pagenum){
+		ArrayList<ContestDto> con_list = new ArrayList<ContestDto>();
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int startrow = (pagenum-1)*6;
+		String sql="select con_no,con_title,con_host,con_start_date,con_end_date,con_img,con_hit,TO_DAYS(con_end_date)-TO_DAYS(now())as d_day from contest order by con_no desc limit ?,6";
+		
+		try {
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1,startrow);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ContestDto ContestDto = new ContestDto();
+				ContestDto.setCon_no(rs.getInt("con_no"));
+				ContestDto.setCon_title(rs.getString("con_title"));
+				ContestDto.setCon_host(rs.getString("con_host"));
+				ContestDto.setCon_start_date(rs.getString("con_start_date"));
+				ContestDto.setCon_end_date(rs.getString("con_end_date"));
+				ContestDto.setD_day(rs.getInt("d_day"));
+				ContestDto.setCon_img(rs.getString("con_img"));
+				ContestDto.setCon_hit(rs.getInt("con_hit"));
+				con_list.add(ContestDto);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("getContestList 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		} 
+		return con_list;
+	}
+	
+	public ArrayList<ContestDto> getPopList(){
+		ArrayList<ContestDto> pop_list = new ArrayList<ContestDto>();
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="select con_no,con_title,con_host,con_img,con_hit,TO_DAYS(con_end_date)-TO_DAYS(now())as d_day from contest having d_day >0 order by con_hit desc limit 5";
+		try {
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ContestDto ContestDto = new ContestDto();
+				ContestDto.setCon_no(rs.getInt("con_no"));
+				ContestDto.setCon_title(rs.getString("con_title"));
+				ContestDto.setCon_host(rs.getString("con_host"));
+				ContestDto.setD_day(rs.getInt("d_day"));
+				ContestDto.setCon_img(rs.getString("con_img"));
+				ContestDto.setCon_hit(rs.getInt("con_hit"));
+				pop_list.add(ContestDto);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("getPopList 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		}
+		return pop_list;
+	}
+	
+	public ContestDto getContestDetail(int con_no) {
+		ContestDto ContestDto = new ContestDto();
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="select *,TO_DAYS(con_end_date)-TO_DAYS(now())as d_day from contest where con_no=?";
+		try {
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1,con_no);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ContestDto.setCon_no(rs.getInt("con_no"));
+				ContestDto.setCon_url(rs.getString("con_url"));
+				ContestDto.setCon_title(rs.getString("con_title"));
+				ContestDto.setCon_field(rs.getString("con_field"));
+				ContestDto.setCon_target(rs.getString("con_target"));
+				ContestDto.setCon_host(rs.getString("con_host"));
+				ContestDto.setCon_support(rs.getString("con_support"));
+				ContestDto.setCon_start_date(rs.getString("con_start_date"));
+				ContestDto.setCon_end_date(rs.getString("con_end_date"));
+				ContestDto.setD_day(rs.getInt("d_day"));
+				ContestDto.setCon_reward_total(rs.getString("con_reward_total"));
+				ContestDto.setCon_reward_win(rs.getString("con_reward_win"));
+				ContestDto.setCon_homepage(rs.getString("con_homepage"));
+				ContestDto.setCon_img(rs.getString("con_img"));
+				ContestDto.setCon_contents(rs.getString("con_contents"));
+				ContestDto.setCon_hit(rs.getInt("con_hit"));
+			}
+			
+		} catch (Exception e) {
+			System.out.println("getContestDetail 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		}
+		return ContestDto;
 	}
 }

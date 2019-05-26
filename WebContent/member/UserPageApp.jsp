@@ -23,8 +23,6 @@
 	int roop=-1;
 	int total = (Integer)request.getAttribute("total");
 	int pagenum = (Integer)request.getAttribute("pagenum");
-	
-	
 %>
 <html>
 <head>
@@ -149,7 +147,7 @@ function star(boa_id) {
 <div class="container my_wb ">
   <div class="wrap">
     <div class="side front">
-          <%if(MemberDto.getMem_icon().equals("profile.jpg")){ %>
+          <%if(UserInfo.getMem_icon().equals("profile.jpg")){ %>
           <img src="<%=request.getContextPath()%>/image/profile.jpg" class="my_profile img-circle">
            <%}else{
         	   System.out.println("아이콘경로있음");%>
@@ -306,7 +304,7 @@ function star(boa_id) {
                                 </a>
                               </li>
                               <%for(int i=0; i< total; i++){%>
-                            	 <li><a href="./UserPageApp.do?mem_no=<%=UserInfo.getMem_no()%>&page=<%=i+1%>" id="page_<%=i+1%>"><%=i+1%></a></li> 
+                            	 <li id="page_<%=i+1%>"><a href="./UserPageApp.do?mem_no=<%=UserInfo.getMem_no()%>&page=<%=i+1%>"><%=i+1%></a></li> 
                               <% } %>
                               
                               <li>
