@@ -15,8 +15,9 @@ public class ContestDetailController implements Controller {
 		int con_no = Integer.parseInt(request.getParameter("con_no"));
 		ContestDto Detail = new ContestDto();
 		ContestDao ContestDao = new ContestDao();
-		
+		ContestDao.AddContestHit(con_no);
 		Detail = ContestDao.getContestDetail(con_no);
+		
 		request.setAttribute("Detail", Detail);
 		forward.setRedirect(false);                
 		forward.setPath("./contest/ContestDetail.jsp");

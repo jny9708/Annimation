@@ -55,8 +55,8 @@ $(document).ready(function() {
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav" style="margin:10px;">
             <li ><a href="./Main.do">홈 <span class="sr-only">(current)</span></a></li>
-            <li class="active"><a href="./Project.bo">팀원모집 </a></li>
-            <li><a href="./Contest.co">공모전 정보</a></li>
+            <li><a href="./Project.bo">팀원모집 </a></li>
+            <li class="active"><a href="./Contest.co">공모전 정보</a></li>
           </ul>
 
 
@@ -183,6 +183,8 @@ $(document).ready(function() {
               </nav>
         </div>
     </main>
+    
+    
     <footer style="clear:both; background-color: white;">
         <div id="copyright" class="container-fluid">
         <p>성결대학교 미디어소프트웨어학부 <br> 2019 <strong>아울러.</strong> 인지해 정나영 한수지</p>

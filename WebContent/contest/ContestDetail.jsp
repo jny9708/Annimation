@@ -40,8 +40,8 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav" style="margin:10px;">
             <li ><a href="./Main.do">홈 <span class="sr-only">(current)</span></a></li>
-            <li class="active"><a href="./Project.bo">팀원모집 </a></li>
-            <li><a href="#">공모전 정보</a></li>
+            <li><a href="./Project.bo">팀원모집 </a></li>
+            <li class="active"><a href="./Contest.co">공모전 정보</a></li>
           </ul>
 
 
@@ -106,7 +106,9 @@
                   <p class="small_inquiry"><span><img src="<%=request.getContextPath()%>/image/eye.png"></span> <%=Detail.getCon_hit()%></p>
                 </div>
               </div> <!--/con_title-->
-              
+              <div class="con_poster">
+                <img src="<%=Detail.getCon_img()%>">
+              </div>
               <div class="con_content">
                 <div class="details">
                   <h3>공모전 분야</h3>
@@ -140,9 +142,7 @@
               </div><!--/con_content-->
           </div><!--/con_basics-->
 
-            <div class="con_poster">
-              <img src="<%=Detail.getCon_img()%>">
-            </div>
+            
             
             <div class="con_detail_content">
               <h2>세부 내용</h2>

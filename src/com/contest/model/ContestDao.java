@@ -92,7 +92,7 @@ public class ContestDao {
 		Connection connection = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql="select count(*) from contest";
+		String sql="select count(*) from contest where TO_DAYS(con_end_date)-TO_DAYS(now())>0";
 		
 		try {
 			connection = ds.getConnection();
@@ -118,8 +118,8 @@ public class ContestDao {
 		Connection connection = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		int startrow = (pagenum-1)*6;
-		String sql="select con_no,con_title,con_host,con_start_date,con_end_date,con_img,con_hit,TO_DAYS(con_end_date)-TO_DAYS(now())as d_day from contest order by con_no desc limit ?,6";
+		int startrow = (pagenum-1)*10;
+		String sql="select con_no,con_title,con_host,con_start_date,con_end_date,con_img,con_hit,TO_DAYS(con_end_date)-TO_DAYS(now())as d_day from contest having d_day >0 order by con_no desc limit ?,10";
 		
 		try {
 			connection = ds.getConnection();
@@ -136,7 +136,7 @@ public class ContestDao {
 				ContestDto.setCon_end_date(rs.getString("con_end_date"));
 				ContestDto.setD_day(rs.getInt("d_day"));
 				ContestDto.setCon_img(rs.getString("con_img"));
-				ContestDto.setCon_hit(rs.getInt("con_hit"));
+				ContestDto.setCon_hit(rs.getInt("con_hit"));  
 				con_list.add(ContestDto);
 			}
 			
@@ -221,5 +221,28 @@ public class ContestDao {
 			if(connection!=null) try {connection.close();} catch(Exception ex) {}
 		}
 		return ContestDto;
+	}
+	public int AddContestHit(int con_no) {
+		int result=-1;
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="update contest set con_hit = con_hit+1 where con_no=?";
+		
+		try {
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1,con_no);
+			result=pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("AddContestHit 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		} 
+		
+		
+		return result;
 	}
 }

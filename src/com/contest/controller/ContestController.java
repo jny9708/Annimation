@@ -31,11 +31,11 @@ public class ContestController implements Controller {
 		}
 		
 		ContestNum = ContestDao.getContestNum();
-		total=ContestNum/6;
-		if(ContestNum%6>0) {
+		total=ContestNum/10;
+		if(ContestNum%10>0) {
 			total+=1;
 		}
-		
+		System.out.println("컨테스트개수"+ContestNum);
 		con_list = ContestDao.getContestList(pagenum);
 		pop_list = ContestDao.getPopList();
 		
