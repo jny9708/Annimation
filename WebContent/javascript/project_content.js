@@ -1,4 +1,18 @@
-﻿$(document).ready(function(){
+﻿ function change(boa_app_no) {
+	 $("#sp_button_yesno_"+boa_app_no).show();
+	 $("#support_content_"+boa_app_no).css("width","77%")
+	 $("#sp_button_yesno_"+boa_app_no).css("display","inline-block")
+	 $("#show_"+boa_app_no).hide();
+ };
+ 
+ function cancel(boa_app_no) {
+	 $("#sp_button_yesno_"+boa_app_no).hide();
+     $("#support_content_"+boa_app_no).css("width","88%")
+     $("#show_"+boa_app_no).show();
+ };
+
+/*
+$(document).ready(function(){
     
     $("#show").click(function(){
       $("#sp_button_yesno").show();
@@ -13,7 +27,7 @@
       });  
     
   });
-
+*/
 $(document).ready(function(){  
     $("#sp_revise").click(function(){
     	var name = $(this).attr('name');  	

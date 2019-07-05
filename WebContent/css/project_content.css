@@ -405,7 +405,7 @@ main{
   background: #afe3ee !important;
   border-radius: 0px !important;
 }
-#support_content{
+.c_support_content{
   display: inline-block;
   background: white;
   width:88%;
@@ -414,14 +414,14 @@ main{
   height: 25px;
 }
 
-#support_content> li {
+.c_support_content> li {
   display:inline-block;                     /*  세로나열을 가로나열로 변경 */
   border-left:1px solid #293456;             /* 각 메뉴의 왼쪽에 "|" 표시(분류 표시) */                  
   padding:0 25px;                        /* 각 메뉴 간격 */
   
   
 }
-#support_content> li:first-child{
+.c_support_content> li:first-child{
   border-left:none;
 }     /* 메뉴 분류중 제일 왼쪽의 "|"는 삭제    */
 

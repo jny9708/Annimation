@@ -529,7 +529,7 @@ function star(boa_id) {
                                <div class="sp_number">
                                    <%=++jsp_app_no%>
                                </div>
-                                <ul id="support_content">
+                                <ul id="support_content_<%=list.get(i).getBoa_app_no()%>" class="c_support_content">
                                    <li><b><%=list.get(i).getMem_nickname()%></b></li>
                                    <li><b><%=list.get(i).getMem_email()%></b></li>
                                    <li><b style="color:#282aa9; border-right: none;"><%=list.get(i).getBoa_app_state()%></b></li>
@@ -537,11 +537,11 @@ function star(boa_id) {
                                <!-- 승인거부-->
                                <%if(writercheck==1){%>
                                
-                               <button class="btn btn-default" type="button" id="show">변경</button>
-                            	 <div id="sp_button_yesno" style="display:none">
+                               <button class="btn btn-default" type="button" id="show_<%=list.get(i).getBoa_app_no()%>" onclick="change(<%=list.get(i).getBoa_app_no()%>)">변경</button>
+                            	 <div id="sp_button_yesno_<%=list.get(i).getBoa_app_no()%>" style="display:none">
                             		 <button class="btn btn-default" type="submit" id="sp_yes" value="yes" onclick="YesOrNo(<%=list.get(i).getMem_no()%>,<%=no%>,'승인')">승인</button>
                                   <button class="btn btn-default" type="submit" id="sp_no" value="no" onclick="YesOrNo(<%=list.get(i).getMem_no()%>,<%=no%>,'거부')">거부</button>
-                                  <button class="btn btn-default" type="button" id="hide">취소</button>
+                                  <button class="btn btn-default" type="button" id="hide" onclick="cancel(<%=list.get(i).getBoa_app_no()%>)">취소</button>
                                   </div>
                                <%
                                } %>
@@ -696,7 +696,8 @@ function star(boa_id) {
             <div id="recommen">
                 <h2>추천<small>&nbsp;&nbsp;*최대 3개를 볼 수 있습니다.</small></h2>
                 
-                <%if(re_list.size()<1){%>
+                <%System.out.println(re_list.size());
+                if(re_list.size()<1){%>
                 	<div style="text-align: center;  font-size: x-large; margin-top: 35px; " >추천 게시글이 없습니다.</div>
                 <%}else{
                 
@@ -708,7 +709,7 @@ function star(boa_id) {
                         <div class="col-sm-12">
                           <div id="dede">
                             <div id="card_User">
-                              <a href="./UserPageApp.do?mem_no=<%=list.get(i).getMem_no()%>">
+                              <a href="./UserPageApp.do?mem_no=<%=re_list.get(i).getMem_no()%>">
                               <%if(re_list.get(i).getMem_icon().equals("profile.jpg")){ %>
                               <img src="<%=request.getContextPath()%>/image/profile.jpg" alt="User-img" class="projact_card_U img-circle" data-toggle="tooltip" title="닉네임 페이지 보기" data-original-title="Default tooltip">
                                <%}else{ %>
@@ -724,16 +725,16 @@ function star(boa_id) {
                                 <ul>
                                   <li class="oneline_team"><%=re_list.get(i).getBoa_region()%></li>
                                   <li><a href="./ProDetail.bo?no=<%=re_list.get(i).getBoa_no()%>"><%=re_list.get(i).getBoa_title()%></a>  
-                                    <button class='star' type="button" title="스크랩" data-toggle="tooltip" title="스크랩" data-original-title="Default tooltip" onclick="star(<%=list.get(i).getBoa_no()%>)">
+                                    <button class='star' type="button" title="스크랩" data-toggle="tooltip" title="스크랩" data-original-title="Default tooltip" onclick="star(<%=re_list.get(i).getBoa_no()%>)">
                                     
                                    <%
                						for(int j=0; j<sc_list.size(); j++){
-               							if(sc_list.get(j)==list.get(i).getBoa_no()){%>
-               								<img id="i_<%=list.get(i).getBoa_no()%>" src="<%=request.getContextPath()%>/image/yellowstar.png">
+               							if(sc_list.get(j)==re_list.get(i).getBoa_no()){%>
+               								<img id="i_<%=re_list.get(i).getBoa_no()%>" src="<%=request.getContextPath()%>/image/yellowstar.png">
                					 
                							<%roop=1;}
                						}if(roop!=1){%>
-               							<img id="i_<%=list.get(i).getBoa_no()%>" src="<%=request.getContextPath()%>/image/graystar.png">		
+               							<img id="i_<%=re_list.get(i).getBoa_no()%>" src="<%=request.getContextPath()%>/image/graystar.png">		
                						<%}roop=0; %>
                                     
                                     

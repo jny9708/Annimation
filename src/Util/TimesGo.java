@@ -130,7 +130,7 @@ public class TimesGo extends TimerTask{
 			ContestDto.setCon_homepage(con_homepage);
 			
 		} 
-		element = detaildoc.select(".comm-desc");
+		element = detaildoc.select("#viewContents");
 		for(Element el : element) {
 			
 			String contents = el.toString();
