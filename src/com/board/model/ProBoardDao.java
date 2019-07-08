@@ -408,6 +408,7 @@ public class ProBoardDao {
 					ProBoardDto.setBoa_d_day(rs.getInt("d_day"));
 					ProBoardDto.setBoa_num(rs.getInt("boa_num"));
 					ProBoardDto.setBoa_pro_period(rs.getString("boa_pro_period"));
+					ProBoardDto.setBoa_region(rs.getString("boa_region"));
 					list.add(ProBoardDto);
 				}
 				if(list.size()!=0) {
@@ -1360,6 +1361,103 @@ public int BoardInsert(ProBoardDto ProBoardDto) {
 		return BoardNum;
 	}
 	
+	public ArrayList<ProBoardDto> getNew_list(){
+		ArrayList<ProBoardDto> newly_list = new ArrayList<ProBoardDto>();
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="select *,TO_DAYS(boa_rec_deadline)-TO_DAYS(now())as d_day from pro_board limit 2";
+		try {
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ProBoardDto ProBoardDto = new ProBoardDto();
+				ProBoardDto.setMem_no(rs.getInt("mem_no"));
+				ProBoardDto.setBoa_no(rs.getInt("boa_no"));
+				ProBoardDto.setBoa_title(rs.getString("boa_title"));
+				ProBoardDto.setBoa_job(rs.getString("boa_job"));
+				ProBoardDto.setBoa_rec_deadline(rs.getDate("boa_rec_deadline"));
+				ProBoardDto.setBoa_reg_date(rs.getDate("boa_reg_date"));
+				ProBoardDto.setBoa_d_day(rs.getInt("d_day"));
+				ProBoardDto.setBoa_num(rs.getInt("boa_num"));
+				ProBoardDto.setBoa_pro_period(rs.getString("boa_pro_period"));
+				ProBoardDto.setBoa_region(rs.getString("boa_region"));
+				newly_list.add(ProBoardDto);
+			}
+		} catch (Exception e) {
+			System.out.println("getNew_list pro_board테이블 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		} 
+		try {
+			sql="select mem_nickname,mem_icon,mem_job from member where mem_no=?";
+			connection = ds.getConnection();
+			for(int i=0; i<newly_list.size(); i++) {
+				pstmt = connection.prepareStatement(sql);
+				pstmt.setInt(1,newly_list.get(i).getMem_no());
+				rs=pstmt.executeQuery();
+				if(rs.next()) {
+					newly_list.get(i).setMem_nickname(rs.getString("mem_nickname"));
+					newly_list.get(i).setMem_icon(rs.getString("mem_icon"));
+					newly_list.get(i).setMem_job(rs.getString("mem_job"));
+				}
+				}
+		} catch (Exception e) {
+			System.out.println("getNew_list member테이블  오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		} 
+		
+		try {
+			sql="select count(*) from application where boa_no=?";
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			for(int i=0; i<newly_list.size(); i++) {
+				pstmt = connection.prepareStatement(sql);
+				pstmt.setInt(1,newly_list.get(i).getBoa_no());
+				rs=pstmt.executeQuery();
+				
+				if(rs.next()) {
+					newly_list.get(i).setApp_number(rs.getInt(1));
+				}
+			}
+			
+		} catch (Exception e) {
+			System.out.println("getNew_list application count 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		} 
+		
+		try {
+			sql="select tag_contents from hashtag where boa_no=? limit 9";
+			connection = ds.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			for(int i=0; i<newly_list.size(); i++) {
+				pstmt = connection.prepareStatement(sql);
+				pstmt.setInt(1,newly_list.get(i).getBoa_no());
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					newly_list.get(i).boa_hashtag.add(rs.getString("tag_contents"));
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("getNew_list hashtag 테이블 오류: " + e);		
+		}finally {
+			if(rs!=null) try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
+			if(connection!=null) try {connection.close();} catch(Exception ex) {}
+		} 
+		return newly_list;
+		
+	}
 	
   
 }

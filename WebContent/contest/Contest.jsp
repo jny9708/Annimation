@@ -49,19 +49,31 @@ $(document).ready(function() {
     <nav class="navbar navbar-default bs-white navbar-fixed-top">
         <div class="container">
           <div class="navbar-header">
-          <a href="#"><img src="<%=request.getContextPath()%>/image/final_logo(header).png" alt="아울러" class="logo" style="padding:0px;"></a> <!--로고-->
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header_nav">
+
+                    <span class="sr-only">Toggle navigation</span>
+
+                    <span class="icon-bar"></span>
+
+                    <span class="icon-bar"></span>
+
+                    <span class="icon-bar"></span>
+
+                    <span class="icon-bar"></span>
+
+                  </button>
+          <a href="./Main.do"><img src="<%=request.getContextPath()%>/image/final_logo(header).png" alt="아울러" class="logo" style="padding:0px;"></a> <!--로고-->
         </div>
 
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav" style="margin:10px;">
+        <div class="collapse navbar-collapse" id="header_nav">
+          <ul class="nav navbar-nav header_title" style="margin:10px;">
             <li ><a href="./Main.do">홈 <span class="sr-only">(current)</span></a></li>
             <li><a href="./Project.bo">팀원모집 </a></li>
             <li class="active"><a href="./Contest.co">공모전 정보</a></li>
           </ul>
 
 
-          <form class="navbar-form form-inline  navbar-right" role="search" action="./Project.bo" method="get" id="tag_search" name="tag_search">
-          	<input type="hidden" name="sort" value="">
+          <form class="navbar-form form-inline  navbar-right" role="search" action="./Project.bo" method="get" id="form_box" name="tag_search">
               <div class="input-group">
                  <input type="text" name="TagSearch" id="TagSearch" class="search-box" placeholder="#해시">
                  <button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>
@@ -186,7 +198,7 @@ $(document).ready(function() {
     
     
     <footer style="clear:both; background-color: white;">
-        <div id="copyright" class="container-fluid">
+        <div id="copyright" class="container">
         <p>성결대학교 미디어소프트웨어학부 <br> 2019 <strong>아울러.</strong> 인지해 정나영 한수지</p>
         </div>
   </footer>
