@@ -1,0 +1,86 @@
+@media (min-width: 1200px) {
+    .container {
+      width: 1170px;
+    }  
+  }
+  body{
+    background: #f2f2f2 !important;
+}
+main .container{
+    width: 1100px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+main{
+  margin-top: 50px;
+  margin-bottom: 90px;
+}
+.tabs { 
+  display: flex; 
+  flex-wrap: wrap;     
+} 
+.tabs label { 
+  width:33.33%; 
+  height: 80px;
+  order: 1; 
+  display: block; 
+  padding:10px 0px; 
+  text-align:center; 
+  line-height: 63px;
+  cursor: pointer; 
+  background: #293456; 
+  font-weight: bold; 
+  transition: background ease 0.2s; 
+  font-size: 25px !important;
+  color: white;
+
+} 
+/*박스배경*/ 
+.tabs .tab { 
+  order: 99; 
+  flex-grow: 1; 
+  width: 100%; 
+  display: none; 
+  padding: 1rem; 
+  background: white;
+  border: #838487 1px solid;
+  padding: 20px 40px 20px 40px;
+} 
+.tabs input[type="radio"] { 
+  display: none; 
+} 
+
+/*탭 눌렀을때 컬러*/ 
+.tabs input[type="radio"]:checked + label { 
+  background:white;
+  color: black;
+  border: #838487 1px solid;
+} 
+.tabs input[type="radio"]:checked + label + .tab { 
+  display: block; 
+}
+.tabs h1{
+  font-weight: 700;
+  text-shadow: 0 2px 5px rgba(0,0,0,.2);
+  margin-left: 50px;
+}
+.tabs h1 span{
+  color: #ffc70f;
+}
+.tabs p{
+  font-weight: 700;
+  color: #646464;
+  margin-left: 95px;
+}
+.tab img{
+  width: 800px;
+  height: 500px;
+  position: relative;
+  left: 94px;
+}
+.guide_img{
+  margin: 20px 0px 40px 0px !important;
+}
+.guide_img2{
+  margin: 0px 0px 40px 0px !important;
+}

@@ -168,7 +168,7 @@ footer>div.container{
 }
 footer{
     width: 100%;
-    height: 100px;
+    height: 122.1px;
     background-color: white;
     border-top: #dedcee 0.1px solid !important
 }
@@ -295,7 +295,7 @@ footer{
   margin: 0;
   padding: 0;
 }
-main #index_body {
+#index_body main{
   font-family: 'Open Sans', Arial, sans-serif;
   font-weight: 700;
 }
@@ -312,7 +312,7 @@ main #index_body {
   position: absolute;
   width: auto;
   left: 50%;
-  top:  45%;
+  top:  50%;
   transform: translate3d(-50%, -50%, 0);
 }
 .welcome-section .content-wrap .fly-in-text {

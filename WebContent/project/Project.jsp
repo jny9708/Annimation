@@ -282,6 +282,7 @@ $(function(){
             <li ><a href="./Main.do">홈 <span class="sr-only">(current)</span></a></li>
             <li class="active"><a href="./Project.bo">팀원모집 </a></li>
             <li><a href="./Contest.co">공모전 정보</a></li>
+            <li><a href="./Guide.do">가이드</a></li>
           </ul>
 
 

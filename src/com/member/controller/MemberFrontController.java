@@ -93,7 +93,12 @@ public class MemberFrontController extends HttpServlet {
 				 forward.setRedirect(false);
 				 forward.setPath("./member/LoginForm.jsp");
 	    	}
-	    	
+	    	else if(command.equals("/Guide.do")) {
+	    		forward=new ControllerForward();
+				 forward.setRedirect(false);
+				 forward.setPath("./member/Guide.jsp");
+	    	}
+	    	  
 	    	
 	    	
 	    	if(forward != null){
