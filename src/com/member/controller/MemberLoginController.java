@@ -34,12 +34,15 @@ public class MemberLoginController implements Controller {
 		MemberDto.setMem_id(request.getParameter("mem_id"));
 		String salt = MemberDao.getSaltById(MemberDto);
 		String mem_password =request.getParameter("mem_password");
-		mem_password=SecurityUtil.getEncrypt(mem_password, salt);
-		MemberDto.setMem_password(mem_password);
-		System.out.println(request.getParameter("mem_id"));
-		System.out.println(request.getParameter("mem_password"));
-		System.out.println(session.getAttribute("id")+"?!");
-		result = MemberDao.isMember(MemberDto);
+		if(salt!=null) {
+			mem_password=SecurityUtil.getEncrypt(mem_password, salt);
+			MemberDto.setMem_password(mem_password);
+			System.out.println(request.getParameter("mem_id"));
+			System.out.println(request.getParameter("mem_password"));
+			System.out.println(session.getAttribute("id")+"?!");
+			result = MemberDao.isMember(MemberDto);
+		}
+		
 		
 		if(result==0) {
 			//response.setContentType("text/html;charset=UTF-8");

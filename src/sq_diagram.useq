@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.2.3" icons="true" generate-combined-fragments="true">  
+  <object id="1" language="java" name="com.contest.controller.ContestFrontController" project="Annimation" 
+    file="/Annimation/src/com/contest/controller/ContestFrontController.java" binary="false" 
+    label="contestFrontController" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="43" y="0"/>    
+    <execution id="2">      
+      <position height="154" width="0" x="0" y="99"/>    
+    </execution>  
+  </object>  
+  <object id="5" language="java" name="com.contest.controller.ContestController" project="Annimation" 
+    file="/Annimation/src/com/contest/controller/ContestController.java" binary="false" label="contestController1" 
+    type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="4">      
+      <position height="112" width="0" x="0" y="120"/>    
+    </execution>    
+    <execution id="8">      
+      <position height="21" width="7" x="219" y="169"/>    
+    </execution>    
+    <execution id="9">      
+      <position height="147" width="0" x="0" y="240"/>    
+    </execution>    
+    <execution id="12">      
+      <position height="21" width="7" x="219" y="303"/>    
+    </execution>  
+  </object>  
+  <object id="13" language="java" name="com.contest.model.ContestDao" project="Annimation" 
+    file="/Annimation/src/com/contest/model/ContestDao.java" binary="false" label="contestDao1" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="7">      
+      <position height="63" width="0" x="0" y="148"/>    
+    </execution>    
+    <execution id="15">      
+      <position height="63" width="89" x="288" y="282"/>    
+    </execution>  
+  </object>  
+  <object id="17" language="java" name="com.contest.model.ContestDao" project="Annimation" 
+    file="/Annimation/src/com/contest/model/ContestDao.java" binary="false" label="contestDao" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="11">      
+      <position height="105" width="0" x="0" y="261"/>    
+    </execution>  
+  </object>  
+  <message id="3" 
+    operation="execute(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse):com.contest.controller.ControllerForward" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="6" operation="getContestNum():int" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="7"/>  
+  </message>  
+  <message id="10" operation="getContestList(int):java.util.ArrayList&lt;ContestDto&gt;" asynchronous="false">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="11"/>  
+  </message>  
+  <message id="14" asynchronous="false">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="8"/>  
+  </message>  
+  <message id="16" asynchronous="false">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="12"/>  
+  </message>  
+  <message id="18" asynchronous="false">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="15"/>  
+  </message>
+</sequence-diagram>

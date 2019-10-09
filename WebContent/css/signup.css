@@ -1,9 +1,4 @@
-header .container {
-  padding-right: 0px;
-  padding-left: 0px;
-  margin-right: auto;
-  margin-left: auto;
-}
+
 textarea:focus, select:focus, select[type]:focus, .uneditable-select:focus,input:focus, input[type]:focus, .uneditable-input:focus { /*부트스트랩 input 색상*/
   border-color: #157ba1;
   box-shadow: 0 0px 0px rgba(229, 103, 23, 0.075) inset, 0 0 0px rgba(229, 103, 23, 0.6);
@@ -29,21 +24,21 @@ textarea:focus, select:focus, select[type]:focus, .uneditable-select:focus,input
 }
 label{
   font-size: 15px;
+  font-family: 'SCDream7';
 }
 
 .signup-block{
   display: table;
-  margin: 30px 0px 30px 0px;
+  margin: 30px 0px 50px 0px;
 }
 form{
   width: 500px;
   display: table-cell;
   vertical-align: middle;
-
+  font-family: 'SCDream7';
 }
 
-div>a>img{
-  margin: 10px 0px 0px 0px;
+main div>a>img{
   width: 300px;
   height: 150px;
 }

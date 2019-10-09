@@ -24,7 +24,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" type="image⁄x-icon" href="../image/final_logo(mini_size_2).png">
+    <link rel="shortcut icon" type="image⁄x-icon" href="<%=request.getContextPath()%>/image/logo1.png">
     
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> <!--제이쿼리-->
@@ -35,7 +35,7 @@
     
     <script src="<%=request.getContextPath()%>/javascript/city-select.js" type="text/javascript"></script>
     <link href="<%=request.getContextPath()%>/css/registration.css" rel="stylesheet" type="text/css">
-    <link href="<%=request.getContextPath()%>/css/index.css" rel="stylesheet" type="text/css"> <!--my css-->   
+    <link href="<%=request.getContextPath()%>/css/main.css" rel="stylesheet" type="text/css"> <!--my css-->   
    
     <link rel="stylesheet" href="<%=request.getContextPath()%>/bootstrap-datepicker-1.6.4-dist/css/bootstrap-datepicker.css" type="text/css"><!--부트스랩 픽커-->
     <script src="<%=request.getContextPath()%>/bootstrap-datepicker-1.6.4-dist/js/bootstrap-datepicker.js" type="text/javascript"></script> 
@@ -189,7 +189,7 @@ $(document).ready(function(){
     <nav class="navbar navbar-default bs-white navbar-fixed-top">
         <div class="container">
           <div class="navbar-header">
-           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header_nav">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header_nav">
 
                     <span class="sr-only">Toggle navigation</span>
 
@@ -202,26 +202,26 @@ $(document).ready(function(){
                     <span class="icon-bar"></span>
 
                   </button>
-          <a href="./Main.do"><img src="<%=request.getContextPath()%>/image/final_logo(header).png" alt="아울러" class="logo" style="padding:0px;"></a> <!--로고-->
+          <a href="./Main.do"><img src="<%=request.getContextPath()%>/image/logo3.png" alt="아울러" class="logo" style="padding:0px;"></a> <!--로고-->
         </div>
 
-        <div class="collapse navbar-collapse"  id="header_nav">
-          <ul class="nav navbar-nav header_title" style="margin:10px;">
-            <li ><a href="./Main.do">홈 <span class="sr-only">(current)</span></a></li>
-            <li class="active"><a href="#">팀원모집 </a></li>
+        <div class="collapse navbar-collapse" id="header_nav">
+          <ul class="nav navbar-nav header_title link-header" style="margin:10px;">
+            <li><a href="./Main.do">홈 <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="./Project.bo">팀원모집 </a></li>
             <li><a href="./Contest.co">공모전 정보</a></li>
             <li><a href="./Guide.do">가이드</a></li>
           </ul>
 
 
           <form class="navbar-form form-inline  navbar-right" role="search" action="./Project.bo" method="get" id="form_box" name="tag_search">
+          	
               <div class="input-group">
                  <input type="text" name="TagSearch" id="TagSearch" class="search-box" placeholder="#해시">
                  <button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>
-              
               <% if(MemberDto==null){%>
               
-                 <div class="input-group" style="clear:both">
+                 <div class="input-group link-header" style="clear:both">
                      <a href="./LoginForm.do">로그인</a>
                 </div></div>
                 <%}else if(MemberDto!=null){ %>
@@ -231,7 +231,7 @@ $(document).ready(function(){
             <li class="dropdown">
               <a href="#"  class="dropdown-toggle navbar-img" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               <h5 style="display: inline-block;"><%=MemberDto.getMem_id() %></h5>
-              <%if(MemberDto.getMem_icon().equals("profile.jpg")){ %>
+             <%if(MemberDto.getMem_icon().equals("profile.jpg")){ %>
               <img src="<%=request.getContextPath()%>/image/profile.jpg" class="img-circle" alt="Profile Image"/>
               <%}else{
             	  System.out.println("아이콘경로있음");%>
@@ -561,7 +561,7 @@ $(document).ready(function(){
         </div>
     </main>
     
-      <footer style="background-color: white;">
+      <footer style="clear:both;">
         <div id="copyright" class="container-fluid">
           <p>성결대학교 미디어소프트웨어학부 <br> 2019 <strong>아울러.</strong> 인지해 정나영 한수지</p>
         </div>

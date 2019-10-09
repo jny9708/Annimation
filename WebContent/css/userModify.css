@@ -37,14 +37,18 @@
     }
 }
 body{
-    background: #f2f2f2 !important;
+    background: #fafafa !important;
+    font-family: 'SCDream6';
 }
-
+.container h2{
+    text-align: center;
+}
 #modify_block{
     width: 100%;
     min-height: 700px;
     background: white;
     padding: 50px;
+    border: 1px solid #dedcee;
 }
 table{
     width: 600px;
@@ -52,13 +56,14 @@ table{
     margin-right: auto;
     border-bottom: #293456 1px solid;
 }
-#modify_con{
+.modify_con{
     width: 100%;
     height: 45px;
     outline: none;
     border: 1px solid #cecece;
     margin: 0px 0px 15px 0px;
     padding-left: 10px;
+    color: #353535;
 }
 #modify_block .label_b{
     padding: 1px 15px 10px 0px;
@@ -67,7 +72,7 @@ table{
     width: 100px !important;
     margin: 0px;
 }
-#modify_text{
+.modify_text{
     width: 100%;
     outline: none;
     border: 1px solid #cecece;
@@ -90,6 +95,7 @@ table{
     margin-right: auto;
     margin-top: 20px;
     height: 60px;
+    
 }
 .btn-modify{
     font-size: 17px;
@@ -133,7 +139,7 @@ table{
     width: 300px;
     position: relative;
     top: -40px;
-    color: #2d3a5e;
+    color: #353535;
 }
 main{
     margin-bottom: 100px;

@@ -1,12 +1,3 @@
-.pagination{
-    display: block;
-    text-align: center;
-}
-.pagination > li >a{
-    float: none;
-    margin-left: -5px;
-}
-
 .container {
     padding-right: 0px;
     padding-left: 0px;
@@ -36,11 +27,15 @@
 }
 main{
     margin-bottom: 0px;
-    height: 1680px auto;
+    height: 1240px auto;
     margin-top: 10px;
+    font-family: 'SCDream6';
 }
 body{
-    background: #f2f2f2;
+    background: #fafafa;
+}
+.contest_popularity>h3{
+    text-align: center;
 }
 .contest_popularity{
     background: white;
@@ -49,16 +44,19 @@ body{
     padding: 10px;
     width: 100%;
     position: relative;
+    border: 1px solid #dedcee ;
+
 }
 .contest_popularity h3{
     margin-top: 5px;
     font-weight: bold;
     padding-left: 18px;
     padding-top: 10px;
-    color: #293456;
+    color: #3d3d3d;
+    font-family: 'SCDream7';
 }
 .contest_pop{
-    width: 93.5%;
+    width: 94%;
     display: inline-block;
     position: relative;
     left: 10px;
@@ -77,19 +75,17 @@ body{
     height: 180px;
 }
 .contest_pop h3{
-    font-size: 18px;
+    font-size: 17px;
     margin-top: 10px;
     width: 180px;
-    max-height: 38px;
+    max-height: 40px;
     padding-left: 0px;
     padding-top: 0px;
-    line-height: 21px;
+    line-height: 20px;
     white-space: normal;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-weight: 400;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: #293456;
+    color:  #3d3d3d;
 }
 .contest_pop p{
     text-align: left;
@@ -120,29 +116,43 @@ span img{
     position: relative;
     top: -1px;
     margin-left: 5px;
-    color: 
 }
 /************************************************/
 .contest_recently{
     margin-top: 10px;
     height:860px auto;
     padding: 10px;
-    auto;
 }
 .contest_recently h3{
     font-weight: bold;
     margin-bottom: 0px;
     position: relative;
     top: 5px;
-    border-bottom: 2px solid #293456;
     width: 1050px;
     height: 32px;
-    color: #293456;
+    color: #3d3d3d;
+    text-align: center;
+    display: flex;
+	flex-basis: 100%;
+	align-items: center;
+    margin: 8px 0px;
+    font-family: 'SCDream7';
+}
+
+.contest_recently h3::before,
+.contest_recently h3::after {
+	content: "";
+	flex-grow: 1;
+	background: rgba(0, 0, 0, 0.35);
+	height: 1px;
+	font-size: 0px;
+	line-height: 0px;
+	margin: 0px 16px;
 }
 .contest_re{
     display: inline-block;
     width: 1059px;
-    padding: 28px 8px 20px 8px;
+    padding: 29px 8px 20px 5px;
     padding-bottom: 0px;
 }
 .contest_card{
@@ -172,8 +182,7 @@ span img{
     text-overflow: ellipsis;
     line-height: 21px; 
     font-weight: bold;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: #293456;
+    color: #3d3d3d;
     margin: 10px 5px 10px 5px;
 }
 .contest_re a{
@@ -212,8 +221,7 @@ span img{
     margin-left: 5px;
 }
 .contest_recently nav{
-    width: 30%;
-    margin: 0 auto;
+    width: auto;
     height: 75px;
 }
 .contest_recently nav ul{
@@ -221,11 +229,18 @@ span img{
     margin-top: 10px;
     margin-bottom: 0px;
 }
+.pagination{
+    display: block;
+    text-align: center;
+}
+.pagination > li >a{
+    float: none;
+    margin-left: -5px;
+}
 .contest_recently nav li.active>a{
     background: #293456;
     color: white;
     border-color: #293456;
 }
 .contest_recently nav li>a{
-    color: #293456;
-}
+    color: #3d3d3d;

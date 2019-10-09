@@ -1,9 +1,10 @@
 header .container {
-  padding-right: 0px;
-  padding-left: 0px;
-  margin-right: auto;
-  margin-left: auto;
-}
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+    
+  }
 textarea:focus, select:focus, select[type]:focus, .uneditable-select:focus,input:focus, input[type]:focus, .uneditable-input:focus { /*부트스트랩 input 색상*/
         border-color: #157ba1;
         box-shadow: 0 0px 0px rgba(229, 103, 23, 0.075) inset, 0 0 0px rgba(229, 103, 23, 0.6);
@@ -12,11 +13,13 @@ textarea:focus, select:focus, select[type]:focus, .uneditable-select:focus,input
 .btn:focus,.btn:active {
      outline: none !important;
      box-shadow: none;
+     
 }
 .signup-block{
         margin: 30px 0px 30px 0px;
         padding: 50px 0px 50px 0px;
         display: table;
+        font-family: 'SCDream7' !important;
 }
 .row{
     display: table-cell;
@@ -30,6 +33,7 @@ textarea:focus, select:focus, select[type]:focus, .uneditable-select:focus,input
 .form-group>a{
 color:#082e3c;
 font-weight: bold;
+
 }
 .logo-{
     width: 300px;
@@ -38,4 +42,17 @@ font-weight: bold;
 }
 button{
     background-color: #fbd14b;
+    font-family: 'SCDream7' !important;
+}
+#copyright {
+    padding: 2.7em;
+    text-align: center;
+}
+
+footer{
+    margin-top: 65px;
+}
+
+#copyright p{
+    margin-top: 15px;
 }

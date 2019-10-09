@@ -38,11 +38,11 @@
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
     
     <link href="<%=request.getContextPath()%>/css/project.css" rel="stylesheet" type="text/css">
-    <link href="<%=request.getContextPath()%>/css/index.css" rel="stylesheet" type="text/css"> <!--my css--> 
+    <link href="<%=request.getContextPath()%>/css/main.css" rel="stylesheet" type="text/css"> <!--my css--> 
     <link href="<%=request.getContextPath()%>/css/userPage.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/javascript/userPage.js" rel="stylesheet" type="text/javascript">
     <script src="<%=request.getContextPath()%>/javascript/card_content.js" type="text/javascript"></script>
-    <link rel="shortcut icon" type="image⁄x-icon" href="<%=request.getContextPath()%>/image/final logo(mini size_1).png">
+    <link rel="shortcut icon" type="image⁄x-icon" href="<%=request.getContextPath()%>/image/logo1.png">
 
     <title>아울러 : 나의 페이지</title>
 </head>
@@ -107,12 +107,12 @@ function star(boa_id) {
                     <span class="icon-bar"></span>
 
                   </button>
-          <a href="./Main.do"><img src="<%=request.getContextPath()%>/image/final_logo(header).png" alt="아울러" class="logo" style="padding:0px;"></a> <!--로고-->
+          <a href="./Main.do"><img src="<%=request.getContextPath()%>/image/logo3.png" alt="아울러" class="logo" style="padding:0px;"></a> <!--로고-->
         </div>
 
         <div class="collapse navbar-collapse" id="header_nav">
-          <ul class="nav navbar-nav header_title" style="margin:10px;">
-            <li ><a href="./Main.do">홈 <span class="sr-only">(current)</span></a></li>
+          <ul class="nav navbar-nav header_title link-header" style="margin:10px;">
+            <li><a href="./Main.do">홈 <span class="sr-only">(current)</span></a></li>
             <li><a href="./Project.bo">팀원모집 </a></li>
             <li><a href="./Contest.co">공모전 정보</a></li>
             <li><a href="./Guide.do">가이드</a></li>
@@ -120,13 +120,13 @@ function star(boa_id) {
 
 
           <form class="navbar-form form-inline  navbar-right" role="search" action="./Project.bo" method="get" id="form_box" name="tag_search">
+          	
               <div class="input-group">
                  <input type="text" name="TagSearch" id="TagSearch" class="search-box" placeholder="#해시">
                  <button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>
-              
               <% if(MemberDto==null){%>
               
-                 <div class="input-group" style="clear:both">
+                 <div class="input-group link-header" style="clear:both">
                      <a href="./LoginForm.do">로그인</a>
                 </div></div>
                 <%}else if(MemberDto!=null){ %>
@@ -136,13 +136,12 @@ function star(boa_id) {
             <li class="dropdown">
               <a href="#"  class="dropdown-toggle navbar-img" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               <h5 style="display: inline-block;"><%=MemberDto.getMem_id() %></h5>
-              <%if(MemberDto.getMem_icon().equals("profile.jpg")){ %>
+             <%if(MemberDto.getMem_icon().equals("profile.jpg")){ %>
               <img src="<%=request.getContextPath()%>/image/profile.jpg" class="img-circle" alt="Profile Image"/>
               <%}else{
             	  System.out.println("아이콘경로있음");%>
             	  <img src="<%=request.getContextPath()%>/image/<%=MemberDto.getMem_icon()%>" class="img-circle" alt="Profile Image"/>
             	  <%} %>
-            	  
               </a>
               <ul class="dropdown-menu">
                 <li><a href="./UserPageApp.do?mem_no=<%=MemberDto.getMem_no()%>">마이페이지</a></li>
@@ -181,13 +180,14 @@ function star(boa_id) {
             	<% }%>
                         
           </div>
-          <%if(logincheck==1){
+          
+          
+     </div>
+     <%if(logincheck==1){
           		if(MemberDto.getMem_no()==UserInfo.getMem_no()){%>
         	<button class="btn my_modify" type="submit" name="sp_deletion" onclick="location.href='./UserUpdateForm.do'">회원 수정 및 탈퇴</button>  
           <%	} 
-          	}%>
-          
-     </div> 
+          	}%> 
   </div>
 
 
@@ -333,12 +333,12 @@ function star(boa_id) {
      
       
     </div><!--탭전체 끝-->
-   
+   </div>
 </main>
 </div><!--저체 닫기-->
 
 
-<footer style="clear:both; background-color: white;">
+<footer style="clear:both; ">
   <div id="copyright" class="container">
     <p>성결대학교 미디어소프트웨어학부 <br> 2019 <strong>아울러.</strong> 인지해 정나영 한수지</p>
   </div>

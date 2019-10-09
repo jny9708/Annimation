@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <link href="<%=request.getContextPath()%>/css/index.css" rel="stylesheet" type="text/css"> <!--my css-->
+	<link rel="shortcut icon" type="image⁄x-icon" href="<%=request.getContextPath()%>/image/logo1.png">
+    <link href="<%=request.getContextPath()%>/css/main.css" rel="stylesheet" type="text/css"> <!--my css-->
     <link href="<%=request.getContextPath()%>/css/signup.css"rel="stylesheet" type="text/css">
     <link href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css" rel="stylesheet"> <!--부트스트랩-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><!--제이쿼리-->
@@ -33,13 +33,13 @@
                     <span class="icon-bar"></span>
 
                   </button>
-          <a href="./Main.do"><img src="<%=request.getContextPath()%>/image/final_logo(header).png" alt="아울러" class="logo" style="padding:0px;"></a> <!--로고-->
+          <a href="./Main.do"><img src="<%=request.getContextPath()%>/image/logo3.png" alt="아울러" class="logo" style="padding:0px;"></a> <!--로고-->
         </div>
 
-        <div class="collapse navbar-collapse"  id="header_nav">
-          <ul class="nav navbar-nav header_title" style="margin:10px;">
+        <div class="collapse navbar-collapse" id="header_nav">
+          <ul class="nav navbar-nav header_title link-header" style="margin:10px;">
             <li ><a href="./Main.do">홈 <span class="sr-only">(current)</span></a></li>
-            <li><a href="./Project.bo">팀원모집 </a></li>
+            <li><a href="./Project.bo">팀원모집</a></li>
             <li><a href="./Contest.co">공모전 정보</a></li>
             <li><a href="./Guide.do">가이드</a></li>
           </ul>
@@ -52,9 +52,10 @@
                  <button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>
               
               
-                 <div class="input-group">
+                 <div class="input-group link-header">
                      <a href="./LoginForm.do">로그인</a>
                 </div></div>
+     
 
         </form>
       </div>
@@ -65,7 +66,7 @@
     <div class="container signup-block">
               <form role="form" name="loginform" action="./MemberJoin.do" method="post">
                 <div style="text-align: center">
-                    <a href="<%=request.getContextPath()%>/Main.do"><img src="<%=request.getContextPath()%>/image/final_logo(non_writting).png" alt="아울러"></a>
+                    <a href="<%=request.getContextPath()%>/Main.do"><img src="<%=request.getContextPath()%>/image/logo_6.png" alt="아울러"></a>
                 </div>
                         
                 <div class="form-group">

@@ -1366,7 +1366,7 @@ public int BoardInsert(ProBoardDto ProBoardDto) {
 		Connection connection = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql="select *,TO_DAYS(boa_rec_deadline)-TO_DAYS(now())as d_day from pro_board limit 2";
+		String sql="select *,TO_DAYS(boa_rec_deadline)-TO_DAYS(now())as d_day from pro_board order by boa_reg_date desc limit 4";
 		try {
 			connection = ds.getConnection();
 			pstmt = connection.prepareStatement(sql);

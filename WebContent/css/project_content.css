@@ -1,4 +1,5 @@
-﻿.container {
+
+.container {
     padding-right: 0px;
     padding-left: 0px;
     margin-right: auto;
@@ -121,13 +122,15 @@
   /*/컨테이너************************************************/
   
 body{
-    background: #f2f2f2;
+    background: #fafafa;
+    font-family: 'SCDream5' !important;
 }
 .proContent_block{
     margin-top: 3px;
     margin-bottom: 20px;
     background: white;
     padding: 0px;
+    border: #e9e8f7 solid 1px !important;
 }
 .con_number{
   margin:0px; 
@@ -142,14 +145,16 @@ body{
     width: 100%;
     height: 100px;
     align-content: center;
-    border-top: 2px solid #293456;
-    border-bottom: 2px solid #293456;
+    border-top: 1px solid #293456;
+    border-bottom: 1px solid #293456;
     text-align: center;   
+    
 }
 .proCon_title h1{
     height: 100px auto;
     display: table-cell;
     vertical-align: middle;
+    font-family: 'SCDream7' !important;
 }
 /*게시글 제목*/
 /*유저 정보*/
@@ -186,6 +191,7 @@ body{
     border-bottom: 1px solid #1b2339;
     border-left: 1px solid #d9dde8;
     margin-bottom: 20px;
+    
 }
 #proCon_User_2_b{
   width: 305px;
@@ -194,13 +200,13 @@ body{
   margin-left: auto;
   margin-top: 20px;
   color: #999999;
+  
 }
 #proCon_User_2_b table tr td b{
   color: black;
-  
+  font-family: 'SCDream5' !important;
 }
 #proCon_User_2_b table tr td{
-  font-family: '고딕';
   font-size:17px;
   padding: 5px 20px 5px 10px;
   border: none;
@@ -216,7 +222,7 @@ body{
     width: 200px;
     height: 100px;
     background: #fbd14b;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: 'Smart' !important;
     text-align: center;
     line-height: 100px; 
     margin-right: auto;
@@ -230,32 +236,33 @@ body{
 #proCon_basic{
   height: 400px !important;
   margin-bottom: 20px;
+
 }
 #proCon_basic h2{
   padding:20px 0 10px 20px; 
-  border-bottom: 1px solid #293456;
+  border-bottom: 1px solid #352e26;
   margin: 0px;
   font-weight: bolder;
-  color: #293456;
-
+  color: #352e26;
+  font-family: 'SCDream7' !important;
 }
 #proCon_basic table{
-  width: 550px;
+  width: 500px;
   height: 300px;
   margin-left: 60px;
   margin-top: 30px;
 }
 #proCon_basic #proCon_basic_w table tr td{
-  font-family:'고딕';
+  font-family: 'SCDream7' !important;
   font-size:18px;
   color: #999999;
-  width: 200px !important;
+  width: 100px !important;
  border: none;
-  padding: 0px 0px 0px 60px;
+
 }
 .basic_font{
-  color: black !important;
-  font-weight: bold;
+  color: #272726 !important;
+
 }
 #proCon_basic table tr td span{
   position: relative;
@@ -263,7 +270,6 @@ body{
   color: black;
 }
 .basic_point{
-  border-top: #f2f2f2 2px solid !important;
   padding-top: 10px !important;
 }
 
@@ -276,16 +282,18 @@ body{
 }
 #proCon_add h2{
   padding:20px 0 10px 20px; 
-  border-bottom: 1px solid #293456;
+  border-bottom: 1px solid #352e26;
   margin: 0px;
   font-weight: bolder;
-  color: #293456;
+  color: #352e26;
+  font-family: 'SCDream7' !important;
 }
 #proCon_add img{
   width: 100%;
 }
 #proCon_add p{
   margin: 10px 0px 10px 0px;
+  
 }
 .add_content{
   padding: 30px 60px 30px 60px;
@@ -295,7 +303,6 @@ body{
   border-top: #d9dde8 1px solid;
   padding: 12px 0px 12px 0px;
   font-size: 18px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   margin-top: 40px;
 }
 /*/추가내용*/
@@ -306,10 +313,11 @@ body{
 }
 #proCon_hash h2{
   padding: 20px 0 10px 20px; 
-  border-bottom: 1px solid #293456;
+  border-bottom: 1px solid #352e26;
   margin: 0px;
   font-weight: bolder;
-  color: #293456;
+  color: #352e26;
+  font-family: 'SCDream7' !important;
 }
 .hash_content{
   min-width: 720px;
@@ -323,25 +331,26 @@ body{
   padding: 6px 10px 5px 10px;
   margin-right: 10px;
   border-radius: 20px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-weight: bold;
+
+  font-family: 'SCDream7' !important;
 }
 #proCon_hash .hash_content a:hover{
   text-decoration: none;
-  color: #455890;
+  background-color:#f5a110;
+  color: #352e26;
 }
 /*/*************************해시태그**************************/
 
 /****************************사이드바*************************/
 #sidebar{
-  display: inline-block;
-  float:left;
+  float: left !important;
   width: 130px;
   height: auto;
   background-color: #293456;
   color: white;
   margin-right: 0px;
   margin-top: 25px;
+  font-family: 'SCDream7';
 }
 
 .sidebar_login{
@@ -356,9 +365,10 @@ body{
 }
 .w3-button:hover{
   background: #fbd14b !important;
-  color: white !important;
-  font-weight: bold !important;
+  color: #272726 !important;
+  font-weight:600 !important;
   text-decoration: none;
+
 }
 .w3-button:active, .w3-button:focus{
   color: white !important;
@@ -378,13 +388,15 @@ main{
   min-height: 200px;
   width: 100%;
   margin-top: 10px;
+  border: #e9e8f7 solid 1px !important;
 }
 #support h2{
   padding:20px 0 10px 20px; 
-  border-bottom: 1px solid #293456;
+  border-bottom: 1px solid #352e26;
   margin: 0px;
   font-weight: bolder;
-  color: #293456;
+  color: #352e26;
+  font-family: 'SCDream7' !important;
 }
 #support_block{
   width: 90%;
@@ -402,7 +414,7 @@ main{
   border-radius: 0px !important;
 }
 #support_block .panel-heading{
-  background: #afe3ee !important;
+  background: #ffe29a !important;
   border-radius: 0px !important;
 }
 .c_support_content{
@@ -412,11 +424,12 @@ main{
   margin: 0px 10px 0px 10px;
   padding: 0px;
   height: 25px;
+  font-family: 'SCDream7' !important;
 }
 
 .c_support_content> li {
   display:inline-block;                     /*  세로나열을 가로나열로 변경 */
-  border-left:1px solid #293456;             /* 각 메뉴의 왼쪽에 "|" 표시(분류 표시) */                  
+  border-left:1px solid #e2e2e2;             /* 각 메뉴의 왼쪽에 "|" 표시(분류 표시) */                  
   padding:0 25px;                        /* 각 메뉴 간격 */
   
   
@@ -441,6 +454,7 @@ main{
   top: -3px;
   border-radius: 0px;
   font-weight: bold;
+  font-family: 'SCDream7' !important;
 }
 #support_block .btn-default:focus{
   background: #f2f2f2;
@@ -453,6 +467,7 @@ main{
   float: left;
   width: 200px;
   min-height: 400px;
+  
 }
 #support_content_ask{
   display: inline;
@@ -515,7 +530,7 @@ main{
   padding: 20px;
   width: 100%;
   overflow: auto;
-
+  font-family: 'SCDream5' !important;
 }
 #lone img{
   width: 100%;;
@@ -546,13 +561,15 @@ main{
   min-height: 200px;
   width: 100%;
   margin-top: 30px;
+  border: #e9e8f7 solid 1px !important;
 }
 #application h2{
   padding:20px 0 10px 20px; 
-  border-bottom: 1px solid #293456;
+  border-bottom: 1px solid #272726;
   margin: 0px;
   font-weight: bolder;
-  color: #293456;
+  color: #272726;
+  font-family: 'SCDream7' !important;
 }
 #summernote{
   background: white;
@@ -591,6 +608,7 @@ width: 99%;
   -webkit-transition-duration: 0.5s;
   -webkit-transition-timing-function: linear;
   box-shadow:0px 0 0 #fbd14b inset;
+  font-family: 'SCDream7' !important;
 }
 .btn-change7:hover{
   box-shadow:100px 0 0 #fbd14b inset;
@@ -610,11 +628,13 @@ width: 99%;
   -webkit-transition-duration: 0.5s;
   -webkit-transition-timing-function: linear;
   box-shadow:0px 0 0 #fbd14b inset;
+  font-family: 'SCDream7' !important;
 }
 .btn-modify:hover{
   box-shadow:100px 0 0 #fbd14b inset;
   color: #1b2339;
   font-size: 17px;
+  font-family: 'SCDream7' !important;
 }
 
 /**섬머노트수정********************/
@@ -697,13 +717,15 @@ top: 0px;
   width: 100%;
   margin-top: 30px;
   margin-bottom: 100px;
+  border: #e9e8f7 solid 1px !important;
 }
 #recommen h2{
   padding:20px 0 10px 20px; 
-  border-bottom: 1px solid #293456;
+  border-bottom: 1px solid #272726;
   margin: 0px;
   font-weight: bolder;
-  color: #293456;
+  color: #272726;
+  font-family: 'SCDream5' !important;
 }
 .recommen_card{
   padding: 30px 10px 10px 10px;
@@ -716,6 +738,7 @@ top: 0px;
     float: left;
     width: 300px;
     height: 140px;
+    
 }
 
 .threeline ul{

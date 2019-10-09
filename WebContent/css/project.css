@@ -1,9 +1,25 @@
-header .container {
-  padding-right: 0px;
-  padding-left: 0px;
-  margin-right: auto;
-  margin-left: auto;
+@font-face {
+    font-family: 'Smart';
+    src: url(../font/smart.ttf) format('truetype');
 }
+@font-face {
+    font-family: 'SCDream7';
+    src: url(../font/SCDream7.otf) format('truetype');
+}
+@font-face {
+    font-family: 'SCDream5';
+    src: url(../font/SCDream5.otf) format('truetype');
+}
+@font-face {
+    font-family: 'NotoSansCJKkr-Black';
+    src: url(../font/NotoSansCJKkr-Black.otf) format('truetype');
+}
+header .container {
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+  }
 textarea:focus, select:focus, select[type]:focus, .uneditable-select:focus,input:focus, input[type]:focus, .uneditable-input:focus { /*부트스트랩 input 색상*/
     border-color: #082e3c;
     box-shadow: 0 0px 0px rgba(229, 103, 23, 0.075) inset, 0 0 0px rgba(229, 103, 23, 0.6);
@@ -17,19 +33,22 @@ textarea:focus, select:focus, select[type]:focus, .uneditable-select:focus,input
     box-shadow: inset 0 0px 0px rgba(0,0,0,.075),0 0 0px rgba(102,175,233,.6)!important;
   }
   body{
-    background: #f2f2f2;
+    font-family: 'SCDream5';
 }
 #project-name{
     float: left;
+    font-family: 'SCDream7';
 }
 
 .btn-warning:hover,
 .btn-warning:active{
-    background: #fbd14b;
-     border: #fbd14b;
+    background: white;
+    border: #fbd14b 2px dashed;
+    Transition: all 500ms;
+    color:black;
 }
 .btn-warning:focus,
- .btn-warning{
+.btn-warning{
      float: right;
      margin: 5px 0px 10px 0px;
      outline: none !important;
@@ -40,12 +59,13 @@ textarea:focus, select:focus, select[type]:focus, .uneditable-select:focus,input
      -webkit-border-radius: 32px;
      -moz-border-radius: 32px;
      border-radius: 32px;
-     
+     font-family: 'SCDream7'; 
  }
 main>section.container{
     display: table;
     margin-top: 20px;
 }
+
 .con-block{
     display: table-cell;
     vertical-align: middle;
@@ -109,6 +129,7 @@ section .col-sm-12{ /*카드 마진*/
 }
 .oneline{
     border: 1px solid white;
+    font-weight: 600;
 }
 .oneline ul{
     padding: 0px;
@@ -129,13 +150,14 @@ section .col-sm-12{ /*카드 마진*/
 .oneline ul li a{
     width: 400px auto;
     height: 45px;
-    line-height: 50px;
+    line-height: 45px;
     text-overflow: ellipsis; 
     white-space  : nowrap;    
     overflow     : hidden;    
     display      : inline-block;
     font-size: 24px;
-    color: #082e3c;
+    color: #303030;
+    text-decoration: none;
 }
 
 .oneline button {
@@ -207,19 +229,22 @@ section .col-sm-12{ /*카드 마진*/
 }
 #hash_font>a,
 #hash_font{
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
     line-height:50px;
-    color:#082e3c;
+    color:#303030;
 }
 
 #hash_font>a:hover{
     text-decoration: none;
-    background: #282c57;
+    background: #ecc543;
     color: white;
+    border-radius:10px;
+    padding: 5px;
 }
 #hash_font>a{
     margin: 0px 5px 0px 5px;
+    padding: 5px;
 }
 #card_hash{
     margin: 0px 0px 5px 0px !important;
@@ -298,10 +323,11 @@ margin-bottom: 0px;}                     /*  상단 여백 10px  */
         }
         #maun_card>li>a{
             color: #999999;
+            font-weight: 600;
         }
         #maun_card> li:first-child{border-left:none;}     /* 메뉴 분류중 제일 왼쪽의 "|"는 삭제    */
         #maun_card>li.active>a{
-            color: #082e3c;
+            color: #3b3b3b;
         }
         .pagination{
             display: block;
@@ -323,6 +349,7 @@ margin-bottom: 0px;}                     /*  상단 여백 10px  */
     width: 100%;
     margin-bottom: 10px;
     border-bottom: #082e3c 1px solid;
+    font-weight: 600;
 }
 #area_item{
     width: 92.7%;
@@ -347,6 +374,7 @@ margin-bottom: 0px;}                     /*  상단 여백 10px  */
     color: #082e3c;
     position: relative;
     left: -15px;
+    font-weight: 600;
 }
 #check_finish:active,#check_finish:visited,#check_finish:focus{
 outline: #082e3c 1px solid;
@@ -356,12 +384,14 @@ outline: #082e3c 1px solid;
     width: 900px;
     margin-right: auto;
     margin-left: auto;
+ 
 
 }
 
 .checkList ul{
     width: 100%;
     padding: 0px;
+    font-family: 'SCDream5' !important;
 }
 
 .checkList ul li { 
@@ -373,6 +403,7 @@ outline: #082e3c 1px solid;
     font: 12px Dotum; /* 폰트 설정 - 12px의 돋움체 굵은 글씨로 표시 */ 
     padding:0 20px; /* 각 메뉴 간격 */ 
     margin-top: 8px;
+    font-family: 'SCDream5' !important;
 }
 .tab-content{
     width: 100%;
@@ -412,6 +443,7 @@ outline: #082e3c 1px solid;
 }
 #btnReset:focus{
     outline: #082e3c 1px solid;
+  
  
 }
 #viewhidden:focus,#viewhidden:active,#viewhidden:visited,#viewhidden{
@@ -437,3 +469,8 @@ outline: #082e3c 1px solid;
 /*상세 검색 지역*/
 
 
+/***************************************/
+
+main{
+    margin-bottom: 70px;
+}

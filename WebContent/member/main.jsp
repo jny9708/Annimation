@@ -22,19 +22,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <link href="<%=request.getContextPath()%>/css/index.css" rel="stylesheet" type="text/css"> <!--my css-->
-    <link rel="shortcut icon" type="image⁄x-icon" href="<%=request.getContextPath()%>/image/final_logo(mini_size_2).png">
+    
+    <link href="<%=request.getContextPath()%>/css/main.css" rel="stylesheet" type="text/css"> <!--main css-->
+    <link rel="shortcut icon" type="image⁄x-icon" href="<%=request.getContextPath()%>/image/logo1.png"><!--로고-->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css" rel="stylesheet"> <!--부트스트랩-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> <!--부트스트랩-->
-    <link href="<%=request.getContextPath()%>/css/project.css" rel="stylesheet" type="text/css">
-    <script src="<%=request.getContextPath()%>/javascript/index.js"></script><!--index js-->
-    <script src="<%=request.getContextPath()%>/javascript/ScrollTrigger.min.js"></script><!--애니메이션효과js-->
-    <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,300,500,700" rel="stylesheet"><!--애니메이션효과css-->
-    <link href="<%=request.getContextPath()%>/css/demo.css" rel="stylesheet" type="text/css"> <!--애니메이션효과css-->
-    <script src="<%=request.getContextPath()%>/javascript/card_content.js" type="text/javascript"></script><!--카드-->
+ 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><!--제이쿼리-->
+    <link href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css" rel="stylesheet"> <!--부트스트랩CSS-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> <!--부트스트랩JS-->
+    <script src="<%=request.getContextPath()%>/javascript/main.js"></script><!--main js-->
   <title>함께 만들어가다. : 아울러</title>
     <script>
       window.counter = function() {
@@ -71,11 +67,11 @@
                     <span class="icon-bar"></span>
 
                   </button>
-          <a href="./Main.do"><img src="<%=request.getContextPath()%>/image/final_logo(header).png" alt="아울러" class="logo" style="padding:0px;"></a> <!--로고-->
+          <a href="./Main.do"><img src="<%=request.getContextPath()%>/image/logo3.png" alt="아울러" class="logo" style="padding:0px;"></a> <!--로고-->
         </div>
 
         <div class="collapse navbar-collapse" id="header_nav">
-          <ul class="nav navbar-nav header_title" style="margin:10px;">
+          <ul class="nav navbar-nav header_title link-header" style="margin:10px;">
             <li class="active"><a href="./Main.do">홈 <span class="sr-only">(current)</span></a></li>
             <li><a href="./Project.bo">팀원모집 </a></li>
             <li><a href="./Contest.co">공모전 정보</a></li>
@@ -90,7 +86,7 @@
                  <button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>
               <% if(MemberDto==null){%>
               
-                 <div class="input-group" style="clear:both">
+                 <div class="input-group link-header" style="clear:both">
                      <a href="./LoginForm.do">로그인</a>
                 </div></div>
                 <%}else if(MemberDto!=null){ %>
@@ -122,101 +118,145 @@
 </header>
 
 <main>
-  <div class="container-fulid">
-    
-      <div class="welcome-section content-hidden">
-        <div class="content-wrap">
-            <div class="container">
-            <ul class="fly-in-text fly">
-                <li class="image blinking">함께 만들어가다.</li>
-                <li class="image blinking">아울러</li>
-            </ul>
-
-            <a href="./Project.bo" class="enter-button">팀원 모집</a>&emsp;
-            <a href="#" class="enter-button">가이드</a>
-        </div>
-    </div>
-    </div>
-      
-    
-      <div id="introduction">
-        <div class="container">
-
-              <h1 data-scroll="toggle(.fromTopIn, .fromTopOut)" class="fromTopIn">아울러란?</h1>
-              <div class="inin_con" data-scroll="toggle(.fromBottomIn, .fromBottomOut)" class="fromBottomIn">
-                웹 애니메이션을 제작하기 위해서는 다양한 분야의 직군들이 필요합니다. <br>
-                하지만 각 분야별 직군의 사람들은 본인의 분야 이외의 작업을 할 경우가 드물며 다른 직군의 제작자들을 찾는 데에도 시간적, 공간적 제약이 따르게 됩니다.<br> 
-                이와 같은 불편함을 해소시키기 위해 웹 애니메이션 제작자들이 협업할 사람들을 쉽고 편리하게 구할 수 있는 통합 서비스인 <strong>아울러</strong>가 등장했습니다.
+  <div class="main_intro">
+          <div id="carousel_intro" class="carousel slide" data-ride="carousel">
+           <ol class="carousel-indicators">
+              <li data-target="#carousel_intro" data-slide-to="0" class="active"></li>
+              <li data-target="#carousel_intro" data-slide-to="1"></li>
+              <li data-target="#carousel_intro" data-slide-to="2"></li>
+            </ol>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+              <div class="item active">
+                <img src="<%=request.getContextPath()%>/image/intro_2.png" alt="intro_1">
+                <div class="carousel-caption">  
+                </div>
+              </div>
+              <div class="item">
+                <img src="<%=request.getContextPath()%>/image/intro_5.png" alt="intro_2">
+                <div class="carousel-caption">
+                </div>
+              </div>
+              <div class="item">
+                <img src="<%=request.getContextPath()%>/image/intro_img5.png" alt="intro_2">
+                <div class="carousel-caption">
+                </div>
               </div>
             </div>
-  
-        </div>
-
-      
-      <div id="advantage">
-        <div class="container">
-          <h1 data-scroll="toggle(.fromTopIn, .fromTopOut)" class="fromTopIn">아울러 특징</h1>
-          <div class="circle_con">
-              <div id="ad_circle1" class="circle" data-scroll="toggle(.scaleDownIn, .scaleDownOut)" class="scaleDownIn" onmouseover="mover1()" onmouseout="mout1()">맞춤형 웹사이트</div>
-              <div id="ad_circle2" class="circle" data-scroll="toggle(.scaleDownIn, .scaleDownOut)" class="scaleDownIn" onmouseover="mover2()" onmouseout="mout2()">손쉬운 지원방식</div>
-              <div id="ad_circle3" class="circle" data-scroll="toggle(.scaleDownIn, .scaleDownOut)" class="scaleDownIn" onmouseover="mover3()" onmouseout="mout3()">팀원 모집과 공모전 정보를 하나로</div>
           </div>
-        </div>
-      </div>
-
-      <div id="latest">
-        <div class="container">
-          <h1 data-scroll="toggle(.fromTopIn, .fromTopOut)" class="fromTopIn"><a href="./Project.bo">최신모집>></a></h1>
-          <div data-scroll="toggle(.fromBottomIn, .fromBottomOut)" class="fromBottomIn">
-            
-            <%for(int i=0; i<newly_list.size(); i++){ %>
-            
-            
-            <div id="dede">
-              <div id="card_User">
-                <a href="./UserPageApp.do?mem_no=<%=newly_list.get(i).getMem_no()%>">
-                
-                <%if(newly_list.get(i).getMem_icon().equals("profile.jpg")){ %>
-                <img src="<%=request.getContextPath()%>/image/profile.jpg" alt="User-img" class="projact_card_U img-circle" data-toggle="tooltip" title="닉네임 페이지 보기" data-original-title="Default tooltip">
-                <%}else{
-                	System.out.println("아이콘경로있음");%>
-                	<img src="<%=request.getContextPath()%>/image/<%=newly_list.get(i).getMem_icon()%>" alt="User-img" class="projact_card_U img-circle" data-toggle="tooltip" title="닉네임 페이지 보기" data-original-title="Default tooltip">
-                	<%} %>
-                </a>
-                <p class="projact_card_U_font"><%=newly_list.get(i).getMem_nickname() %><br><small><%=newly_list.get(i).getMem_job() %></small></p>
-              </div>
-            
-              <div id="card_content">
-                <div class="oneline">
-                  <ul>
-                    <li class="oneline_team"><%=newly_list.get(i).getBoa_region()%></li>
-                    <li><a href="./ProDetail.bo?no=<%=newly_list.get(i).getBoa_no()%>"><%=newly_list.get(i).getBoa_title()%></a>  
-                      <button class='star' type="button" title="스크랩" data-toggle="tooltip" onclick="star(<%=newly_list.get(i).getBoa_no()%>)" title="스크랩" data-original-title="Default tooltip">
-                      <%
-               			for(int j=0; j<sc_list.size(); j++){
-               				if(sc_list.get(j)==newly_list.get(i).getBoa_no()){%>
-               			<img id="i_<%=newly_list.get(i).getBoa_no()%>" src="<%=request.getContextPath()%>/image/yellowstar.png">
-               					 
-               				<%roop=1;}
-               				}if(roop!=1){%>
-               					<img id="i_<%=newly_list.get(i).getBoa_no()%>" src="<%=request.getContextPath()%>/image/graystar.png">		
-               				<%}roop=0; %>
-               				
-                      </button>            
-                    </li>
-                    <li><small style="float:right;">등록날짜|&nbsp;&nbsp;2019-04-23</small></li>
-                  </ul> 
+        </div><!--intro-->
+        
+        <article>
+            <div class="container">
+                    <nav class="navbar navbar-default">
+                            <ol class="nav navbar-nav nav-indicators">
+                                <li data-target="#InCarousel" data-slide-to="0" class="InCarousel-target active" style="display: none"> 
+                                    <a href="#">아울러란</a>
+                                </li>
+                                <li data-target="#InCarousel" data-slide-to="1" class="InCarousel-target">
+                                    <a href="#">맞춤형 사이트</a>
+                                </li>
+                                <li data-target="#InCarousel" data-slide-to="2" class="InCarousel-target in_margin_left">
+                                    <a href="#">손 쉬운 지원방식</a>
+                                </li>
+                                <li data-target="#InCarousel" data-slide-to="3" class="InCarousel-target in_margin_left">
+                                    <a href="#">모든 정보를 하나로</a>
+                                </li>
+                            </ol>
+                        </nav>
+            </div>
+           
+                    
+            <div id="InCarousel" class="carousel">
+                <div class="carousel-inner">
+                          <div data-slide-no="0" class="item carousel-item active">
+                            <div class="wrapper">
+                              <img src="<%=request.getContextPath()%>/image/in_img3.png" class="img-responsive" style="width:50%; float: left;">
+                              <div class="in_intro">
+                                  <h1>
+                                      <span class="in_h1">아울러는</span>
+                                        <a class="carousel-control left" href="#InCarousel" data-slide="prev">
+                                          <span class="icon-prev"></span>
+                                        </a>
+                                        <a class="carousel-control right" href="#InCarousel" data-slide="next">
+                                          <span class="icon-next"></span>
+                                        </a>
+                                </h1>
+                                  <p>  웹 애니메이션을 제작하기 위해서는 다양한 분야의 직군들이 필요합니다. <br>
+                                    하지만 각 분야별 직군의 사람들은 본인의 분야 이외의 작업을 할 경우가 드물며 다른 직군의 제작자들을 찾는 데에도 시간적, 공간적 제약이 따르게 됩니다.<br> 
+                                    이와 같은 불편함을 해소시키기 위해 웹 애니메이션 제작자들이 협업할 사람들을 쉽고 편리하게 구할 수 있는 통합 서비스인 <strong>아울러</strong>가 등장했습니다.</p>
+                                    <button onclick="location.href = './Project.bo' " class="in_but">함께하기</button>
+                                  </div>
+                            </div>
+                          </div>
+                          <div data-slide-no="1" class="item carousel-item">
+                            <div class="wrapper">
+                              <img src="<%=request.getContextPath()%>/image/Characteristics_1.png" class="img-responsive" style="width:50%; height:auto;float: left;">
+                              <div class="in_intro">
+                                    <h1>
+                                        <span class="in_h1">맞춤형 웹사이트</span>
+                                          <a class="carousel-control left" href="#InCarousel" data-slide="prev">
+                                            <span class="icon-prev"></span>
+                                          </a>
+                                          <a class="carousel-control right" href="#InCarousel" data-slide="next">
+                                            <span class="icon-next"></span>
+                                          </a>
+                                  </h1>
+                                  <p> 아마추어 웹 애니메이션 제작자들의 웹 애니메이션 제작을 고려한 <br>팀원 모집 사이트</p>
+                                  <button onclick="location.href = './Project.bo' " class="in_but">함께하기</button>
+                                </div>
+                            </div>
+                          </div>
+                          <div data-slide-no="2" class="item carousel-item">
+                            <div class="wrapper">
+                                <img src="<%=request.getContextPath()%>/image/Characteristics_2.png" class="img-responsive" style="width:50%; height:auto;float: left;">
+                                <div class="in_intro">
+                                        <h1>
+                                            <span class="in_h1">손 쉬운 지원방식</span>
+                                              <a class="carousel-control left" href="#InCarousel" data-slide="prev">
+                                                <span class="icon-prev"></span>
+                                              </a>
+                                              <a class="carousel-control right" href="#InCarousel" data-slide="next">
+                                                <span class="icon-next"></span>
+                                              </a>
+                                      </h1>
+                                      <p>댓글 지원 형식을 사용한 간단한 지원방식</p>
+                                      <button onclick="location.href = './Project.bo' " class="in_but">함께하기</button>
+                                    </div>
+                            </div>
+                          </div>
+                          <div data-slide-no="3" class="item carousel-item">
+                            <div class="wrapper">
+                                <img src="<%=request.getContextPath()%>/image/Characteristics_3.png" class="img-responsive" style="width:50%; height:auto;float: left;">
+                                <div class="in_intro">
+                                        <h1>
+                                            <span class="in_h1">모든 정보를 하나로</span>
+                                              <a class="carousel-control left" href="#InCarousel" data-slide="prev">
+                                                <span class="icon-prev"></span>
+                                              </a>
+                                              <a class="carousel-control right" href="#InCarousel" data-slide="next">
+                                                <span class="icon-next"></span>
+                                              </a>
+                                      </h1> 
+                                      <p>팀원 모집과 공모전 정보를 통합적으로 볼수 있는 사이트</p>
+                                    <button onclick="location.href = './Project.bo' " class="in_but">함께하기</button>
+                            </div>
+                          </div>
                 </div>
-                <div class="twoline">
-                  <table class="table">
-                    <tr>
-                      <td id="twoline_title">모집분야</td>
-                      <td ><b id="twoline_content"><%=newly_list.get(i).getBoa_job()%></b></td>
-                    </tr>
-                    <tr>
-                      <td id="twoline_title">작업기간</td>
-                      <td><b id="twoline_content">
-                      <%if(newly_list.get(i).getBoa_pro_period().equals("Period_Week")){%>
+                   
+                        
+            </div>  
+        </article>
+        
+        <div class="hr-sect"><a href="./Project.bo">최신 모집</a></div>
+        <div class="latest_box">
+       		<%for(int i=0; i<newly_list.size(); i++){ %>
+       		 <div class="small_box">
+              <h2><a href="./ProDetail.bo?no=<%=newly_list.get(i).getBoa_no()%>"><%=newly_list.get(i).getBoa_title()%></a></h2>
+              <ul>
+                <li>모집 분야 : <b><%=newly_list.get(i).getBoa_job()%></b></li>
+                <li>작업 기간 : <b>
+                <%if(newly_list.get(i).getBoa_pro_period().equals("Period_Week")){%>
                         ~1주일
                         <%}else if(newly_list.get(i).getBoa_pro_period().equals("Period_One")){ %>
                         1주일 ~ 1개월
@@ -227,47 +267,24 @@
                         <%}else if(newly_list.get(i).getBoa_pro_period().equals("Period_Year")){ %>
                         6개월 ~ 1년
                         <%} %>
-                        </b></td>
-                    </tr>
-                    <tr>
-                      <td id="twoline_title">마감날짜</td>
-                      <td><b id="twoline_content">
-                       <%if(newly_list.get(i).getBoa_d_day()>0){ %>
+                </b></li>
+                <li>마감 날짜 : <b>
+                 <%if(newly_list.get(i).getBoa_d_day()>0){ %>
                       D - <%=newly_list.get(i).getBoa_d_day()%>
                       <%}else if(newly_list.get(i).getBoa_d_day()==0){ %>
                       TODAY
                       <%}else if(newly_list.get(i).getBoa_d_day()<0){  int d_day=Math.abs(newly_list.get(i).getBoa_d_day()); %>
                       D + <%=d_day%>
                       <%} %>
-                      </b></td>
-                    </tr>
-                    <tr>
-                      <td id="twoline_title">모집인원</td>
-                      <td><b id="twoline_content"><%=newly_list.get(i).getApp_number()%>/<%=newly_list.get(i).getBoa_num()%> &nbsp;명</b></td>
-                    </tr>
-                  </table>
-                </div>
-                <div class="threeline">
-                    <h4 style="margin-top:2px;"><b>#</b>해시태그</h4>
-                    <ul>
-                       <%for(int j=0; j<newly_list.get(i).getBoa_hashtag().size(); j++ ){%>
-                      <li><a href="./Project.bo?TagSearch=<%=newly_list.get(i).getBoa_hashtag().get(j)%>" rel="hash">
-                      #<%=newly_list.get(i).getBoa_hashtag().get(j)%>
-                      </a></li>
-                      <%}%>
-                    </ul>
-                    <small style="float:right">*최대 9개의 해시 태그를 볼 수 있습니다.</small>
-                  </div>
-            </div><!--카드상세내용-->
-          </div><!--전체카드dede-->
-          <%} %>
+                </b></li>
+                <li>모집 인원 : <b><%=newly_list.get(i).getApp_number()%>/<%=newly_list.get(i).getBoa_num()%> &nbsp;명</b></li>
+              </ul>
           </div>
+			<%} %>
         </div>
-      </div>
-  </div>
-
+        
 </main>
-<footer style="clear:both; background-color: white;">
+<footer style="clear:both;">
     <div id="copyright" class="container">
       <p>성결대학교 미디어소프트웨어학부 <br> 2019 <strong>아울러.</strong> 인지해 정나영 한수지</p>
     </div>

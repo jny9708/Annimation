@@ -55,6 +55,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
  	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+ 	<link rel="shortcut icon" type="image⁄x-icon" href="<%=request.getContextPath()%>/image/logo1.png">
 	<title>아울러 : 팀원모집</title>
     <link href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
@@ -63,8 +64,8 @@
 	
 	<script src="<%=request.getContextPath()%>/javascript/card_content.js" type="text/javascript"></script> 
     <link href="<%=request.getContextPath()%>/css/project.css" rel="stylesheet" type="text/css">
-	<link href="<%=request.getContextPath()%>/css/index.css" rel="stylesheet" type="text/css"> <!--my css-->
- 	<link rel="shortcut icon" type="image⁄x-icon" href="<%=request.getContextPath()%>/image/final_logo(mini_size_1).png">
+	<link href="<%=request.getContextPath()%>/css/main.css" rel="stylesheet" type="text/css"> <!--my css-->
+ 	
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	
 	<style>
@@ -274,11 +275,11 @@ $(function(){
                     <span class="icon-bar"></span>
 
                   </button>
-          <a href="./Main.do"><img src="<%=request.getContextPath()%>/image/final_logo(header).png" alt="아울러" class="logo" style="padding:0px;"></a> <!--로고-->
+          <a href="./Main.do"><img src="<%=request.getContextPath()%>/image/logo3.png" alt="아울러" class="logo" style="padding:0px;"></a> <!--로고-->
         </div>
 
         <div class="collapse navbar-collapse" id="header_nav">
-          <ul class="nav navbar-nav header_title" style="margin:10px;">
+          <ul class="nav navbar-nav header_title link-header" style="margin:10px;">
             <li ><a href="./Main.do">홈 <span class="sr-only">(current)</span></a></li>
             <li class="active"><a href="./Project.bo">팀원모집 </a></li>
             <li><a href="./Contest.co">공모전 정보</a></li>
@@ -294,7 +295,7 @@ $(function(){
               
               <% if(MemberDto==null){%>
               
-                 <div class="input-group" style="clear:both">
+                 <div class="input-group link-header" style="clear:both">
                      <a href="./LoginForm.do">로그인</a>
                 </div></div>
                 <%}else if(MemberDto!=null){ %>
@@ -1026,7 +1027,7 @@ $(function(){
                		
 					</button>
                 	</li>
-                	<li><small style="float:right; margin:22px 20px 0px 0px;">등록날짜|&nbsp;&nbsp;<%=list.get(i).getBoa_reg_date()%></small></li>
+                	<li><small style="float:right; margin:18px 20px 0px 0px;">등록날짜|&nbsp;&nbsp;<%=list.get(i).getBoa_reg_date()%></small></li>
                 </ul>
                </div>
                   <div class="twoline">
@@ -1096,7 +1097,7 @@ $(function(){
     	</section>
 	</main>
 	
-    <footer style="clear:both; background-color: white;">
+    <footer style="clear:both;">
         <div id="copyright" class="container">
           <p>성결대학교 미디어소프트웨어학부 <br> 2019 <strong>아울러.</strong> 인지해 정나영 한수지</p>
         </div>

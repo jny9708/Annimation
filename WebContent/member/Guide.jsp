@@ -13,7 +13,8 @@ if(session.getAttribute("Member")!=null){
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="<%=request.getContextPath()%>/css/index.css" rel="stylesheet" type="text/css"> <!--my css-->
+    <link rel="shortcut icon" type="image⁄x-icon" href="<%=request.getContextPath()%>/image/logo1.png">
+    <link href="<%=request.getContextPath()%>/css/main.css" rel="stylesheet" type="text/css"> <!--my css-->
     <link href="<%=request.getContextPath()%>/css/guide.css" rel="stylesheet" type="text/css"> <!--my css-->
     <link rel="shortcut icon" type="image⁄x-icon" href="<%=request.getContextPath()%>/image/final_logo(mini_size_2).png">
 
@@ -25,7 +26,7 @@ if(session.getAttribute("Member")!=null){
     <title>함께 만들어가다. : 아울러</title>
 </head>
 <body>
-<header>
+ <header>
     <!------------- Navbar -------------->
     <nav class="navbar navbar-default bs-white navbar-fixed-top">
         <div class="container">
@@ -43,11 +44,11 @@ if(session.getAttribute("Member")!=null){
                     <span class="icon-bar"></span>
 
                   </button>
-          <a href="./Main.do"><img src="<%=request.getContextPath()%>/image/final_logo(header).png" alt="아울러" class="logo" style="padding:0px;"></a> <!--로고-->
+          <a href="./Main.do"><img src="<%=request.getContextPath()%>/image/logo3.png" alt="아울러" class="logo" style="padding:0px;"></a> <!--로고-->
         </div>
 
         <div class="collapse navbar-collapse" id="header_nav">
-          <ul class="nav navbar-nav header_title" style="margin:10px;">
+          <ul class="nav navbar-nav header_title link-header" style="margin:10px;">
             <li><a href="./Main.do">홈 <span class="sr-only">(current)</span></a></li>
             <li><a href="./Project.bo">팀원모집 </a></li>
             <li><a href="./Contest.co">공모전 정보</a></li>
@@ -62,7 +63,7 @@ if(session.getAttribute("Member")!=null){
                  <button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>
               <% if(MemberDto==null){%>
               
-                 <div class="input-group" style="clear:both">
+                 <div class="input-group link-header" style="clear:both">
                      <a href="./LoginForm.do">로그인</a>
                 </div></div>
                 <%}else if(MemberDto!=null){ %>
@@ -144,7 +145,7 @@ if(session.getAttribute("Member")!=null){
 
     </main>
 
-    <footer style="clear:both; background-color: white;">
+    <footer style="clear:both; ">
       <div id="copyright" class="container">
         <p>성결대학교 미디어소프트웨어학부 <br> 2019 <strong>아울러.</strong> 인지해 정나영 한수지</p>
       </div>

@@ -1,11 +1,31 @@
+@font-face {
+  font-family: 'Smart';
+  src: url(../font/smart.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'SCDream7';
+  src: url(../font/SCDream7.otf) format('truetype');
+}
+@font-face {
+  font-family: 'SCDream5';
+  src: url(../font/SCDream5.otf) format('truetype');
+}
+
 header .container {
   padding-right: 0px;
   padding-left: 0px;
   margin-right: auto;
   margin-left: auto;
+  
 }
 body{
-    background: #f2f2f2;
+    background: #fafafa !important;
+    font-family: 'SCDream5' !important;
+}
+body h2{
+  font-weight: 600 !important;
+  color: #2b240d;
+  text-align-last: center;
 }
 div.row{
   display: table;
@@ -17,11 +37,11 @@ div.row{
     display: table;
     margin-top: 10px;
     margin-bottom: 100px;
-    border-top: 2px solid black;
     background: white;
     width: 100%;
     padding-bottom: 10px;
     padding: 20px;
+    border: 0.2px solid rgb(196, 196, 196) !important;
 }
 
 #reg_title{
@@ -35,6 +55,7 @@ div.row{
     margin-left: 10px;
     margin-top: 20px;
     padding-left: 18px;
+    
 }
 /*/one line*/
 
@@ -246,11 +267,13 @@ input[type=range]:focus {
   box-shadow: none;
   font-size: 18px;
   font-weight: bolder;
+  font-family: 'SCDream7' !important;
 }
 
 .btn:focus,.btn:active {
   border: 1px #b1cee5 solid;
   outline: none !important;
+  font-family: 'SCDream7' !important;
  
 }
 .file_up{

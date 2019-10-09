@@ -28,13 +28,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="shortcut icon" type="image⁄x-icon" href="<%=request.getContextPath()%>/image/final_logo(mini_size_1).png">
+    <link rel="shortcut icon" type="image⁄x-icon" href="<%=request.getContextPath()%>/image/logo1.png">
     
     <link href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css" rel="stylesheet"> <!--부트스트랩-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><!--제이쿼리-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> <!--부트스트랩-->
     
-    <link href="<%=request.getContextPath()%>/css/index.css" rel="stylesheet" type="text/css"> <!--my css-->
+    <link href="<%=request.getContextPath()%>/css/main.css" rel="stylesheet" type="text/css"> <!--my css-->
     <link href="<%=request.getContextPath()%>/css/userModify.css"rel="stylesheet" type="text/css">
     <script src="<%=request.getContextPath()%>/javascript/userModify.js"></script>
     <title>아울러 : 회원정보수정</title>
@@ -46,7 +46,7 @@ $(document).ready(function() {
 });
 </script>
 <body>
- <header>
+<header>
     <!------------- Navbar -------------->
     <nav class="navbar navbar-default bs-white navbar-fixed-top">
         <div class="container">
@@ -64,26 +64,26 @@ $(document).ready(function() {
                     <span class="icon-bar"></span>
 
                   </button>
-          <a href="./Main.do"><img src="<%=request.getContextPath()%>/image/final_logo(header).png" alt="아울러" class="logo" style="padding:0px;"></a> <!--로고-->
+          <a href="./Main.do"><img src="<%=request.getContextPath()%>/image/logo3.png" alt="아울러" class="logo" style="padding:0px;"></a> <!--로고-->
         </div>
 
         <div class="collapse navbar-collapse" id="header_nav">
-          <ul class="nav navbar-nav header_title" style="margin:10px;">
-            <li ><a href="./Main.do">홈 <span class="sr-only">(current)</span></a></li>
-            <li ><a href="./Project.bo">팀원모집 </a></li>
+          <ul class="nav navbar-nav header_title link-header" style="margin:10px;">
+            <li><a href="./Main.do">홈 <span class="sr-only">(current)</span></a></li>
+            <li><a href="./Project.bo">팀원모집 </a></li>
             <li><a href="./Contest.co">공모전 정보</a></li>
             <li><a href="./Guide.do">가이드</a></li>
           </ul>
 
 
-          <form class="navbar-form form-inline  navbar-right" role="search" action="./Project.bo" method="get" id=""form_box"" name="tag_search">
+          <form class="navbar-form form-inline  navbar-right" role="search" action="./Project.bo" method="get" id="form_box" name="tag_search">
+          	
               <div class="input-group">
                  <input type="text" name="TagSearch" id="TagSearch" class="search-box" placeholder="#해시">
                  <button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>
-              
               <% if(MemberDto==null){%>
               
-                 <div class="input-group" style="clear:both">
+                 <div class="input-group link-header" style="clear:both">
                      <a href="./LoginForm.do">로그인</a>
                 </div></div>
                 <%}else if(MemberDto!=null){ %>
@@ -93,13 +93,12 @@ $(document).ready(function() {
             <li class="dropdown">
               <a href="#"  class="dropdown-toggle navbar-img" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               <h5 style="display: inline-block;"><%=MemberDto.getMem_id() %></h5>
-              <%if(MemberDto.getMem_icon().equals("profile.jpg")){ %>
+             <%if(MemberDto.getMem_icon().equals("profile.jpg")){ %>
               <img src="<%=request.getContextPath()%>/image/profile.jpg" class="img-circle" alt="Profile Image"/>
               <%}else{
             	  System.out.println("아이콘경로있음");%>
             	  <img src="<%=request.getContextPath()%>/image/<%=MemberDto.getMem_icon()%>" class="img-circle" alt="Profile Image"/>
             	  <%} %>
-            	  
               </a>
               <ul class="dropdown-menu">
                 <li><a href="./UserPageApp.do?mem_no=<%=MemberDto.getMem_no()%>">마이페이지</a></li>
@@ -135,20 +134,20 @@ $(document).ready(function() {
                     </tr>
                     <tr>
                         <th scope="row" class="label_b"><label for="m_kname">닉네임</label></th>
-                        <td colspan="3"><input type="text" value="<%=MemberDto.getMem_nickname()%>" placeholder="닉네임을 작성해주세요." id="modify_con" name="m_kname" tabindex="1"></td>
+                        <td colspan="3"><input type="text" value="<%=MemberDto.getMem_nickname()%>" placeholder="닉네임을 작성해주세요." id="modify_con" class="modify_con" name="m_kname" tabindex="1"></td>
                     </tr>
                     <tr>
                         <th scope="row" class="label_b"><label for="m_password">비밀번호</label></th>
-                        <td colspan="3"><input type="password"  id="modify_con" name="m_password" tabindex="2"></td>
+                        <td colspan="3"><input type="password"  id="modify_con"  class="modify_con" name="m_password" tabindex="2"></td>
                     </tr>
                     <tr>
                         <th scope="row" class="label_b"><label for="m_password_check">비밀번호 확인</label></th>
-                        <td colspan="3"><input type="password"  id="modify_con" name="m_password_check" tabindex="3"></td>
+                        <td colspan="3"><input type="password"  id="modify_con" class="modify_con" name="m_password_check" tabindex="3"></td>
                     </tr>
                     <tr>
                         <th scope="row" class="label_b"><label for="m_birthday">생년월일</label></th>
-                        <td> <input type="text" name="m_year" id="modify_con" value="<%=year%>" class="m_birthday" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"  placeholder="년(4자)" tabindex="4"></td>
-                        <td> <select id="modify_con"  class="sel_month" tabindex="5" name="m_month" >
+                        <td> <input type="text" name="m_year" id="modify_con" class="modify_con" value="<%=year%>" class="m_birthday" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"  placeholder="년(4자)" tabindex="4"></td>
+                        <td> <select id="modify_con" class="modify_con"  class="sel_month" tabindex="5" name="m_month" >
                                 <option value="">월</option>
                                 <option value="01">01</option>
                                 <option value="02">02</option>
@@ -164,11 +163,11 @@ $(document).ready(function() {
                                 <option value="12">12</option>
                             </select>
                         </td>
-                        <td><input type="text"id="modify_con"  name="m_day" class="m_birthday"  onKeyup="this.value=this.value.replace(/[^0-9]/g,''); placeholder="일" value="<%=day%>" tabindex="6"></td>
+                        <td><input type="text"id="modify_con" name="m_day" class="m_birthday modify_con"  onKeyup="this.value=this.value.replace(/[^0-9]/g,''); placeholder="일" value="<%=day%>" tabindex="6"></td>
                     </tr>
                     <tr>
                         <th scope="row" class="label_b"><label for="m_job">직업</label></th>
-                        <td colspan="3"><select id="modify_con" class="sel_job" tabindex="7" name="m_job" value="<%=MemberDto.getMem_job()%>">
+                        <td colspan="3"><select id="modify_con"  class="sel_job modify_con" tabindex="7" name="m_job" value="<%=MemberDto.getMem_job()%>">
                                 <option value="">직업</option>
                                 <option value="애니메이터">애니메이터</option>
                                 <option value="시나리오작가">시나리오작가</option>
@@ -180,15 +179,15 @@ $(document).ready(function() {
                     </tr>
                     <tr>
                         <th scope="row" class="label_b"><label for="m_email">이메일</label></th>
-                        <td colspan="3"><input type="text" name="m_email" id="modify_con"  placeholder="이메일" value="<%=MemberDto.getMem_email()%>" tabindex="8"></td>
+                        <td colspan="3"><input type="text" name="m_email" id="modify_con"  class="modify_con" placeholder="이메일" value="<%=MemberDto.getMem_email()%>" tabindex="8"></td>
                     </tr>
                     <tr>
                         <th scope="row" class="label_b"><label for="m_phone">연락처</label></th>
-                        <td colspan="3"><input type="text" name="m_phone" id="modify_con"  placeholder="(-)없이" value="<%=MemberDto.getMem_phone()%>" tabindex="9"></td>
+                        <td colspan="3"><input type="text" name="m_phone" id="modify_con" class="modify_con"  placeholder="(-)없이" value="<%=MemberDto.getMem_phone()%>" tabindex="9"></td>
                     </tr>
                     <tr>
                         <th scope="row" class="label_b"><label for="m_introduction">자기소개</label></th>
-                        <td colspan="3"><textarea rows="5" id="modify_text" style="resize: none;" name="m_introduction" value="<%=content%>" tabindex="10"></textarea></td>
+                        <td colspan="3"><textarea rows="5" id="modify_text" class="modify_text" style="resize: none;" name="m_introduction" value="<%=content%>" tabindex="10"></textarea></td>
                     </tr>
                 </table>
                 <div id="modify_b2">

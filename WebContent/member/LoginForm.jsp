@@ -21,8 +21,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image⁄x-icon" href="<%=request.getContextPath()%>/image/logo1.png">
     <title>아울러 : 로그인</title>
-    <link href="<%=request.getContextPath()%>/css/index.css" rel="stylesheet" type="text/css"> <!--my css-->
+    <link href="<%=request.getContextPath()%>/css/main.css" rel="stylesheet" type="text/css"> <!--my css-->
     <link href="<%=request.getContextPath()%>/css/login.css" rel="stylesheet" type="text/css">
 
     <link href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -50,11 +51,11 @@
                     <span class="icon-bar"></span>
 
                   </button>
-          <a href="./Main.do"><img src="<%=request.getContextPath()%>/image/final_logo(header).png" alt="아울러" class="logo" style="padding:0px;"></a> <!--로고-->
+          <a href="./Main.do"><img src="<%=request.getContextPath()%>/image/logo3.png" alt="아울러" class="logo" style="padding:0px;"></a> <!--로고-->
         </div>
 
         <div class="collapse navbar-collapse" id="header_nav">
-          <ul class="nav navbar-nav header_title" style="margin:10px;">
+          <ul class="nav navbar-nav header_title link-header" style="margin:10px;">
             <li ><a href="./Main.do">홈 <span class="sr-only">(current)</span></a></li>
             <li><a href="./Project.bo">팀원모집</a></li>
             <li><a href="./Contest.co">공모전 정보</a></li>
@@ -69,7 +70,7 @@
                  <button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>
               
               
-                 <div class="input-group">
+                 <div class="input-group link-header">
                      <a href="./LoginForm.do">로그인</a>
                 </div></div>
      
@@ -84,7 +85,7 @@
    		 <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 ">
                 <form role="form" name="loginform" action="./MemberLogin.do" method="post">
-                    <a href="./Main.do"><img src="<%=request.getContextPath()%>/image/final_logo(non_writting).png" alt="logo" class="logo-"></a>
+                    <a href="./Main.do"><img src="<%=request.getContextPath()%>/image/logo_6.png" alt="logo" class="logo-"></a>
                     <div class="form-group">
                         <input type="text" name="mem_id" class="form-control input-lg" placeholder="아이디" tabindex="1">
                     </div> 
@@ -101,15 +102,15 @@
             </div>
         </div><!--/row-->
       </div> <!--/container-->
-      
-      <footer>
-        <div id="copyright" class="container">
-          <p>성결대학교 미디어소프트웨어학부 <br> 2019 <strong>OWLER.</strong> 인지해 정나영 한수지</p>
-        </div>
-      </footer>
+
+
     </main>
 
-
+<footer style="clear:both;">
+    <div id="copyright" class="container">
+      <p>성결대학교 미디어소프트웨어학부 <br> 2019 <strong>아울러.</strong> 인지해 정나영 한수지</p>
+    </div>
+  </footer>
 
 
 
