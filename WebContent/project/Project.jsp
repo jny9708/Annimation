@@ -222,8 +222,11 @@
  <script type="text/javascript">
   jQuery(document).ready(function() {
 
+	  
+	  
       jQuery("#check_finish").click(function() {
-
+    
+    	  
           if(jQuery(".checkList").find(":checked").length == 0) {
 
               jQuery("#displayDiv").html("한 지역만 선택해주세요.");
@@ -232,7 +235,7 @@
           var txt = " ";
           if(jQuery(".checkList").find(":checked").length<2){
             jQuery(".checkList").find(":checked").each(function(){
-              txt += jQuery(this).val() + "&nbsp;";
+              txt = jQuery(this).val() + "&nbsp;";
           });
           }else{
             alert("한 지역만 선택 가능합니다.");
@@ -280,7 +283,6 @@ $(function(){
 
         <div class="collapse navbar-collapse" id="header_nav">
           <ul class="nav navbar-nav header_title link-header" style="margin:10px;">
-            <li ><a href="./Main.do">홈 <span class="sr-only">(current)</span></a></li>
             <li class="active"><a href="./Project.bo">팀원모집 </a></li>
             <li><a href="./Contest.co">공모전 정보</a></li>
             <li><a href="./Guide.do">가이드</a></li>
@@ -413,428 +415,428 @@ $(function(){
                         <div class="checkList">
                           <ul>
                             <li><input name="Region" id="item_detail" type="radio" value="서울전체">전체&nbsp;&nbsp;</li>
-                            <li><input name="Region" id="item_detail" type="radio" value="강남구">강남구&nbsp;&nbsp;</li>
-                            <li><input name="Region" id="item_detail" type="radio" value="강동구">강동구&nbsp;&nbsp;</li>
-                            <li><input name="Region" id="item_detail" type="radio" value="강복구">강북구&nbsp;&nbsp;</li>
-                            <li><input name="Region" id="item_detail" type="radio" value="강서구">강서구&nbsp;&nbsp;</li>
-                            <li><input name="Region" id="item_detail" type="radio" value="관악구">관악구&nbsp;&nbsp;</li>
+                            <li><input name="Region" id="item_detail" type="radio" value="서울강남구">강남구&nbsp;&nbsp;</li>
+                            <li><input name="Region" id="item_detail" type="radio" value="서울강동구">강동구&nbsp;&nbsp;</li>
+                            <li><input name="Region" id="item_detail" type="radio" value="서울강복구">강북구&nbsp;&nbsp;</li>
+                            <li><input name="Region" id="item_detail" type="radio" value="서울강서구">강서구&nbsp;&nbsp;</li>
+                            <li><input name="Region" id="item_detail" type="radio" value="서울관악구">관악구&nbsp;&nbsp;</li>
 
-                            <li><input name="Region" id="item_detail"type="radio" value="광진구">광진구&nbsp;&nbsp;</li>
-                            <li><input name="Region" id="item_detail"type="radio" value="구로구">구로구&nbsp;&nbsp;</li>
-                            <li><input name="Region" id="item_detail"type="radio" value="금천구">금천구&nbsp;&nbsp;</li>
-                            <li><input name="Region" id="item_detail"type="radio" value="노원구">노원구&nbsp;&nbsp;</li>
-                            <li><input name="Region" id="item_detail"type="radio" value="도봉구">도봉구&nbsp;&nbsp;</li>
-                            <li><input name="Region" id="item_detail"type="radio" value="동대문구">동대문&nbsp;&nbsp;</li>
+                            <li><input name="Region" id="item_detail"type="radio" value="서울광진구">광진구&nbsp;&nbsp;</li>
+                            <li><input name="Region" id="item_detail"type="radio" value="서울구로구">구로구&nbsp;&nbsp;</li>
+                            <li><input name="Region" id="item_detail"type="radio" value="서울금천구">금천구&nbsp;&nbsp;</li>
+                            <li><input name="Region" id="item_detail"type="radio" value="서울노원구">노원구&nbsp;&nbsp;</li>
+                            <li><input name="Region" id="item_detail"type="radio" value="서울도봉구">도봉구&nbsp;&nbsp;</li>
+                            <li><input name="Region" id="item_detail"type="radio" value="서울동대문구">동대문&nbsp;&nbsp;</li>
 
-                            <li><input name="Region" id="item_detail"type="radio" value="동작구">동작구&nbsp;&nbsp;</li>
-                            <li><input name="Region" id="item_detail"type="radio" value="마포구">마포구&nbsp;&nbsp;</li>
-                            <li><input name="Region" id="item_detail"type="radio" value="서대문구">서대문구&nbsp;&nbsp;</li>
-                            <li><input name="Region" id="item_detail"type="radio" value="서초구">서초구&nbsp;&nbsp;</li>
-                            <li><input name="Region" id="item_detail"type="radio" value="성동구">성동구&nbsp;&nbsp;</li>
-                            <li><input name="Region" id="item_detail"type="radio" value="성북구">성북구&nbsp;&nbsp;</li>
+                            <li><input name="Region" id="item_detail"type="radio" value="서울동작구">동작구&nbsp;&nbsp;</li>
+                            <li><input name="Region" id="item_detail"type="radio" value="서울마포구">마포구&nbsp;&nbsp;</li>
+                            <li><input name="Region" id="item_detail"type="radio" value="서울서대문구">서대문구&nbsp;&nbsp;</li>
+                            <li><input name="Region" id="item_detail"type="radio" value="서울서초구">서초구&nbsp;&nbsp;</li>
+                            <li><input name="Region" id="item_detail"type="radio" value="서울성동구">성동구&nbsp;&nbsp;</li>
+                            <li><input name="Region" id="item_detail"type="radio" value="서울성북구">성북구&nbsp;&nbsp;</li>
 
-                            <li><input name="Region" id="item_detail"type="radio" value="송파구">송파구&nbsp;&nbsp;</li>
-                            <li><input name="Region" id="item_detail"type="radio" value="양천구">양천구&nbsp;&nbsp;</li>
-                            <li><input name="Region" id="item_detail"type="radio" value="영등포구">영등포구&nbsp;&nbsp;</li>
-                            <li><input name="Region" id="item_detail"type="radio" value="용산구">용산구&nbsp;&nbsp;</li>
-                            <li><input name="Region" id="item_detail"type="radio" value="은평구">은평구&nbsp;&nbsp;</li>
-                            <li><input name="Region" id="item_detail"type="radio" value="종로구">종로구&nbsp;&nbsp;</li>
+                            <li><input name="Region" id="item_detail"type="radio" value="서울송파구">송파구&nbsp;&nbsp;</li>
+                            <li><input name="Region" id="item_detail"type="radio" value="서울양천구">양천구&nbsp;&nbsp;</li>
+                            <li><input name="Region" id="item_detail"type="radio" value="서울영등포구">영등포구&nbsp;&nbsp;</li>
+                            <li><input name="Region" id="item_detail"type="radio" value="서울용산구">용산구&nbsp;&nbsp;</li>
+                            <li><input name="Region" id="item_detail"type="radio" value="서울은평구">은평구&nbsp;&nbsp;</li>
+                            <li><input name="Region" id="item_detail"type="radio" value="서울종로구">종로구&nbsp;&nbsp;</li>
 
-                            <li><input name="Region" id="item_detail"type="radio" value="중구">중구&nbsp;&nbsp;</li>
-                            <li><input name="Region" id="item_detail"type="radio" value="중랑구" style="margin-bottom:15px;">중랑구&nbsp;&nbsp;</li>
+                            <li><input name="Region" id="item_detail"type="radio" value="서울중구">중구&nbsp;&nbsp;</li>
+                            <li><input name="Region" id="item_detail"type="radio" value="서울중랑구" style="margin-bottom:15px;">중랑구&nbsp;&nbsp;</li>
                           </ul>
                         </div>
                     </form>
                 </div>
 
-                  <div role="tabpanel" class="tab-pane" id="Gyeonggi">
-                    <form class="frm_reset">
+                  <div role="tabpanel" class="tab-pane" id="Gyeonggi" >
+                    <div class="frm_reset">
                       <div class="checkList">
                           <ul>
                               <li><input name="Region" id="item_detail" type="radio" value="경기전체">전체&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="가평군">가평군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="고양시">고양시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="과천시">과천시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="광명시">광명시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="광주시">광주시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="경기가평군">가평군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="경기고양시">고양시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="경기과천시">과천시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="경기광명시">광명시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="경기광주시">광주시&nbsp;&nbsp;</li>
 
-                              <li><input name="Region" id="item_detail"type="radio" value="구리시">구리시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="군포시">군포시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="김포시">김포시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="남양주시">남양주시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="동두천시">동두천시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="부천시">부천시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경기구리시">구리시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경기군포시">군포시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경기김포시">김포시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경기남양주시">남양주시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경기동두천시">동두천시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경기부천시">부천시&nbsp;&nbsp;</li>
 
-                              <li><input name="Region" id="item_detail"type="radio" value="성남시">성남시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="수원시">수원시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="시흥시">시흥시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="안산시">안산시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="안성시">안성시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="안양시">안양시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경기성남시">성남시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경기수원시">수원시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경기시흥시">시흥시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경기안산시">안산시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경기안성시">안성시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경기안양시">안양시&nbsp;&nbsp;</li>
 
-                              <li><input name="Region" id="item_detail"type="radio" value="양주시">양주시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="양평군">양평군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="여주시">여주시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="연천군">연천군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="오산시">오산시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="용인시">용인시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경기양주시">양주시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경기양평군">양평군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경기여주시">여주시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경기연천군">연천군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경기오산시">오산시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경기용인시">용인시&nbsp;&nbsp;</li>
 
-                              <li><input name="Region" id="item_detail"type="radio" value="의왕시">의왕시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="의정부시">의정부시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="이천시">이천시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="파주시">파주시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="평택시">평택시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="포천시">포천시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="하남시">하남시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="화성시" style="margin-bottom:15px;">화성시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경기의왕시">의왕시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경기의정부시">의정부시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경기이천시">이천시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경기파주시">파주시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경기평택시">평택시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경기포천시">포천시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경기하남시">하남시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경기화성시" style="margin-bottom:15px;">화성시&nbsp;&nbsp;</li>
 
                             </ul>
                       </div>
-                    </form>
+                    </div>
                   </div>
 
-                  <div role="tabpanel" class="tab-pane" id="Incheon">
-                      <form class="frm_reset">
+                  <div role="tabpanel" class="tab-pane" id="Incheon" >
+                      <div class="frm_reset">
                           <div class="checkList">
                             <ul>
                               <li><input name="Region" id="item_detail" type="radio" value="인천전체">전체&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="강화군">강화군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="계양구">계양구&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="남동구">남동구&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="동구">동구&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="미추홀구">미추홀구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="인천강화군">강화군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="인천계양구">계양구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="인천남동구">남동구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="인천동구">동구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="인천미추홀구">미추홀구&nbsp;&nbsp;</li>
 
-                              <li><input name="Region" id="item_detail"type="radio" value="부평구">부평구&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="서구">서구&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="연수구">연수구&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="옹진군">옹진군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="중구" style="margin-bottom:15px;">중구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="인천부평구">부평구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="인천서구">서구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="인천연수구">연수구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="인천옹진군">옹진군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="인천중구" style="margin-bottom:15px;">중구&nbsp;&nbsp;</li>
                             </ul>
                           </div>
-                      </form>
+                      </div>
                   </div>
 
                   <div role="tabpanel" class="tab-pane" id="Gangwon">
-                      <form class="frm_reset">
+                      <div class="frm_reset">
                           <div class="checkList">
                             <ul>
                               <li><input name="Region" id="item_detail" type="radio" value="강원전체">전체&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="강릉시">강릉시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="고성군">고성군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="동해시">동해시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="삼척시">삼척시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="속초시">속초시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="강원강릉시">강릉시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="강원고성군">고성군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="강원동해시">동해시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="강원삼척시">삼척시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="강원속초시">속초시&nbsp;&nbsp;</li>
 
-                              <li><input name="Region" id="item_detail"type="radio" value="양구군">양구군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="양양군">양양군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="영월군">영월군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="원주시">원주시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="인제군">인제군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="정선군">정선군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="철원군">철원군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="춘천시">춘천시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="태백시">태백시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="평창군">평창군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="홍천군">홍천군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="화천군">화천군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="황성군" style="margin-bottom:15px;">황성군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="강원양구군">양구군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="강원양양군">양양군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="강원영월군">영월군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="강원원주시">원주시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="강원인제군">인제군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="강원정선군">정선군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="강원철원군">철원군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="강원춘천시">춘천시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="강원태백시">태백시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="강원평창군">평창군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="강원홍천군">홍천군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="강원화천군">화천군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="강원황성군" style="margin-bottom:15px;">황성군&nbsp;&nbsp;</li>
                             </ul>
                           </div>
-                      </form>
+                      </div>
                   </div>
 
                   <div role="tabpanel" class="tab-pane" id="Daejeon">
-                      <form class="frm_reset">
+                      <div class="frm_reset">
                           <div class="checkList">
                             <ul>
                               <li><input name="Region" id="item_detail" type="radio" value="대전전체">전체&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="대덕구">대덕구&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="동구">동구&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="서구">서구&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="유성구">유성구&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="중구" style="margin-bottom:15px;">중구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="대전대덕구">대덕구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="대전동구">동구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="대전서구">서구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="대전유성구">유성구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="대전중구" style="margin-bottom:15px;">중구&nbsp;&nbsp;</li>
                             </ul>
                           </div>
-                      </form>
+                      </div>
                   </div>
 
                   <div role="tabpanel" class="tab-pane" id="Sejong">
-                      <form class="frm_reset">
+                      <div class="frm_reset">
                           <div class="checkList">
                             <ul>
                               <li><input name="Region" id="item_detail" type="radio" value="세종전체">전체&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="세종시" style="margin-bottom:15px;">세종시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="세종세종시" style="margin-bottom:15px;">세종시&nbsp;&nbsp;</li>
                               <li>&nbsp;&nbsp;</li>
                               <li>&nbsp;&nbsp;</li>
                               <li>&nbsp;&nbsp;</li>
                               <li>&nbsp;&nbsp;</li>
                             </ul>
                           </div>
-                      </form>
+                      </div>
                   </div>
 
                   <div role="tabpanel" class="tab-pane" id="Chungcheongnam">
-                      <form class="frm_reset">
+                      <div class="frm_reset">
                           <div class="checkList">
                             <ul>
                               <li><input name="Region" id="item_detail" type="radio" value="충남전체">전체&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="계롱시">계룡시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="공주시">공주시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="금산군">금산군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="논산시">논산시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="당진시">당진시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="충남계롱시">계룡시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="충남공주시">공주시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="충남금산군">금산군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="충남논산시">논산시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="충남당진시">당진시&nbsp;&nbsp;</li>
 
-                              <li><input name="Region" id="item_detail"type="radio" value="보령시">보령시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="부여군">부여군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="서산시">서산시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="서천군">서천군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="아산시">아산시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="예산군">예산군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="천안시">천안시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="청양군">청양군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="태안군">태안군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="홍선군" style="margin-bottom:15px;">홍성군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="충남보령시">보령시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="충남부여군">부여군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="충남서산시">서산시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="충남서천군">서천군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="충남아산시">아산시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="충남예산군">예산군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="충남천안시">천안시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="충남청양군">청양군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="충남태안군">태안군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="충남홍선군" style="margin-bottom:15px;">홍성군&nbsp;&nbsp;</li>
                             </ul>
                           </div>
-                      </form>
+                      </div>
                   </div>
 
                   <div role="tabpanel" class="tab-pane" id="NorthChungcheong">
-                      <form class="frm_reset">
+                      <div class="frm_reset">
                           <div class="checkList">
                             <ul>
                               <li><input name="Region" id="item_detail" type="radio" value="충북전체">전체&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="과산군">과산군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="단양군">단양군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="보은군">보은군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="영동군">영동군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="옥천군">옥천군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="충북과산군">과산군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="충북단양군">단양군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="충북보은군">보은군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="충북영동군">영동군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="충북옥천군">옥천군&nbsp;&nbsp;</li>
 
-                              <li><input name="Region" id="item_detail"type="radio" value="음성군">음성군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="제천시">제천시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="증평군">증평군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="진천군">진천군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="청주시">청주시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="충주시" style="margin-bottom:15px;">충주시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="충북음성군">음성군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="충북제천시">제천시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="충북증평군">증평군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="충북진천군">진천군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="충북청주시">청주시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="충북충주시" style="margin-bottom:15px;">충주시&nbsp;&nbsp;</li>
                             </ul>
                           </div>
-                      </form>
+                      </div>
                   </div>
 
                   <div role="tabpanel" class="tab-pane" id="Busan">
-                      <form class="frm_reset">
+                      <div class="frm_reset">
                           <div class="checkList">
                             <ul>
                               <li><input name="Region" id="item_detail" type="radio" value="부산전체">전체&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="강서구">강서구&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="금정구">금정구&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="기장군">기장군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="남구">남구&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="동구">동구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="부산강서구">강서구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="부산금정구">금정구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="부산기장군">기장군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="부산남구">남구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="부산동구">동구&nbsp;&nbsp;</li>
 
-                              <li><input name="Region" id="item_detail"type="radio" value="동래구">동래구&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="부산진구">부산진구&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="복구">복구&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="사상구">사상구&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="사하구">사하구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="부산동래구">동래구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="부산부산진구">부산진구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="부산복구">복구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="부산사상구">사상구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="부산사하구">사하구&nbsp;&nbsp;</li>
 
-                              <li><input name="Region" id="item_detail"type="radio" value="서구">서구&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="수영구">수영구&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="연제구">연제구&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="영도구">영도구&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="중구">중구&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="해운대구" style="margin-bottom:15px;">해운대구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="부산서구">서구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="부산수영구">수영구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="부산연제구">연제구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="부산영도구">영도구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="부산중구">중구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="부산해운대구" style="margin-bottom:15px;">해운대구&nbsp;&nbsp;</li>
                             </ul>
                           </div>
-                      </form>
+                      </div>
                   </div>
 
                   <div role="tabpanel" class="tab-pane" id="Ulsan">
-                      <form class="frm_reset">
+                      <div class="frm_reset">
                           <div class="checkList">
                             <ul>
                               <li><input name="Region" id="item_detail" type="radio" value="울산전체">전체&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="강서구">남구&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="금정구">동구&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="기장군">북구&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="남구">울주군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="해운대구" style="margin-bottom:15px;">중구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="울산강서구">남구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="울산금정구">동구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="울산기장군">북구&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="울산남구">울주군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="울산해운대구" style="margin-bottom:15px;">중구&nbsp;&nbsp;</li>
                             </ul>
                           </div>
-                      </form>
+                      </div>
                   </div>
 
                   <div role="tabpanel" class="tab-pane" id="Gyeongsangnam">
-                      <form class="frm_reset">
+                      <div class="frm_reset">
                           <div class="checkList">
                             <ul>
                               <li><input name="Region" id="item_detail" type="radio" value="경남전체">전체&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="거제시">거제시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="거창군">거창군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="고성군">고성군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="남구">김해시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="남해군">남해군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="경남거제시">거제시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="경남거창군">거창군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="경남고성군">고성군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="경남남구">김해시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="경남남해군">남해군&nbsp;&nbsp;</li>
 
-                              <li><input name="Region" id="item_detail"type="radio" value="밀양시">밀양시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="사천시">사천시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="산청군">산청군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="양산시">양산시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="의령군">의령군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경남밀양시">밀양시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경남사천시">사천시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경남산청군">산청군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경남양산시">양산시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="경남의령군">의령군&nbsp;&nbsp;</li>
 
-                              <li><input name="Region" id="item_detail"type="radio" value="진주시">진주시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="창녕군">창녕군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="창원시">창원시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="통영시">통영시&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="하동군">하동군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경남진주시">진주시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경남창녕군">창녕군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경남창원시">창원시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경남통영시">통영시&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="경남하동군">하동군&nbsp;&nbsp;</li>
 
-                              <li><input name="Region" id="item_detail"type="radio" value="영도구">함안군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail" type="radio" value="함양군">함양군&nbsp;&nbsp;</li>
-                              <li><input name="Region" id="item_detail"type="radio" value="함천군" style="margin-bottom:15px;">함천군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경남영도구">함안군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail" type="radio" value="경남함양군">함양군&nbsp;&nbsp;</li>
+                              <li><input name="Region" id="item_detail"type="radio" value="경남함천군" style="margin-bottom:15px;">함천군&nbsp;&nbsp;</li>
                             </ul>
                           </div>
-                      </form>
+                      </div>
                     </div>
 
                     <div role="tabpanel" class="tab-pane" id="Gyeongbuk">
-                        <form class="frm_reset">
+                        <div class="frm_reset">
                             <div class="checkList">
                               <ul>
                                 <li><input name="Region" id="item_detail" type="radio" value="경북전체">전체&nbsp;&nbsp;</li>
-                                <li><input name="Region" id="item_detail" type="radio" value="경산시">경산시&nbsp;&nbsp;</li>
-                                <li><input name="Region" id="item_detail" type="radio" value="경주시">경주시&nbsp;&nbsp;</li>
-                                <li><input name="Region" id="item_detail" type="radio" value="고령시">고령시&nbsp;&nbsp;</li>
-                                <li><input name="Region" id="item_detail" type="radio" value="구미시">구미시&nbsp;&nbsp;</li>
-                                <li><input name="Region" id="item_detail" type="radio" value="군위군">군위군&nbsp;&nbsp;</li>
+                                <li><input name="Region" id="item_detail" type="radio" value="경북경산시">경산시&nbsp;&nbsp;</li>
+                                <li><input name="Region" id="item_detail" type="radio" value="경북경주시">경주시&nbsp;&nbsp;</li>
+                                <li><input name="Region" id="item_detail" type="radio" value="경북고령시">고령시&nbsp;&nbsp;</li>
+                                <li><input name="Region" id="item_detail" type="radio" value="경북구미시">구미시&nbsp;&nbsp;</li>
+                                <li><input name="Region" id="item_detail" type="radio" value="경북군위군">군위군&nbsp;&nbsp;</li>
 
-                                <li><input name="Region" id="item_detail"type="radio" value="김천시">김천시&nbsp;&nbsp;</li>
-                                <li><input name="Region" id="item_detail"type="radio" value="문경시">문경시&nbsp;&nbsp;</li>
-                                <li><input name="Region" id="item_detail"type="radio" value="봉화구">봉화구&nbsp;&nbsp;</li>
-                                <li><input name="Region" id="item_detail"type="radio" value="상주시">상주시&nbsp;&nbsp;</li>
-                                <li><input name="Region" id="item_detail" type="radio" value="성주군">성주군&nbsp;&nbsp;</li>
+                                <li><input name="Region" id="item_detail"type="radio" value="경북김천시">김천시&nbsp;&nbsp;</li>
+                                <li><input name="Region" id="item_detail"type="radio" value="경북문경시">문경시&nbsp;&nbsp;</li>
+                                <li><input name="Region" id="item_detail"type="radio" value="경북봉화구">봉화구&nbsp;&nbsp;</li>
+                                <li><input name="Region" id="item_detail"type="radio" value="경북상주시">상주시&nbsp;&nbsp;</li>
+                                <li><input name="Region" id="item_detail" type="radio" value="경북성주군">성주군&nbsp;&nbsp;</li>
 
-                                <li><input name="Region" id="item_detail"type="radio" value="안동시">안동시&nbsp;&nbsp;</li>
-                                <li><input name="Region" id="item_detail"type="radio" value="영덕군">영덕군&nbsp;&nbsp;</li>
-                                <li><input name="Region" id="item_detail"type="radio" value="영양군">영양군&nbsp;&nbsp;</li>
-                                <li><input name="Region" id="item_detail"type="radio" value="영주시">영주시&nbsp;&nbsp;</li>
-                                <li><input name="Region" id="item_detail" type="radio" value="영천시">영천시&nbsp;&nbsp;</li>
-                                <li><input name="Region" id="item_detail"type="radio" value="예찬군">예찬군&nbsp;&nbsp;</li>
-                                <li><input name="Region" id="item_detail"type="radio" value="울릉군">울릉군&nbsp;&nbsp;</li>
-                                <li><input name="Region" id="item_detail"type="radio" value="울진군">울진군&nbsp;&nbsp;</li>
-                                <li><input name="Region" id="item_detail"type="radio" value="의성군">의성군&nbsp;&nbsp;</li>
-                                <li><input name="Region" id="item_detail" type="radio" value="청도군">청도군&nbsp;&nbsp;</li>
+                                <li><input name="Region" id="item_detail"type="radio" value="경북안동시">안동시&nbsp;&nbsp;</li>
+                                <li><input name="Region" id="item_detail"type="radio" value="경북영덕군">영덕군&nbsp;&nbsp;</li>
+                                <li><input name="Region" id="item_detail"type="radio" value="경북영양군">영양군&nbsp;&nbsp;</li>
+                                <li><input name="Region" id="item_detail"type="radio" value="경북영주시">영주시&nbsp;&nbsp;</li>
+                                <li><input name="Region" id="item_detail" type="radio" value="경북영천시">영천시&nbsp;&nbsp;</li>
+                                <li><input name="Region" id="item_detail"type="radio" value="경북예찬군">예찬군&nbsp;&nbsp;</li>
+                                <li><input name="Region" id="item_detail"type="radio" value="경북울릉군">울릉군&nbsp;&nbsp;</li>
+                                <li><input name="Region" id="item_detail"type="radio" value="경북울진군">울진군&nbsp;&nbsp;</li>
+                                <li><input name="Region" id="item_detail"type="radio" value="경북의성군">의성군&nbsp;&nbsp;</li>
+                                <li><input name="Region" id="item_detail" type="radio" value="경북청도군">청도군&nbsp;&nbsp;</li>
 
-                                <li><input name="Region" id="item_detail"type="radio" value="청송군">청송군&nbsp;&nbsp;</li>
-                                <li><input name="Region" id="item_detail" type="radio" value="칠곡군">칠곡군&nbsp;&nbsp;</li>
-                                <li><input name="Region" id="item_detail"type="radio" value="포항시" style="margin-bottom:15px;">포항시&nbsp;&nbsp;</li>
+                                <li><input name="Region" id="item_detail"type="radio" value="경북청송군">청송군&nbsp;&nbsp;</li>
+                                <li><input name="Region" id="item_detail" type="radio" value="경북칠곡군">칠곡군&nbsp;&nbsp;</li>
+                                <li><input name="Region" id="item_detail"type="radio" value="경북포항시" style="margin-bottom:15px;">포항시&nbsp;&nbsp;</li>
                               </ul>
                             </div>
-                        </form>
+                        </div>
                       </div>
 
                       <div role="tabpanel" class="tab-pane" id="Daegu">
-                          <form class="frm_reset">
+                          <div class="frm_reset">
                               <div class="checkList">
                                 <ul>
                                   <li><input name="Region" id="item_detail" type="radio" value="대구전체">전체&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="남구">남구&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="달서구">달서구&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="달성군">달성군&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="동구">동구&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="북구">북구&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="서구">서구&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="수성구">수성구&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail"type="radio" value="중구" style="margin-bottom:15px;">중구&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="대구남구">남구&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="대구달서구">달서구&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="대구달성군">달성군&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="대구동구">동구&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="대구북구">북구&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="대구서구">서구&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="대구수성구">수성구&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail"type="radio" value="대구중구" style="margin-bottom:15px;">중구&nbsp;&nbsp;</li>
                                 </ul>
                               </div>
-                          </form>
+                          </div>
                       </div>
 
                       <div role="tabpanel" class="tab-pane" id="Gwangju">
-                          <form class="frm_reset">
+                          <div class="frm_reset">
                               <div class="checkList">
                                 <ul>
                                   <li><input name="Region" id="item_detail" type="radio" value="광주전체">전체&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="광산구">광산구&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="남구">남구&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="동구">동구&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="북구">북구&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail"type="radio" value="서구" style="margin-bottom:15px;">서구&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="광주광산구">광산구&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="광주남구">남구&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="광주동구">동구&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="광주북구">북구&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail"type="radio" value="광주서구" style="margin-bottom:15px;">서구&nbsp;&nbsp;</li>
                                 </ul>
                               </div>
-                          </form>
+                          </div>
                       </div>
 
                       <div role="tabpanel" class="tab-pane" id="Jeonnam">
-                          <form class="frm_reset">
+                          <div class="frm_reset">
                               <div class="checkList">
                                 <ul>
                                   <li><input name="Region" id="item_detail" type="radio" value="전남전체">전체&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="강진군">강진군&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="고흥군">고흥군&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="강릉시">곡성군&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="광양시">광양시&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="구례군">구례군&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="나주시">나주시&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="담양군">담양군&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="목포시">목포시&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="무안군">무안군&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전남강진군">강진군&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전남고흥군">고흥군&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전남강릉시">곡성군&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전남광양시">광양시&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전남구례군">구례군&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전남나주시">나주시&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전남담양군">담양군&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전남목포시">목포시&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전남무안군">무안군&nbsp;&nbsp;</li>
 
-                                  <li><input name="Region" id="item_detail" type="radio" value="보성군">보성군&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="순천시">순천시&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="신안군">신안군&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="여주시">여주시&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="영광군">영광군&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="영암군">영암군&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="완도구">완도군&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="장성군">장성군&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="장흥군">장흥군&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="진도군">진도군&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="함평군">함평군&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="해남군">해남군&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail"type="radio" value="화순군" style="margin-bottom:15px;">화순군&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전남보성군">보성군&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전남순천시">순천시&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전남신안군">신안군&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전남여주시">여주시&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전남영광군">영광군&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전남영암군">영암군&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전남완도구">완도군&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전남장성군">장성군&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전남장흥군">장흥군&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전남진도군">진도군&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전남함평군">함평군&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전남해남군">해남군&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail"type="radio" value="전남화순군" style="margin-bottom:15px;">화순군&nbsp;&nbsp;</li>
                                 </ul>
                               </div>
-                          </form>
+                          </div>
                       </div>
 
                       <div role="tabpanel" class="tab-pane" id="Jeonbuk">
-                          <form class="frm_reset">
+                          <div class="frm_reset">
                               <div class="checkList">
                                 <ul>
                                   <li><input name="Region" id="item_detail" type="radio" value="전북전체">전체&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="고창군">고창군&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="군산시">군산시&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="김제시">김제시&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="남원시">남원시&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="무주군">무주군&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="부안군">부안군&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="순창군">순창군&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="완주군">완주군&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="익산시">익산시&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="임실군">임실군&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="장수군">장수군&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="전주시">전주시&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="정읍시">정읍시&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전북고창군">고창군&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전북군산시">군산시&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전북김제시">김제시&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전북남원시">남원시&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전북무주군">무주군&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전북부안군">부안군&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전북순창군">순창군&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전북완주군">완주군&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전북익산시">익산시&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전북임실군">임실군&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전북장수군">장수군&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전북전주시">전주시&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="전북정읍시">정읍시&nbsp;&nbsp;</li>
 
-                                  <li><input name="Region" id="item_detail"type="radio" value="진안군" style="margin-bottom:15px;">진안군&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail"type="radio" value="전북진안군" style="margin-bottom:15px;">진안군&nbsp;&nbsp;</li>
                                 </ul>
                               </div>
-                          </form>
+                          </div>
                       </div>
 
                       <div role="tabpanel" class="tab-pane" id="Jeju">
-                          <form class="frm_reset">
+                          <div class="frm_reset">
                               <div class="checkList">
                                 <ul>
                                   <li><input name="Region" id="item_detail" type="radio" value="제주전체">전체&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail" type="radio" value="서귀포시">서귀포시&nbsp;&nbsp;</li>
-                                  <li><input name="Region" id="item_detail"type="radio" value="제주시" style="margin-bottom:15px;">제주시&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail" type="radio" value="제주서귀포시">서귀포시&nbsp;&nbsp;</li>
+                                  <li><input name="Region" id="item_detail"type="radio" value="제주제주시" style="margin-bottom:15px;">제주시&nbsp;&nbsp;</li>
                                   <li>&nbsp;&nbsp;</li>
                                   <li>&nbsp;&nbsp;</li>
                                   <li>&nbsp;&nbsp;</li>
                                 </ul>
                               </div>
-                          </form>
+                          </div>
                       </div>
                   <div role="tabpanel" class="tab-pane" id="messages">.d..</div>
                   <div role="tabpanel" class="tab-pane" id="settings">.asda..</div>
@@ -994,14 +996,14 @@ $(function(){
                 <a href="./UserPageApp.do?mem_no=<%=list.get(i).getMem_no()%>">
                 
                 <%if(list.get(i).getMem_icon().equals("profile.jpg")){ %>
-                <img src="<%=request.getContextPath()%>/image/profile.jpg" alt="User-img" class="projact_card_U img-circle" data-toggle="tooltip" title="닉네임 페이지 보기" data-original-title="Default tooltip">
+                <img src="<%=request.getContextPath()%>/image/profile.jpg" alt="User-img" class="projact_card_U img-circle" data-toggle="tooltip" title="<%=list.get(i).getMem_nickname()%> 페이지 보기" data-original-title="Default tooltip">
                 <%}else{
                 	System.out.println("아이콘경로있음");%>
-                	<img src="<%=request.getContextPath()%>/image/<%=list.get(i).getMem_icon()%>" alt="User-img" class="projact_card_U img-circle" data-toggle="tooltip" title="닉네임 페이지 보기" data-original-title="Default tooltip">
+                	<img src="<%=request.getContextPath()%>/image/<%=list.get(i).getMem_icon()%>" alt="User-img" class="projact_card_U img-circle" data-toggle="tooltip" title="<%=list.get(i).getMem_nickname()%> 페이지 보기" data-original-title="Default tooltip">
                 	<%} %>
                 
                 </a>
-                <p class="projact_card_U_font"><%=list.get(i).getMem_nickname() %><br><small><%=list.get(i).getMem_job() %></small></p>
+                <p class="projact_card_U_font"><%=list.get(i).getMem_nickname()%><br><small><%=list.get(i).getMem_job() %></small></p>
               </div>
              
               <div id="card_content">
@@ -1021,10 +1023,6 @@ $(function(){
                				}if(roop!=1){%>
                					<img id="i_<%=list.get(i).getBoa_no()%>" src="<%=request.getContextPath()%>/image/graystar.png">		
                				<%}roop=0; %>
-               				
-               			
-               		
-               		
 					</button>
                 	</li>
                 	<li><small style="float:right; margin:18px 20px 0px 0px;">등록날짜|&nbsp;&nbsp;<%=list.get(i).getBoa_reg_date()%></small></li>

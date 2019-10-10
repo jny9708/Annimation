@@ -48,8 +48,7 @@ if(session.getAttribute("Member")!=null){
         </div>
 
         <div class="collapse navbar-collapse" id="header_nav">
-          <ul class="nav navbar-nav header_title link-header" style="margin:10px;">
-            <li><a href="./Main.do">홈 <span class="sr-only">(current)</span></a></li>
+          <ul class="nav navbar-nav header_title link-header" style="margin:10px;">            
             <li><a href="./Project.bo">팀원모집 </a></li>
             <li><a href="./Contest.co">공모전 정보</a></li>
             <li class="active"><a href="./Guide.do">가이드</a></li>
@@ -107,7 +106,7 @@ if(session.getAttribute("Member")!=null){
                             <p>해시검색에 찾고자하는 해시태그를 입력합니다.</p>
                             <img alt="hash_2_img" src="<%=request.getContextPath()%>/image/guide_img/hash_2.jpg" class="guide_img">
                         </div> 
-
+ 
                     <input type="radio" name="tabs" id="tabtwo">     
                     <label for="tabtwo">등록</label> 
                         <div class="tab"> 
@@ -115,7 +114,7 @@ if(session.getAttribute("Member")!=null){
                             <p>팀원모집 페이지에 있는 모집글 등록 버튼을 클릭합니다.</p>
                             <img alt="" src="<%=request.getContextPath()%>/image/guide_img/Registration_1.jpg" class="guide_img2">
                             <p>모집글 등록페이지에서 기본적인 사항과 추가사항을 입력합하고 등록버튼을 클릭해 줍니다.</p>
-                            <img alt="" src="<%=request.getContextPath()%>/image/guide_img/Registration_2.jpg" class="guide_img2">
+                            <img alt="" src="<%=request.getContextPath()%>/image/guide_img/Registration_2.jpg" class="guide_img2 guide_Registration2">
                             <p>자신의 모집글이 등록되었는지 확인합니다.</p>
                             <img alt="" src="<%=request.getContextPath()%>/image/guide_img/Registration_3.jpg" class="guide_img2">
                         </div> 

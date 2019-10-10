@@ -22,13 +22,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" type="image⁄x-icon" href="<%=request.getContextPath()%>/image/logo1.png">
-    <link rel="shortcut icon" type="image⁄x-icon" href="<%=request.getContextPath()%>/image/final_logo(mini_size_2).png">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
     <link href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
     <script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.js"></script>
     <link href="<%=request.getContextPath()%>/css/main.css" rel="stylesheet" type="text/css"> <!--my css--> 
     <link href="<%=request.getContextPath()%>/css/contest_content.css" rel="stylesheet" type="text/css"> <!--my css--> 
     <title>아울러 : 공모전제목</title>
 </head>
+<script>
+  $(document).ready(function () {
+      $('.dropdown-toggle').dropdown();
+  });
+</script>
 <body>
 <header>
     <!------------- Navbar -------------->
@@ -53,7 +58,6 @@
 
         <div class="collapse navbar-collapse" id="header_nav">
           <ul class="nav navbar-nav header_title link-header" style="margin:10px;">
-            <li ><a href="./Main.do">홈 <span class="sr-only">(current)</span></a></li>
             <li><a href="./Project.bo">팀원모집 </a></li>
             <li class="active"><a href="./Contest.co">공모전 정보</a></li>
             <li><a href="./Guide.do">가이드</a></li>

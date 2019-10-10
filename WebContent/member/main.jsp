@@ -72,7 +72,6 @@
 
         <div class="collapse navbar-collapse" id="header_nav">
           <ul class="nav navbar-nav header_title link-header" style="margin:10px;">
-            <li class="active"><a href="./Main.do">홈 <span class="sr-only">(current)</span></a></li>
             <li><a href="./Project.bo">팀원모집 </a></li>
             <li><a href="./Contest.co">공모전 정보</a></li>
             <li><a href="./Guide.do">가이드</a></li>
@@ -185,7 +184,7 @@
                                   <p>  웹 애니메이션을 제작하기 위해서는 다양한 분야의 직군들이 필요합니다. <br>
                                     하지만 각 분야별 직군의 사람들은 본인의 분야 이외의 작업을 할 경우가 드물며 다른 직군의 제작자들을 찾는 데에도 시간적, 공간적 제약이 따르게 됩니다.<br> 
                                     이와 같은 불편함을 해소시키기 위해 웹 애니메이션 제작자들이 협업할 사람들을 쉽고 편리하게 구할 수 있는 통합 서비스인 <strong>아울러</strong>가 등장했습니다.</p>
-                                    <button onclick="location.href = './Project.bo' " class="in_but">함께하기</button>
+                                    <button onclick="location.href = './Project.bo' " class="in_but">같이하기</button>
                                   </div>
                             </div>
                           </div>
@@ -203,7 +202,7 @@
                                           </a>
                                   </h1>
                                   <p> 아마추어 웹 애니메이션 제작자들의 웹 애니메이션 제작을 고려한 <br>팀원 모집 사이트</p>
-                                  <button onclick="location.href = './Project.bo' " class="in_but">함께하기</button>
+                                  <button onclick="location.href = './Project.bo' " class="in_but">같이하기</button>
                                 </div>
                             </div>
                           </div>
@@ -221,7 +220,7 @@
                                               </a>
                                       </h1>
                                       <p>댓글 지원 형식을 사용한 간단한 지원방식</p>
-                                      <button onclick="location.href = './Project.bo' " class="in_but">함께하기</button>
+                                      <button onclick="location.href = './Project.bo' " class="in_but">같이하기</button>
                                     </div>
                             </div>
                           </div>
@@ -239,7 +238,7 @@
                                               </a>
                                       </h1> 
                                       <p>팀원 모집과 공모전 정보를 통합적으로 볼수 있는 사이트</p>
-                                    <button onclick="location.href = './Project.bo' " class="in_but">함께하기</button>
+                                    <button onclick="location.href = './Project.bo' " class="in_but">같이하기</button>
                             </div>
                           </div>
                 </div>

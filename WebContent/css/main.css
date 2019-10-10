@@ -311,6 +311,7 @@ header{
       font-family: 'SCDream7'; 
       color:  #5e5e5e;
       font-weight: bolder;
+      font-size: 14px !important;
     }
     .bs-white .dropdown>a {
         

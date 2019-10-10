@@ -56,7 +56,6 @@
 
         <div class="collapse navbar-collapse" id="header_nav">
           <ul class="nav navbar-nav header_title link-header" style="margin:10px;">
-            <li ><a href="./Main.do">홈 <span class="sr-only">(current)</span></a></li>
             <li><a href="./Project.bo">팀원모집</a></li>
             <li><a href="./Contest.co">공모전 정보</a></li>
             <li><a href="./Guide.do">가이드</a></li>

@@ -50,6 +50,8 @@
 <script  type="text/javascript">
 $(document).ready(function() {
 	$('#page_<%=pagenum%>').addClass('active');
+	
+	$('.dropdown-toggle').dropdown();
 });
 
 function star(boa_id) {
@@ -113,7 +115,6 @@ function star(boa_id) {
 
         <div class="collapse navbar-collapse" id="header_nav">
           <ul class="nav navbar-nav header_title link-header" style="margin:10px;">
-            <li><a href="./Main.do">홈 <span class="sr-only">(current)</span></a></li>
             <li><a href="./Project.bo">팀원모집 </a></li>
             <li><a href="./Contest.co">공모전 정보</a></li>
             <li><a href="./Guide.do">가이드</a></li>
@@ -172,10 +173,8 @@ function star(boa_id) {
            <%if(UserInfo.getMem_profile_content()!=null){
             	if(!UserInfo.getMem_profile_content().equals("")){%>
             	<%=UserInfo.getMem_profile_content()%>
-            	<%}else{
-            		
-            	}%>
-            	<p style="font-size:15px;text-align: center;">자기소개를 적어주세요</p>
+            	<%}%>
+            	
             	<%}else{%>
             		<p style="font-size:15px;text-align: center;">자기소개를 적어주세요</p>
             	<% }%>
@@ -221,10 +220,10 @@ function star(boa_id) {
                             <a href="./UserPageApp.do?mem_no=<%=sc_boa_list.get(i).getMem_no()%>">
               
                             <%if(sc_boa_list.get(i).getMem_icon().equals("profile.jpg")){%>
-                            	<img src="<%=request.getContextPath()%>/image/profile.jpg" alt="User-img" class="projact_card_U img-circle" data-toggle="tooltip" title="닉네임 페이지 보기" data-original-title="Default tooltip">	
+                            	<img src="<%=request.getContextPath()%>/image/profile.jpg" alt="User-img" class="projact_card_U img-circle" data-toggle="tooltip" title="<%=sc_boa_list.get(i).getMem_nickname()%> 페이지 보기" data-original-title="Default tooltip">	
                             <%}else{
                             	System.out.println("아이콘경로있음");%>
-                				<img src="<%=request.getContextPath()%>/image/<%=sc_boa_list.get(i).getMem_icon()%>" alt="User-img" class="projact_card_U img-circle" data-toggle="tooltip" title="닉네임 페이지 보기" data-original-title="Default tooltip">
+                				<img src="<%=request.getContextPath()%>/image/<%=sc_boa_list.get(i).getMem_icon()%>" alt="User-img" class="projact_card_U img-circle" data-toggle="tooltip" title="<%=sc_boa_list.get(i).getMem_nickname()%> 페이지 보기" data-original-title="Default tooltip">
                             <% } %>
                             
                             </a>
