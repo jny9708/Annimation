@@ -140,7 +140,7 @@ function star(boa_id) {
               <img src="<%=request.getContextPath()%>/image/profile.jpg" class="img-circle" alt="Profile Image"/>
               <%}else{
             	  System.out.println("아이콘경로있음");%>
-            	  <img src="<%=request.getContextPath()%>/image/<%=MemberDto.getMem_icon()%>" class="img-circle" alt="Profile Image"/>
+            	  <img src="<%=request.getContextPath()%>/usericon/<%=MemberDto.getMem_icon()%>" class="img-circle" alt="Profile Image"/>
             	  <%} %>
               </a>
               <ul class="dropdown-menu">
@@ -164,7 +164,7 @@ function star(boa_id) {
           <img src="<%=request.getContextPath()%>/image/profile.jpg" class="my_profile img-circle">
            <%}else{
         	   System.out.println("아이콘경로있음");%>
-        	   <img src="<%=request.getContextPath()%>/image/<%=UserInfo.getMem_icon()%>" class="my_profile img-circle">
+        	   <img src="<%=request.getContextPath()%>/usericon/<%=UserInfo.getMem_icon()%>" class="my_profile img-circle">
         	   <%} %>
           <p class="my_pro_font"><%=UserInfo.getMem_nickname()%><br><small><%=UserInfo.getMem_job()%></small></p>
           <div class="my_pro_block">
@@ -220,7 +220,7 @@ function star(boa_id) {
                             	<img src="<%=request.getContextPath()%>/image/profile.jpg" alt="User-img" class="projact_card_U img-circle" data-toggle="tooltip" title="<%=user_boa_list.get(i).getMem_nickname()%> 페이지 보기" data-original-title="Default tooltip">	
                             <%}else{
                             	System.out.println("아이콘경로있음");%>
-                				<img src="<%=request.getContextPath()%>/image/<%=user_boa_list.get(i).getMem_icon()%>" alt="User-img" class="projact_card_U img-circle" data-toggle="tooltip" title="<%=user_boa_list.get(i).getMem_nickname()%> 페이지 보기" data-original-title="Default tooltip">
+                				<img src="<%=request.getContextPath()%>/usericon/<%=user_boa_list.get(i).getMem_icon()%>" alt="User-img" class="projact_card_U img-circle" data-toggle="tooltip" title="<%=user_boa_list.get(i).getMem_nickname()%> 페이지 보기" data-original-title="Default tooltip">
                             <% } %>
                             
                             </a>

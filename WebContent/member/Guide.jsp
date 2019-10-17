@@ -76,7 +76,7 @@ if(session.getAttribute("Member")!=null){
               <img src="<%=request.getContextPath()%>/image/profile.jpg" class="img-circle" alt="Profile Image"/>
               <%}else{
             	  System.out.println("아이콘경로있음");%>
-            	  <img src="<%=request.getContextPath()%>/image/<%=MemberDto.getMem_icon()%>" class="img-circle" alt="Profile Image"/>
+            	  <img src="<%=request.getContextPath()%>/usericon/<%=MemberDto.getMem_icon()%>" class="img-circle" alt="Profile Image"/>
             	  <%} %>
               </a>
               <ul class="dropdown-menu">

@@ -258,7 +258,7 @@ function star(boa_id) {
               <img src="<%=request.getContextPath()%>/image/profile.jpg" class="img-circle" alt="Profile Image"/>
               <%}else{
             	  System.out.println("아이콘경로있음");%>
-            	  <img src="<%=request.getContextPath()%>/image/<%=MemberDto.getMem_icon()%>" class="img-circle" alt="Profile Image"/>
+            	  <img src="<%=request.getContextPath()%>/usericon/<%=MemberDto.getMem_icon()%>" class="img-circle" alt="Profile Image"/>
             	  <%} %>
               </a>
               <ul class="dropdown-menu">
@@ -314,7 +314,7 @@ function star(boa_id) {
                                 <img src="<%=request.getContextPath()%>/image/profile.jpg" alt="User-img" class="proCon_User_img img-circle" data-toggle="tooltip" title="<%=ProBoardDto.getMem_nickname()%> 페이지 보기" data-original-title="Default tooltip">
                                 <%}else{
                               	  System.out.println("아이콘경로있음");%>
-                                	<img src="<%=request.getContextPath()%>/image/<%=ProBoardDto.getMem_icon()%>" alt="User-img" class="proCon_User_img img-circle" data-toggle="tooltip" title="<%=ProBoardDto.getMem_nickname()%> 페이지 보기" data-original-title="Default tooltip">
+                                	<img src="<%=request.getContextPath()%>/usericon/<%=ProBoardDto.getMem_icon()%>" alt="User-img" class="proCon_User_img img-circle" data-toggle="tooltip" title="<%=ProBoardDto.getMem_nickname()%> 페이지 보기" data-original-title="Default tooltip">
                                 <% } %>
                                 </a>
                                 <p class="proCon_User_text"><%=ProBoardDto.getMem_nickname()%></p>

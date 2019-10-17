@@ -96,7 +96,7 @@ $(document).ready(function() {
               <img src="<%=request.getContextPath()%>/image/profile.jpg" class="img-circle" alt="Profile Image"/>
               <%}else{
             	  System.out.println("아이콘경로있음");%>
-            	  <img src="<%=request.getContextPath()%>/image/<%=MemberDto.getMem_icon()%>" class="img-circle" alt="Profile Image"/>
+            	  <img src="<%=request.getContextPath()%>/usericon/<%=MemberDto.getMem_icon()%>" class="img-circle" alt="Profile Image"/>
             	  <%} %>
               </a>
               <ul class="dropdown-menu">
@@ -125,7 +125,7 @@ $(document).ready(function() {
                                 <img id="blah" src="<%=request.getContextPath()%>/image/profile.jpg" alt="user_image" class="img_block img-circle" data-toggle="tooltip" title="프로필 사진 변경" data-original-title="Default tooltip">
                                  <%}else{
                                 	 System.out.println("아이콘경로있음");%>
-                                	 <img id="blah" src="<%=request.getContextPath()%>/image/<%=MemberDto.getMem_icon()%>" class="img_block img-circle" alt="user_image" data-toggle="tooltip" title="프로필 사진 변경" data-original-title="Default tooltip">
+                                	 <img id="blah" src="<%=request.getContextPath()%>/usericon/<%=MemberDto.getMem_icon()%>" class="img_block img-circle" alt="user_image" data-toggle="tooltip" title="프로필 사진 변경" data-original-title="Default tooltip">
                                 	 <%} %>
                                 <input id="pic" class='pis img_block2' onchange="readURL(this);" type="file" name="usericon">
                             </label>
